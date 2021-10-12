@@ -5,8 +5,7 @@
         p-4
         pb-5
         border-b
-        shadow-lg
-        bg-gray-100
+        bg-white
         flex
         items-center
         justify-between
@@ -23,24 +22,8 @@
       </div>
 
       <!--search-input -->
-      <form action="get" class="mb-2 h-12 flex w-96">
-        <input
-          type="text"
-          class="p-2 border rounded-lg w-full bg-gray-50 focus:shadow-inner"
-          placeholder="جستجو کنید "
-        />
-      </form>
+     
 
-      <!--Div-menu-con -->
-      <div>
-        <div>
-          <a class="py-2"><img src="../assets/Translit.png" alt="Menu" /></a>
-        </div>
-      </div>
-    </header>
-
-    <!--Items -->
-    <div>
       <div class="w-full h-full">
         <span class="block w-full text-center text-5xl h-20 pt-6 text-yellow-900"> دیکشرنی عربی نبراس</span >
          
@@ -49,6 +32,25 @@
           <a>     لهجه عراقی    </a>|
           <a>   لهجه خلیجی </a>
         </div>
+      </div>
+      <!--Div-menu-con -->
+      <div>
+        <div>
+          <a class="py-2"><i class="fas fa-bars"></i></a>
+        </div>
+      </div>
+    </header>
+
+    <!--Items -->
+    <div class="bg-gray-100">
+      <div class="w-full h-28 pt-4">
+       <form action="get" class=" h-12 flex  mb-11 mr-12 ml-10 ">
+        <input
+          type="text"
+          class="p-2 h- h-28 border rounded-full w-full bg-white focus:shadow-inner text-4xl"
+          placeholder="جستجو کنید..."
+        />
+      </form>
       </div>
       <div
         class="
@@ -59,7 +61,7 @@
           relative
         "
       >
-        <div class="w-72 m-7 h-52 border drop-shadow-md rounded-3xl">
+        <div class="w-72 m-7 h-52 border drop-shadow-md rounded-4xl">
           <div class="absolute bottom-5 w-full">
             <span class="text-red-400 text-4xl block bottom-5 left-14">
               نشان شده ها
@@ -71,7 +73,7 @@
             </span>
           </div>
         </div>
-        <div class="w-72 m-7 h-52 border drop-shadow-md rounded-3xl">
+        <div class="w-72 m-7 h-52 border drop-shadow-md rounded-4xl">
           <div class="absolute bottom-5 w-full">
             <span class="text-red-400 text-4xl block bottom-5 left-14">
               پیشنهادات مردمی
@@ -83,7 +85,7 @@
             </span>
           </div>
         </div>
-        <div class="w-72 m-7 h-52 border drop-shadow-md rounded-3xl">
+        <div class="w-72 m-7 h-52 border drop-shadow-md rounded-4xl">
           <div class="absolute bottom-5 w-full">
             <span class="text-red-400 text-4xl block bottom-5 left-14">
               اصطلاحات خلیجی</span
