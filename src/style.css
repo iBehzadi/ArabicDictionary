@@ -1,9 +1,11 @@
 @tailwind base;
-* {
-    direction: rtl;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-}
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'vazir';
+        src:  url('./assets/fonts/Vazir-Regular-FD-WOL-UI.woff') format('woff'),
+              url('./assets/fonts/Vazir-Regular-FD-WOL-UI.woff2') format('woff2');
+      }
+}

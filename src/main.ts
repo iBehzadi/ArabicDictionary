@@ -5,8 +5,8 @@ import router from "./router/router";
 import {createPinia} from "pinia";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
-library.add(faUserSecret);
+import { faUserSecret,faBars } from '@fortawesome/free-solid-svg-icons';
+library.add(faUserSecret,faBars);
 
 createApp(App)
     .use(router)
