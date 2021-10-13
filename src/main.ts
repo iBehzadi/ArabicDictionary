@@ -5,11 +5,14 @@ import router from "./router/router";
 import {createPinia} from "pinia";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserSecret,faBars } from '@fortawesome/free-solid-svg-icons';
-library.add(faUserSecret,faBars);
+import { faUserSecret,faBars,faSearch,faBookmark,faFlag,faTshirt,faClock,faCouch,faPalette,faBriefcaseMedical
+ ,faUserNurse,faQuestion,faPen,faPlay} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faUserSecret,faBars,faSearch,faBookmark,faFlag,faTshirt,faClock,faCouch,faPalette,faBriefcaseMedical,
+  faUserNurse,faQuestion,faPen,faPlay  );
 
 createApp(App)
     .use(router)
     .component('font-awesome-icon', FontAwesomeIcon)
     .use(createPinia())
-    .mount('#app')
+    .mount('#app') 
