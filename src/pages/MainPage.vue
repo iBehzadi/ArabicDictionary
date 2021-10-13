@@ -23,11 +23,11 @@
      <!-- Header -->
 
       <div class="w-full h-full">
-        <span class="block w-full text-center text-5xl h-20 pt-6 text-black font-bold"> دیکشرنی عربی نبراس</span >
+        <span class="block w-full text-center lg:text-5xl  md:text-4xl sm:text-3xl text-2xl h-20 pt-6 text-black font-bold"> دیکشرنی عربی نبراس</span >
          
        
-        <div class="block w-full text-center text-2xl pt-3 text-gray-400 font-quran tracking-wider	">
-          <span>   لهجه  <a class="bg-gray-200 rounded-3xl ">  عراقی </a> <span class="pr-2">و</span>  لهجه   <a class="bg-gray-200 rounded-2xl"> خلیجی </a> 
+        <div class="block w-full text-center  pt-3 text-gray-400 font-quran tracking-wider 	">
+          <span class="lg:text-2xl md:text-xl ">   لهجه  <a class="bg-gray-200 rounded-3xl ">  عراقی </a> <span class="pr-2">و</span>  لهجه   <a class="bg-gray-200 rounded-2xl"> خلیجی </a> 
             </span>
         </div>
       </div>
@@ -43,9 +43,9 @@
       <!--search-input -->
       <div class="w-full  pt-4 relative h-36">
        <form action="get" class=" h-12 flex  mb-11 mr-12 ml-10 ">
-        <input
+        <input 
           type="text"
-          class="p-2 h- h-32 border rounded-full w-full bg-white focus:shadow-inner text-4xl pr-10" 
+          class= " lg:text-5xl  md:text-4xl sm:text-3xl text-2xl  p-2 h- h-32 border rounded-full w-full bg-white focus:shadow-inner  pr-10 " 
           placeholder="جستجو کنید..."
           
         />
@@ -68,13 +68,15 @@
       >
         <div class="w-60 mt-7 mr-5 h-56 border drop-shadow-md rounded-4xl bg-white font-quran">
           <div class="absolute bottom-5 w-full">
-            <span class="text-black text-4xl block bottom-5 left-14 pb-5 font-bold">
+            <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
+            <span class="text-black  text-4xl  block bottom-5 left-14 pb-5 font-bold">
                     نشان شده ها
               </span>
           </div>
           <div class="absolute w-full">
               <span class="block pt-4">
-      <font-awesome-icon c :icon="['fas','bookmark'] " class="text-green-500 text-8xl pr-2  " />
+                <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
+      <font-awesome-icon c :icon="['fas','bookmark'] " class="text-green-500 text-8xl  pr-2  " />
 
             </span>
           </div>
