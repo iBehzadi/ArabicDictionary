@@ -28,8 +28,8 @@
         class="flex rounded-full mr-2 justify-around p-1 bg-red-600 w-12 h-6 gap-2"
       >
         <font-awesome-icon
-          class="text-white self-center"
-          :icon="['fas', 'times-circle']"
+          class="text-white self-center "
+          :icon="['far', 'times-circle']"
         />
         <p class="ml-1 text-white text-sm self-center">۱</p>
       </div>
@@ -72,3 +72,4 @@ export default defineComponent({
   },
 });
 </script>
+
