@@ -35,7 +35,7 @@ function stopPropagationOfModal() {
                 </section>
 
                 <footer class="modal-footer">
-                    <button type="button" class="btn-green rounded-md" @click="close">بستن</button>
+                    <button type="button" class="btn-green rounded-md" @click="close"><slot name="button">بستن</slot></button>
                 </footer>
             </div>
         </div>
