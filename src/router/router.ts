@@ -8,7 +8,11 @@ const routes = [
     name: "VocabularyPractice",
     component: () => import("@/pages/VocabularyPracticePage.vue")
   },
-  
+  {
+    path: "/About",
+    name: "About",
+    component: () => import("@/pages/AboutUsPage.vue")
+  },
 ];
 
 const router = createRouter({
