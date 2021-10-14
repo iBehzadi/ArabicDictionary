@@ -1,10 +1,41 @@
 @tailwind base;
-* {
-    direction: rtl;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-}
-
 @tailwind components;
 @tailwind utilities;
+@layer base {
+    @font-face {
+        font-family: Vazir;
+        src: url('./assets/fonts/Vazir-Regular-FD-WOL-UI.woff2') format('woff2'), url('./assets/fonts/Vazir-Regular-FD-WOL-UI.woff') format('woff');
+        font-weight: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: Vazir;
+        src: url('./assets/fonts/Vazir-Bold-FD-WOL-UI.woff2') format('woff2'), url('./assets/fonts/Vazir-Bold-FD-WOL-UI.woff') format('woff');
+        font-weight: bold;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: Vazir;
+        src: url('./assets/fonts/Vazir-Thin-FD-WOL-UI.woff2') format('woff2'), url('./assets/fonts/Vazir-Thin-FD-WOL-UI.woff') format('woff');
+        font-weight: 100;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: Vazir;
+        src: url('./assets/fonts/Vazir-Light-FD-WOL-UI.woff2') format('woff2'), url('./assets/fonts/Vazir-Light-FD-WOL-UI.woff') format('woff');
+        font-weight: 300;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: Vazir;
+        src: url('./assets/fonts/Vazir-Medium-FD-WOL-UI.woff2') format('woff2'), url('./assets/fonts/Vazir-Medium-FD-WOL-UI.woff') format('woff');
+        font-weight: 500;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: Vazir;
+        src: url('./assets/fonts/Vazir-Black-FD-WOL-UI.woff2') format('woff2'), url('./assets/fonts/Vazir-Black-FD-WOL-UI.woff') format('woff');
+        font-weight: 900;
+        font-display: swap;
+    }
+}
