@@ -21,24 +21,21 @@ function stopPropagationOfModal() {
     <transition name="modal-fade">
         <div class="modal-backdrop" @click="closeModal">
             <div class="modal" role="dialog" @click="stopPropagationOfModal">
-                <header class="modal-header">
-                    <span>
-                        <slot name="header"></slot>
-                    </span>
+                <header class="modal-body mx-2">
+                    <slot name="body1"></slot>
                 </header>
-
-                <section class="modal-body">
-                    <slot name="body"></slot>
+                <section class="modal-body mx-2">
+                    <slot name="body2"></slot>
+                </section>
+                <section class="modal-body mx-2">
+                    <slot name="body3"></slot>
+                </section>
+                <section class="modal-body mx-2">
+                    <slot name="body4"></slot>
                 </section>
 
                 <footer class="modal-footer">
-                    <slot name="footer"></slot>
-                    <button
-                        type="button"
-                        class="btn-green rounded-md"
-                        @click="close"
-                        aria-label="Close modal"
-                    >بستن</button>
+                    <button type="button" class="btn-green rounded-md" @click="close">بستن</button>
                 </footer>
             </div>
         </div>
@@ -56,17 +53,17 @@ function stopPropagationOfModal() {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Vazir;
 }
 
 .modal {
     background: #ffffff;
-    box-shadow: 2px 2px 20px 1px;
+    box-shadow: 0px 1px 10px 0px;
     overflow-x: auto;
     display: flex;
     width: 40%;
     flex-direction: column;
     border-radius: 15px;
+    font-family: Vazir;
 }
 
 .modal-header,
@@ -77,7 +74,6 @@ function stopPropagationOfModal() {
 
 .modal-header {
     position: relative;
-    color: #ffcc00;
     justify-content: space-between;
 }
 
@@ -87,15 +83,27 @@ function stopPropagationOfModal() {
 
 .modal-body {
     position: relative;
-    padding: 20px 10px;
+    padding: 5px 10px;
+}
+
+.btn-close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffcc00;
+    background: transparent;
 }
 
 .btn-green {
-    color: white;
+    color: #000;
     background: #ffcc00;
     border: 1px solid #ffcc00;
     padding: 5px;
-    color: #000;
 }
 
 .modal-fade-enter,
