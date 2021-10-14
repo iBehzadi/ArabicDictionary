@@ -1,12 +1,8 @@
 <template>
   <div class="h-screen bg-gray-200">
-    <div class="flex justify-self-start bg-white text-right p-4  shadow-md drop-shadow-sm ">
-      <font-awesome-icon
-        class="text-lg text-gray-600 self-center font-thin"
-        :icon="['fas', 'arrow-right']"
-      />
-      <label class="mr-4 text-black text-base font-black"> تمرین لغات</label>
-    </div>
+    <header2>
+      <template v-slot:title> تمرین لغات</template>
+    </header2>
     <div class="flex relative justify-start p-2 mt-2">
       
       <div
@@ -67,9 +63,10 @@
 <script lang="ts">
 import { ref, computed, defineComponent } from "vue";
 import VocabularyTestOptions from "@/components/VocabularyTestOptions.vue";
+import Header2 from "@/components/Header2.vue";
 export default defineComponent({
   name: "VocabularyPractice",
-  components: { VocabularyTestOptions },
+  components: { VocabularyTestOptions,Header2 },
   setup() {
     return {};
   },
