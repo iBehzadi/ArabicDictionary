@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import main from "../pages/MainPage.vue";
-import tarjome from "../components/pageLoghat.vue"
+import loghat from "../pages/pageLoghat.vue"
 const routes = [
   {path: "/", name: "main", component: main},
   {
@@ -12,7 +12,13 @@ const routes = [
     path: "/About",
     name: "About",
     component: () => import("@/pages/AboutUsPage.vue")
-  },
+  }
+,
+{
+  path:"/loghat",
+ name:"loghat",
+  component: ()=> import("@/pages/pageLoghat.vue")
+}
 ];
 
 const router = createRouter({

@@ -116,7 +116,7 @@
             font-quran
           "
         >
-        <router-link :to="{name:'tarjome',params:{id:item.id}}" >
+        <router-link :to="{name:'loghat',params:{id:item.id}}" >
           <div class="w-full">
             <span class="block pt-4">
               <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
@@ -164,7 +164,7 @@
 </template>
 
 <script setup lang="ts">
-import loghat from '../components/pageLoghat.vue';
+// import loghat from '../components/pageLoghat.vue';
 
 
 </script>
