@@ -9,10 +9,7 @@ import Modal from "../components/modalView.vue"
 let isModalVisible = ref(false);
 const router = useRouter();
 
-function getOut() {
-  router.push('/');
-  isModalVisible.value = false;
-}
+
 </script>
 
 <template>
@@ -56,7 +53,7 @@ function getOut() {
     </div>
   </div>
 
-  <Modal v-show="isModalVisible" @close="getOut">
+  <Modal v-show="isModalVisible" @close="router.back()">
     <template v-slot:body1>
       <div class="test-result">
         <span>تعداد کل سوالات</span>

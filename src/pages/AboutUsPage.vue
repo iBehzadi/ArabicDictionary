@@ -6,7 +6,7 @@ const router = useRouter();
 
 <template>
   <div class="flex flex-col">
-    <header2 @back="router.back">
+    <header2 @back="router.back()">
       <template v-slot:title>درباره ما</template>
     </header2>
     <div class="h-44 overflow-hidden">
