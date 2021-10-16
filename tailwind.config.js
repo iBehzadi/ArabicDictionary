@@ -28,7 +28,9 @@ const config = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor:['odd']
+    },
   },
   plugins: [],
 }

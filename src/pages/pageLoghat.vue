@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import loghat from "@/components/loghat.vue";
-
+import WordComponent from "../components/WordComponent.vue";
+let obj ={
+    category:'دسته بندی',
+    word:'کلمه',
+    translate:'ترجمه',
+    sample:'مثال'
+}
 </script>
 <template >
 <div>
@@ -11,10 +16,7 @@ import loghat from "@/components/loghat.vue";
             />
         <h2 class="font-bold text-sm pr-5 ">    اصطلاحات خلیجی   </h2>
           </div>
-            <loghat>
-
-
-            </loghat>
+                      <WordComponent :obj='obj' v-for="item in 40" :key="item">   </WordComponent>
 
         <div class="bg-yellow w-full h-11 rounded-t-2xl flex justify-center pt-3" >
                  <font-awesome-icon
