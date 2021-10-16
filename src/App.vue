@@ -1,23 +1,8 @@
+<script setup lang="ts">
 
-
-<script lang="ts">
-export default {
-  components:{
-    
-  },
-  setup(){
-   
-    return{
-      
-    }
-  },
-
-}
 </script>
 
 <template>
- 
-
   <router-view></router-view>
 </template>
 

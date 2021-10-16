@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import modalView from "./modalView.vue";
+import modalView from "./ModalView.vue";
 
 </script>
 
