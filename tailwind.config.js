@@ -21,6 +21,9 @@ const config = {
         yellow:"#fbd83a",
         pink:"#d290dc"
         
+      },
+      fontSize:{
+        "2xs":'8px'
       }
     },
   },
