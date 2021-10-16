@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUserSecret ,faArrowRight,faBars} from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle,faCheckCircle} from '@fortawesome/free-regular-svg-icons';
-library.add(faUserSecret,faArrowRight,faTimesCircle,faCheckCircle,faUserSecret,faBars);
+import { faInstagram,faTelegramPlane} from '@fortawesome/free-brands-svg-icons';
+library.add(faUserSecret,faArrowRight,faTimesCircle,faCheckCircle,faUserSecret,faBars,faInstagram,faTelegramPlane);
 
 createApp(App)
     .use(router)
