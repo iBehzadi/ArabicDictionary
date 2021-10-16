@@ -39,3 +39,9 @@
         font-display: swap;
     }
 }
+
+@layer utilities {
+    .flex-center {
+        @apply flex items-center justify-center;
+    }
+}
