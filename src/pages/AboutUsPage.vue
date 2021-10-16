@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col ">
+  <div class="flex flex-col">
     <header2>
       <template v-slot:title>درباره ما</template>
     </header2>
@@ -27,25 +27,26 @@
         src="@/assets/image-aboutPage.jpg"
         alt="nebras"
       />
-      <h2 class="block mt-4 text-xl text-black font-bold ">نبراس</h2>
+      <h2 class="block mt-4 text-xl text-black font-bold">نبراس</h2>
       <h6 class="block text-xs text-black font-medium mt-1">محمد الجبوری</h6>
     </div>
-    <div class="flex bg-red-600 rounded-full px-3 mx-4 h-9  mt-3 justify-end">
-          <font-awesome-icon
-          class="text-white self-center"
-          :icon="['fas', 'instagram']"
-        />
-        <p class="text-white self-center p-2">Nebres.arabic@</p>
+    <div class="flex bg-red-600 rounded-full px-3 mx-4 h-9 mt-3 justify-end">
+      <p class="text-white self-center p-2">Nebres.arabic@</p>
+      <font-awesome-icon
+        class="text-white self-center text-xl mr-2"
+        :icon="['fab', 'instagram']"
+      />
     </div>
-       <div class="flex bg-blue-600 rounded-full px-3 mx-4 h-9 justify-end mt-3">
-          <font-awesome-icon
-          class="text-white self-center"
-          :icon="['fas', 'telegram-plane']"
-        />
-        <p class="text-white self-center p-2">nebres_arabic@</p>
+    <div class="flex bg-blue-600 rounded-full px-3 mx-4 h-9 justify-end mt-3">
+      <p class="text-white self-center p-2">nebres_arabic@</p>
+      <font-awesome-icon
+        class="text-white self-center text-lg mr-2"
+        :icon="['fab', 'telegram-plane']"
+      />
     </div>
-    <p class="px-7 mt-4 text-xs text-black font-medium leading-4 ">
-        کلیه حقوق این نرم افزار متعلق به گروه آموزشی نبراس است و هرگونه کبی برداری از آن بدون ذکر منبع شرعا و قانونا ممنوع است.
+    <p class="px-7 mt-4 text-xs text-black font-medium leading-4">
+      کلیه حقوق این نرم افزار متعلق به گروه آموزشی نبراس است و هرگونه کبی برداری
+      از آن بدون ذکر منبع شرعا و قانونا ممنوع است.
     </p>
   </div>
 </template>
@@ -62,7 +63,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-.filter_img{
+.filter_img {
   filter: blur(8px);
 }
 </style>
