@@ -2,7 +2,7 @@
     "name": "arabicdictionary",
     "version": "0.0.0",
     "scripts": {
-        "dev": "vite --open",
+        "dev": "vite --open --host",
         "build": "vue-tsc --noEmit && vite build",
         "serve": "vite preview"
     },

@@ -13,6 +13,7 @@ function closeModal() {
 function stopPropagationOfModal() {
     document.querySelector(".modal")?.addEventListener("click", (e) => {
         e.stopPropagation();
+
     })
 }
 </script>
@@ -20,7 +21,7 @@ function stopPropagationOfModal() {
 <template>
     <transition name="modal-fade">
         <div class="modal-backdrop" @click="closeModal">
-            <div class="modal" role="dialog" @click="stopPropagationOfModal">
+            <div class="modal text-xs" role="dialog" @click="stopPropagationOfModal">
                 <header class="modal-body mx-2">
                     <slot name="body1"></slot>
                 </header>
@@ -60,21 +61,16 @@ function stopPropagationOfModal() {
     box-shadow: 0px 1px 10px 0px;
     overflow-x: auto;
     display: flex;
-    width: 40%;
+    width: 75%;
     flex-direction: column;
     border-radius: 15px;
     font-family: Vazir;
 }
 
-.modal-header,
+
 .modal-footer {
     padding: 15px;
     display: flex;
-}
-
-.modal-header {
-    position: relative;
-    justify-content: space-between;
 }
 
 .modal-footer {
@@ -84,19 +80,7 @@ function stopPropagationOfModal() {
 .modal-body {
     position: relative;
     padding: 5px 10px;
-}
 
-.btn-close {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: none;
-    font-size: 20px;
-    padding: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #ffcc00;
-    background: transparent;
 }
 
 .btn-green {
