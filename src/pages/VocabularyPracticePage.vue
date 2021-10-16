@@ -20,7 +20,7 @@
       >
         <font-awesome-icon
           class="text-white self-center"
-          :icon="['fas', 'check-circle']"
+          :icon="['far', 'check-circle']"
         />
         <p class="ml-1 text-white text-sm self-center">۲</p>
       </div>
