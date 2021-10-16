@@ -5,11 +5,10 @@ import router from "./router/router";
 import {createPinia} from "pinia";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserSecret,faBars,faSearch,faBookmark,faFlag,faTshirt,faClock,faCouch,faPalette,faBriefcaseMedical
- ,faUserNurse,faQuestion,faPen,faPlay} from '@fortawesome/free-solid-svg-icons';
-
-library.add(faUserSecret,faBars,faSearch,faBookmark,faFlag,faTshirt,faClock,faCouch,faPalette,faBriefcaseMedical,
-  faUserNurse,faQuestion,faPen,faPlay  );
+import { faUserSecret ,faArrowRight,faBars} from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle,faCheckCircle} from '@fortawesome/free-regular-svg-icons';
+import { faInstagram,faTelegramPlane} from '@fortawesome/free-brands-svg-icons';
+library.add(faUserSecret,faArrowRight,faTimesCircle,faCheckCircle,faUserSecret,faBars,faInstagram,faTelegramPlane);
 
 createApp(App)
     .use(router)
