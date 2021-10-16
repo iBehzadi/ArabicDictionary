@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import Header2 from "../components/Header2.vue";
+
+</script>
+
 <template>
   <div class="flex flex-col">
     <header2>
@@ -5,7 +10,7 @@
     </header2>
     <div class="h-44 overflow-hidden">
       <img
-        class="filter_img w-full flex"
+        class="filter blue w-full flex"
         src="@/assets/image-aboutPage.jpg"
         alt="nebras"
       />
@@ -50,20 +55,6 @@
     </p>
   </div>
 </template>
-<script lang="ts">
-import { ref, computed, defineComponent } from "vue";
-import Header2 from "@/components/Header2.vue";
 
-export default defineComponent({
-  name: "About",
-  components: { Header2 },
-  setup() {
-    return {};
-  },
-});
-</script>
 <style scoped>
-.filter_img {
-  filter: blur(8px);
-}
 </style>

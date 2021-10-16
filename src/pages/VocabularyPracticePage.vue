@@ -1,3 +1,10 @@
+<script setup lang="ts">
+
+import VocabularyTestOptions from "@/components/VocabularyTestOptions.vue";
+import header2 from "@/components/Header2.vue";
+
+</script>
+
 <template>
   <div class="h-screen bg-gray-200">
     <header2>
@@ -60,16 +67,5 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import { ref, computed, defineComponent } from "vue";
-import VocabularyTestOptions from "@/components/VocabularyTestOptions.vue";
-import Header2 from "@/components/Header2.vue";
-export default defineComponent({
-  name: "VocabularyPractice",
-  components: { VocabularyTestOptions,Header2 },
-  setup() {
-    return {};
-  },
-});
-</script>
+
 

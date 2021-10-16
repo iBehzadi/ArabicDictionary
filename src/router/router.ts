@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import main from "../pages/MainPage.vue";
-import loghat from "../pages/pageLoghat.vue"
 const routes = [
   {path: "/", name: "main", component: main},
   {
