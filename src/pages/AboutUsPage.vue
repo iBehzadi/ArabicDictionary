@@ -1,31 +1,19 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
 import Header2 from "../components/Header2.vue";
-
+const router = useRouter();
 </script>
 
 <template>
   <div class="flex flex-col">
-    <header2>
+    <header2 @back="router.back()">
       <template v-slot:title>درباره ما</template>
     </header2>
     <div class="h-44 overflow-hidden">
-      <img
-        class="filter blue w-full flex"
-        src="@/assets/image-aboutPage.jpg"
-        alt="nebras"
-      />
+      <img class="filter blue w-full flex" src="@/assets/image-aboutPage.jpg" alt="nebras" />
     </div>
     <div
-      class="
-        relative
-        flex flex-col
-        h-20
-        bg-white
-        justify-center
-        text-center
-        items-center
-        content-center
-      "
+      class="relative flex flex-col h-20 bg-white justify-center text-center items-center content-center"
     >
       <img
         class="w-3/12 rounded-3xl absolute bottom-3/4 shadow-lg drop-shadow-md"
@@ -37,10 +25,7 @@ import Header2 from "../components/Header2.vue";
     </div>
     <div class="flex bg-red-600 rounded-full px-3 mx-4 h-9 mt-3 justify-end">
       <p class="text-white self-center p-2">Nebres.arabic@</p>
-      <font-awesome-icon
-        class="text-white self-center text-xl mr-2"
-        :icon="['fab', 'instagram']"
-      />
+      <font-awesome-icon class="text-white self-center text-xl mr-2" :icon="['fab', 'instagram']" />
     </div>
     <div class="flex bg-blue-600 rounded-full px-3 mx-4 h-9 justify-end mt-3">
       <p class="text-white self-center p-2">nebres_arabic@</p>
