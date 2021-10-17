@@ -59,16 +59,15 @@
         class="flex flex-fill justify-content-center flex-wrap text-center relative pb-16 justify-evenly"
       >
         <div
-          v-for="item in 10"
+          v-for="item in 20"
           class="w-24 mt-3 h-24 border drop-shadow-md rounded-3xl bg-white font-quran"
         >
-<<<<<<< HEAD
-        <router-link :to="{name:'loghat',params:{id:item.id}}" >
+        <router-link :to="{name:'words'}" >
           <div class="w-full">
             <span class="block pt-4">
               <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
               <font-awesome-icon
-                c
+                
                 :icon="['fas', 'bookmark']"
                 class="text-green-500 text-4xl pr-2"
               />
@@ -81,24 +80,6 @@
             </span>
           </div>
         </router-link>
-=======
-          <!-- set => params:{:category} -->
-          <router-link :to="{ name: 'words' }">
-            <div class="w-full">
-              <span class="block pt-4">
-                <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-                <font-awesome-icon
-                  :icon="['fas', 'bookmark']"
-                  class="text-green-500 text-4xl pr-2"
-                />
-              </span>
-            </div>
-            <div class="w-full">
-              <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-              <span class="text-black text-sm block bottom-5 left-14">نشان شده ها</span>
-            </div>
-          </router-link>
->>>>>>> b12658d87448cf3e932ea9790e425d489a3246ec
         </div>
 
 
