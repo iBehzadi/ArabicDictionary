@@ -134,9 +134,18 @@
             </span>
           </div>
         </router-link>
-
         </div>
+
+
+       
+
+
+
+
       </div>
+
+
+
       <!-- Dokme Tamrin & Azmon -->
       <div class="w-full flex h-12 fixed bottom-0 inset-x-0">
         <div class="w-2/4 border rounded-t-2xl bg-yellow text-center">
@@ -160,6 +169,7 @@
       </div>
     </div>
    
+    
   </div>
 </template>
 
