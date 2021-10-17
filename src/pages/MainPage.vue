@@ -60,7 +60,7 @@
       >
         <div
           v-for="item in 10"
-          class="mr-3 w-24 mt-3 h-24 border drop-shadow-md rounded-3xl bg-white font-quran"
+          class="w-24 mt-3 h-24 border drop-shadow-md rounded-3xl bg-white font-quran"
         >
           <!-- set => params:{:category} -->
           <router-link :to="{ name: 'words' }">
