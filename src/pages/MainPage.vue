@@ -1,10 +1,15 @@
 <template>
   <div>
-    <header class="pb-1 pr-1 pl-1 border-b bg-white flex items-center justify-between">
+    <header
+      class="pb-1 pr-1 pl-1 border-b bg-white flex items-center justify-between"
+    >
       <!--logo-Translite -->
       <div class="flex items-center justify-between">
         <h1 class="leading-none text-2xl text-gray-darkest">
-          <font-awesome-icon :icon="['fas', 'bars']" class="text-2xl text-gray-500" />
+          <font-awesome-icon
+            :icon="['fas', 'bars']"
+            class="text-2xl text-gray-500"
+          />
         </h1>
       </div>
 
@@ -12,10 +17,28 @@
 
       <div class="w-full h-full">
         <span
-          class="block w-full text-center lg:text-5xl md:text-4xl sm:text-3xl text-1xl text-black font-bold"
-        >دیکشرنی عربی نبراس</span>
+          class="
+            block
+            w-full
+            text-center
+            lg:text-5xl
+            md:text-4xl
+            sm:text-3xl
+            text-1xl text-black
+            font-bold
+          "
+          >دیکشرنی عربی نبراس</span
+        >
 
-        <div class="block w-full text-center text-gray-400 font-quran tracking-wider">
+        <div
+          class="
+            block
+            w-full
+            text-center text-gray-400
+            font-quran
+            tracking-wider
+          "
+        >
           <span class="text-2xs">
             لهجه
             <a class="bg-gray-200 rounded-3xl">عراقی</a>
@@ -43,7 +66,17 @@
         <form action="get" class="flex mb-11 mr-2 ml-2">
           <input
             type="text"
-            class="text-1xl p-2 h-12 border rounded-full w-full bg-white focus:shadow-inner pr-1"
+            class="
+              text-1xl
+              p-2
+              h-12
+              border
+              rounded-full
+              w-full
+              bg-white
+              focus:shadow-inner
+              pr-1
+            "
             placeholder="جستجو کنید..."
           />
           <font-awesome-icon
@@ -56,41 +89,49 @@
       <!--Items -->
 
       <div
-        class="flex flex-fill justify-content-center flex-wrap text-center relative pb-16 justify-evenly"
+        class="
+          flex flex-fill
+          justify-content-center
+          flex-wrap
+          text-center
+          relative
+          pb-16
+          justify-evenly
+        "
       >
         <div
-          v-for="item in 20"
-          class="w-24 mt-3 h-24 border drop-shadow-md rounded-3xl bg-white font-quran"
+          v-for="item in 10"
+          class="
+            w-24
+            mt-3
+            h-24
+            border
+            drop-shadow-md
+            rounded-3xl
+            bg-white
+            font-quran
+          "
         >
-        <router-link :to="{name:'words'}" >
-          <div class="w-full">
-            <span class="block pt-4">
-              <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-              <font-awesome-icon
-                
-                :icon="['fas', 'bookmark']"
-                class="text-green-500 text-4xl pr-2"
-              />
-            </span>
-          </div>
-          <div class="w-full">
-            <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-            <span class="text-black text-sm block bottom-5 left-14">
-              نشان شده ها
-            </span>
-          </div>
-        </router-link>
+          <!-- set => params:{:category} -->
+          <router-link :to="{ name: 'words' }">
+            <div class="w-full">
+              <span class="block pt-4">
+                <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
+                <font-awesome-icon
+                  :icon="['fas', 'bookmark']"
+                  class="text-green-500 text-4xl pr-2"
+                />
+              </span>
+            </div>
+            <div class="w-full">
+              <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
+              <span class="text-black text-sm block bottom-5 left-14"
+                >نشان شده ها</span
+              >
+            </div>
+          </router-link>
         </div>
-
-
-       
-
-
-
-
       </div>
-
-
 
       <!-- Dokme Tamrin & Azmon -->
       <div class="w-full flex h-12 fixed bottom-0 inset-x-0">
@@ -99,12 +140,18 @@
           @click="router.push('/Practice')"
         >
           <p class="text-sm">
-            <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600" />تمرین لغات
+            <font-awesome-icon
+              :icon="['fas', 'pen']"
+              class="text-sm text-gray-600"
+            />تمرین لغات
           </p>
         </button>
         <button class="w-2/4 border rounded-t-2xl bg-yellow text-center mr-1">
           <p class="text-sm">
-            <font-awesome-icon :icon="['fas', 'question']" class="text-sm text-gray-600" />آزمون مرحله ای
+            <font-awesome-icon
+              :icon="['fas', 'question']"
+              class="text-sm text-gray-600"
+            />آزمون مرحله ای
           </p>
         </button>
       </div>
@@ -114,8 +161,7 @@
 
 <script setup lang="ts">
 // import loghat from '../components/pageLoghat.vue';
-import { useRouter } from 'vue-router';
-
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 </script>
