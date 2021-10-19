@@ -19,19 +19,6 @@
   </div>
 
   <div>
-<<<<<<< HEAD
-    <header
-      class="pb-1 pr-1 pl-1 border-b bg-white flex items-center justify-between"
-    >
-      <!--logo-Translite -->
-      <div class="flex items-center justify-between">
-        <h1 class="leading-none text-2xl text-gray-darkest">
-          <font-awesome-icon
-            :icon="['fas', 'bars']"
-            class="text-2xl text-gray-500"
-          />
-        </h1>
-=======
     <!-- HEADER-->
     <header class="pb-1 pr-1 pl-1 border-b bg-white flex items-center justify-between">
       <!-- menu icon -->
@@ -42,39 +29,13 @@
         >
           <font-awesome-icon :icon="['fas', 'bars']" class="text-2xl text-gray-500" />
         </button>
->>>>>>> a02a8d71850811d22b519aef808a33d40ca79908
       </div>
 
       <div class="w-full h-full">
         <span
-<<<<<<< HEAD
-          class="
-            block
-            w-full
-            text-center
-            lg:text-5xl
-            md:text-4xl
-            sm:text-3xl
-            text-1xl text-black
-            font-bold
-          "
-          >دیکشرنی عربی نبراس</span
-        >
-
-        <div
-          class="
-            block
-            w-full
-            text-center text-gray-400
-            font-quran
-            tracking-wider
-          "
-        >
-=======
           class="block w-full text-center lg:text-5xl md:text-4xl sm:text-3xl text-1xl text-black font-bold"
         >دیکشرنی عربی نبراس</span>
         <div class="block w-full text-center text-gray-400 font-quran">
->>>>>>> a02a8d71850811d22b519aef808a33d40ca79908
           <span class="text-2xs">
             لهجه
             <span class="bg-gray-200 rounded-3xl">عراقی</span>
@@ -132,29 +93,13 @@
           justify-evenly
         "
       >
-<<<<<<< HEAD
-        <div
-          v-for="item in 10"
-          :key="item"
-          class="
-            mr-3
-            w-24
-            mt-3
-            h-24
-            border
-            drop-shadow-md
-            rounded-3xl
-            bg-white
-            font-quran
-          "
-        >
-          <!-- set => params:{:category} -->
-=======
         <div v-if="isCategoryVisible"
           v-for="item in 20"
-          class="w-24 mt-3 h-24 border drop-shadow-md rounded-3xl bg-white font-quran"
+          :key="item"
+          class="w-24 mt-3 h-24 border drop-shadow-md
+           rounded-3xl 
+          bg-white font-quran"
         >
->>>>>>> a02a8d71850811d22b519aef808a33d40ca79908
           <router-link :to="{ name: 'words' }">
             <div class="w-full">
               <span class="block pt-4">
@@ -243,22 +188,18 @@
 
 <script setup lang="ts">
 // import loghat from '../components/pageLoghat.vue';
-<<<<<<< HEAD
-import { useRouter } from "vue-router";
-=======
 import { useRouter } from 'vue-router';
 import { ref } from "@vue/reactivity";
 import GuideModal from "../components/ModalView.vue";
 import PaidVersionModal from "../components/ModalView.vue";
 import TranslateRequest from "../components/transliteRequest.vue";
 import WordComponent from "../components/WordComponent.vue";
-
-let isCategoryVisible = ref(false);
+import Dexie from "dexie"
+let isCategoryVisible = ref(true);
 let isGuideModal = ref(false);
 let isPaidVersionModal = ref(false);
-let isNotFoundSearch = ref(true);
+let isNotFoundSearch = ref(false);
 let isWordFound = ref(false);
->>>>>>> a02a8d71850811d22b519aef808a33d40ca79908
 const router = useRouter();
 
 //setting-menu functions
@@ -285,18 +226,15 @@ function paidVersionModal() {
   isPaidVersionModal.value = true;
 }
 
-<<<<<<< HEAD
-function loadData(){
-  fetch('https://nebrasar.ir/api/getUpdates.php?variant=normal&lastUpdate=-1')
-  .then(function (response){
-    console.log(response)
-  })
+const db = new Dexie('https://nebrasar.ir/api/getUpdates.php?variant=normal&lastUpdate=-1');
+
+	// Declare tables, IDs and indexes
+	db.version(1).stores({
+		words: '++id,  word'
+	});
+  console.log(db);
   
 
-}
-
-=======
->>>>>>> a02a8d71850811d22b519aef808a33d40ca79908
 </script>
 
 <style scoped></style>
