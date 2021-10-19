@@ -4,16 +4,12 @@ const emit = defineEmits(['close']);
 function close() {
     emit('close');
 }
-
 function closeModal() {
     document.querySelector(".modal-backdrop")?.addEventListener("click", () => {
         close();
     })
-}
-function stopPropagationOfModal() {
     document.querySelector(".modal")?.addEventListener("click", (e) => {
         e.stopPropagation();
-
     })
 }
 </script>
@@ -21,7 +17,7 @@ function stopPropagationOfModal() {
 <template>
     <transition name="modal-fade">
         <div class="modal-backdrop" @click="closeModal">
-            <div class="modal text-xs" role="dialog" @click="stopPropagationOfModal">
+            <div class="modal text-xs" role="dialog" >
                 <header class="modal-body mx-2">
                     <slot name="body1"></slot>
                 </header>
