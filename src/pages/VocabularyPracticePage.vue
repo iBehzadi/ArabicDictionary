@@ -4,7 +4,7 @@ import VocabularyTestOptions from "../components/VocabularyTestOptions.vue";
 import header2 from "../components/Header2.vue";
 import { useRouter } from "vue-router";
 import { ref } from "@vue/reactivity";
-import Modal from "../components/modalView.vue"
+import Modal from "../components/ModalView.vue"
 
 let isModalVisible = ref(false);
 const router = useRouter();
