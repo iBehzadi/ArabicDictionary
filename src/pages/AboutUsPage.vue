@@ -10,7 +10,7 @@ const router = useRouter();
       <template v-slot:title>درباره ما</template>
     </header2>
     <div class="h-44 overflow-hidden">
-      <img class="filter blue w-full flex" src="@/assets/image-aboutPage.jpg" alt="nebras" />
+      <img class="filter blur w-full flex" src="@/assets/image-aboutPage.jpg" alt="nebras" />
     </div>
     <div
       class="relative flex flex-col h-20 bg-white justify-center text-center items-center content-center"

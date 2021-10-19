@@ -18,11 +18,12 @@ const config = {
         
         pezeshki:"#22a79a",
         yellow:"#fbd83a",
+
         pink:"#d290dc"
         
       },
       fontSize:{
-        "2xs":'8px'
+        "2xs":'10px'
       }
     },
   },
