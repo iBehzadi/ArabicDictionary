@@ -133,15 +133,9 @@
         "
       >
         <div
-<<<<<<< HEAD
-           :v-if="isCategoryVisible" 
-          v-for="item in 20"
-          :key="item"
-=======
           v-if="isCategoryVisible"
           v-for="(item, i) in categories"
           :key="i"
->>>>>>> 3d8fe551778ebd421584c83ff7c2a51c1062b358
           class="
             w-24
             mt-3
@@ -276,11 +270,6 @@ function paidVersionModal() {
   closeSetting();
   isPaidVersionModal.value = true;
 }
-<<<<<<< HEAD
-
-
-  </script>
-=======
 //check localStorage
 db.words.toCollection().count(function (count) {
     if(count == 0){
@@ -300,6 +289,5 @@ db.category.orderBy('CategoryID').each((res) => {
 })
 
 </script>
->>>>>>> 3d8fe551778ebd421584c83ff7c2a51c1062b358
 
 <style scoped></style>
