@@ -15,3 +15,4 @@ createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
     .use(createPinia())
     .mount('#app')
+    

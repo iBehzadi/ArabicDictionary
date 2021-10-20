@@ -18,7 +18,8 @@ export default defineConfig({
       // @ts-ignore
       '@': path.resolve(__dirname, './src'),
     },
-  }
+  },
+ 
 })
 
 
