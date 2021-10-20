@@ -1,5 +1,6 @@
 <template>
   <!-- SETTING MENU-->
+  <pageLoader></pageLoader>
   <div
     ref="settings"
     @click="closeSetting"
@@ -131,14 +132,9 @@
         "
       >
         <div
-          v-if="isCategoryVisible"
+           :v-if="isCategoryVisible" 
           v-for="item in 20"
-<<<<<<< HEAD
           :key="item"
-          class="w-24 mt-3 h-24 border drop-shadow-md
-           rounded-3xl 
-          bg-white font-quran"
-=======
           class="
             w-24
             mt-3
@@ -149,7 +145,6 @@
             bg-white
             font-quran
           "
->>>>>>> 76bfca23c750d3b721f76178bb2971f91450c78a
         >
           <router-link :to="{ name: 'words' }">
             <div class="w-full">
@@ -243,8 +238,9 @@ import GuideModal from "@/components/ModalView.vue";
 import PaidVersionModal from "@/components/ModalView.vue";
 import TranslateRequest from "@/components/transliteRequest.vue";
 import WordComponent from "@/components/WordComponent.vue";
-
-let isCategoryVisible = ref(false);
+import pageLoader from "@/components/pageLoader.vue"
+import Dexie from "dexie"
+let isCategoryVisible = ref(true);
 let isGuideModal = ref(false);
 let isPaidVersionModal = ref(false);
 let isNotFoundSearch = ref(false);
@@ -274,19 +270,8 @@ function paidVersionModal() {
   closeSetting();
   isPaidVersionModal.value = true;
 }
-<<<<<<< HEAD
 
-const db = new Dexie('https://nebrasar.ir/api/getUpdates.php?variant=normal&lastUpdate=-1');
 
-	// Declare tables, IDs and indexes
-	db.version(1).stores({
-		words: '++id,  word'
-	});
-  console.log(db);
-  
-
-=======
->>>>>>> 76bfca23c750d3b721f76178bb2971f91450c78a
-</script>
+  </script>
 
 <style scoped></style>

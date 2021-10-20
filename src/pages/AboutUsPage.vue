@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import Header2 from "../components/Header2.vue";
+import Header2 from "@/components/Header2.vue";
+
 const router = useRouter();
 </script>
 
