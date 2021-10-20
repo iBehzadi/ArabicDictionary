@@ -98,6 +98,7 @@
         <form action="get" class="flex mb-11 mr-2 ml-2">
           <input
             type="text"
+            v-bind="search"
             class="
               text-1xl
               p-2
@@ -132,7 +133,8 @@
       >
         <div
           v-if="isCategoryVisible"
-          v-for="item in 20"
+          v-for="(item, i) in categories"
+          :key="i"
           class="
             w-24
             mt-3
@@ -146,18 +148,13 @@
         >
           <router-link :to="{ name: 'words' }">
             <div class="w-full">
-              <span class="block pt-4">
                 <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-                <font-awesome-icon
-                  :icon="['fas', 'bookmark']"
-                  class="text-green-500 text-4xl pr-2"
-                />
-              </span>
+              <i class="pt-4 flex-center" v-html="Icon[i]"></i>
             </div>
-            <div class="w-full">
+            <div class="w-full absolute bottom-6">
               <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-              <span class="text-black text-sm block bottom-5 left-14"
-                >نشان شده ها</span
+              <span class="text-black text-xs block bottom-5 left-14"
+                >{{item}}</span
               >
             </div>
           </router-link>
@@ -236,12 +233,17 @@ import GuideModal from "@/components/ModalView.vue";
 import PaidVersionModal from "@/components/ModalView.vue";
 import TranslateRequest from "@/components/transliteRequest.vue";
 import WordComponent from "@/components/WordComponent.vue";
+import db from "../stores/database";
 
-let isCategoryVisible = ref(false);
+
+let isCategoryVisible = ref(true);
 let isGuideModal = ref(false);
 let isPaidVersionModal = ref(false);
 let isNotFoundSearch = ref(false);
 let isWordFound = ref(false);
+let search:String;
+let categories=ref([]);
+let Icon= ref([]);
 const router = useRouter();
 
 //setting-menu functions
@@ -267,10 +269,23 @@ function paidVersionModal() {
   closeSetting();
   isPaidVersionModal.value = true;
 }
+//check localStorage
+db.words.toCollection().count(function (count) {
+    if(count == 0){
+        (async ()=> {
+          const f = await fetch('/api/getUpdates.php?variant=normal&lastUpdate=-1');
+          let res = await f.json();
+          db.category.bulkAdd(res.categories);
+          db.words.bulkAdd(res.words);
+          localStorage.setItem("lastUpdate", res.lastUpdate);
+      })();
+    }
+});
 
-const f = await fetch('/api/getUpdates.php?variant=normal&lastUpdate=-1');
-let res = await f.json();
-console.log(res);
+db.category.orderBy('CategoryID').each((res) => {
+  categories.value.push(res.Title);
+  Icon.value.push(res.Icon);
+})
 
 </script>
 
