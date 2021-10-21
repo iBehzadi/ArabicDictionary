@@ -133,7 +133,7 @@
       >
         <div
           v-if="isCategoryVisible"
-          v-for="(item, i) in CategoryDB.category"
+          v-for="(item, i) in CategoryDB.categoryTitle"
           :key="i"
           class="
             w-24
@@ -146,7 +146,7 @@
             font-quran
           "
         >
-          <router-link :to="{ name: 'words' }">
+          <router-link :to="{ name: 'words', params :{id:CategoryDB.categoryID[i]}}">
             <div class="w-full">
                 <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
               <i class="pt-4 flex-center w-8 mr-7" v-html="CategoryDB.Icon[i]"></i>
@@ -226,7 +226,7 @@
 </template>
 
 <script setup lang="ts">
-// import loghat from '../components/pageLoghat.vue';
+
 import { useRouter } from "vue-router";
 import { ref } from "@vue/reactivity";
 import GuideModal from "@/components/ModalView.vue";
@@ -279,12 +279,11 @@ if(localStorage.getItem("lastUpdate") != null) {
 }
 
 const Request = httGet('/api/getUpdates.php?variant=normal&lastUpdate=' + lastUpdate);
-Request.then((res:any)=> {
+Request.then((res:any) => {
   CategoryDB.addAll(res.categories);
   WordDB.addAll(res.words);
   localStorage.setItem("lastUpdate", res.lastUpdate);
   CategoryDB.getCategory();
-  CategoryDB.getIcon();
 });
 
 
