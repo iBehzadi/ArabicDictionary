@@ -234,18 +234,19 @@ import GuideModal from "@/components/ModalView.vue";
 import PaidVersionModal from "@/components/ModalView.vue";
 import TranslateRequest from "@/components/transliteRequest.vue";
 import WordComponent from "@/components/WordComponent.vue";
-import db from "../stores/database";
+import { useCategoryDB } from "@/stores/Category";
+import { useWordDB } from "@/stores/Word";
+import { httGet } from "@/datasource/http";
 
-
+const CategoryDB = useCategoryDB();
+const WordDB = useWordDB();
+const router = useRouter();
 let isCategoryVisible = ref(true);
 let isGuideModal = ref(false);
 let isPaidVersionModal = ref(false);
 let isNotFoundSearch = ref(false);
 let isWordFound = ref(false);
 let search:String;
-let categories=ref([]);
-let Icon= ref([]);
-const router = useRouter();
 
 //setting-menu functions
 var settingSide = ref<HTMLDivElement>();
@@ -271,24 +272,23 @@ function paidVersionModal() {
   isPaidVersionModal.value = true;
 }
 //check localStorage
-db.table('words').toCollection().count(function (count) {
-    if(count == 0){
-        (async ()=> {
-          debugger
+let lastUpdate;
+if(localStorage.getItem("lastUpdate") != null) {
+  lastUpdate = localStorage.getItem("lastUpdate");
+} else {
+  lastUpdate = "-1";
+}
 
-          const f = await fetch('/api/getUpdates.php?variant=normal&lastUpdate=-1');
-          let res = await f.json();
-          db.category.bulkAdd(res.categories);
-          db.words.bulkAdd(res.words);
-          localStorage.setItem("lastUpdate", res.lastUpdate);
-      })();
-    } 
+const Request = httGet('/api/getUpdates.php?variant=normal&lastUpdate=' + lastUpdate);
+Request.then((res:any)=> {
+  CategoryDB.addAll(res.categories);
+  WordDB.addAll(res.words);
+  localStorage.setItem("lastUpdate", res.lastUpdate);
+  CategoryDB.getCategory();
+  CategoryDB.getIcon();
 });
 
-db.category.orderBy('CategoryID').each((res) => {
-  categories.value.push(res.Title);
-  Icon.value.push(res.Icon);
-})
+
 
 </script>
 
