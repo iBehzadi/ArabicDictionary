@@ -2,22 +2,14 @@
 import { onMounted } from "vue-demi"
 import { ref } from "vue";
 
-  let isloaded = ref(false)
-    onMounted(()=>{
-            document.onreadystatechange=() =>{
-                if(document.readyState == "complete"){
-                    isloaded.value=true;
-                }
-            }
- 
-    })
+
 
 </script>
 
 
 <template>
 
-        <div id="test" class="flex justify-center  items-center fixed top-0 left-0 w-screen h-screen bg-gray-800      z-10" v-if="!isloaded">
+        <div id="test" class="flex justify-center  items-center fixed top-0 left-0 w-screen h-screen bg-gray-800 opacity-75 z-10" >
              
               <div class="test">
                </div> 
@@ -41,9 +33,10 @@ import { ref } from "vue";
 $colors:#8cc271 ,#69BEEB , #F5AA39,#E9643B;
 
      .test {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        
 
         @for $i from 1 through length($colors) {
             &:nth-child(#{$i}) {

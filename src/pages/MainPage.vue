@@ -1,6 +1,5 @@
 <template>
   <!-- SETTING MENU-->
-  <pageLoader></pageLoader>
   <div
     ref="settings"
     @click="closeSetting"
@@ -132,40 +131,35 @@
           justify-evenly
         "
       >
-        <div
-<<<<<<< HEAD
-           :v-if="isCategoryVisible" 
-          v-for="item in 20"
-          :key="item"
-=======
-          v-if="isCategoryVisible"
-          v-for="(item, i) in categories"
-          :key="i"
->>>>>>> 3d8fe551778ebd421584c83ff7c2a51c1062b358
-          class="
-            w-24
-            mt-3
-            h-24
-            border
-            drop-shadow-md
-            rounded-3xl
-            bg-white
-            font-quran
-          "
-        >
-          <router-link :to="{ name: 'words' }">
-            <div class="w-full">
-                <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-              <i class="pt-4 flex-center" v-html="Icon[i]"></i>
-            </div>
-            <div class="w-full absolute bottom-6">
-              <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-              <span class="text-black text-xs block bottom-5 left-14"
-                >{{item}}</span
-              >
-            </div>
-          </router-link>
-        </div>
+        <template v-if="isCategoryVisible">
+          <div
+            v-for="(item, i) in categories"
+            :key="i"
+            class="
+              w-24
+              mt-3
+              h-24
+              border
+              drop-shadow-md
+              rounded-3xl
+              bg-white
+              font-quran
+            "
+          >
+            <router-link :to="{ name: 'words' }">
+              <div class="w-full">
+                  <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
+                <i class="pt-4 flex-center" v-html="Icon[i]"></i>
+              </div>
+              <div class="w-full absolute bottom-6">
+                <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
+                <span class="text-black text-xs block bottom-5 left-14"
+                  >{{item}}</span
+                >
+              </div>
+            </router-link>
+          </div>
+        </template>
         <TranslateRequest v-if="isNotFoundSearch"> </TranslateRequest>
         <WordComponent v-if="isWordFound"> </WordComponent>
       </div>
@@ -276,22 +270,19 @@ function paidVersionModal() {
   closeSetting();
   isPaidVersionModal.value = true;
 }
-<<<<<<< HEAD
-
-
-  </script>
-=======
 //check localStorage
-db.words.toCollection().count(function (count) {
+db.table('words').toCollection().count(function (count) {
     if(count == 0){
         (async ()=> {
+          debugger
+
           const f = await fetch('/api/getUpdates.php?variant=normal&lastUpdate=-1');
           let res = await f.json();
           db.category.bulkAdd(res.categories);
           db.words.bulkAdd(res.words);
           localStorage.setItem("lastUpdate", res.lastUpdate);
       })();
-    }
+    } 
 });
 
 db.category.orderBy('CategoryID').each((res) => {
@@ -300,6 +291,5 @@ db.category.orderBy('CategoryID').each((res) => {
 })
 
 </script>
->>>>>>> 3d8fe551778ebd421584c83ff7c2a51c1062b358
 
 <style scoped></style>
