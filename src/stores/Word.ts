@@ -4,7 +4,7 @@ import { IWord } from "./database"
 export const useWordDB = defineStore('WordDB', {
   state: () => {
     return {
-      
+      words:[]
     }
   },
   actions: {
@@ -17,7 +17,7 @@ export const useWordDB = defineStore('WordDB', {
         .where('CategoryID')
         .equals(CategoryId)
         .each((res) => {
-          //this.words.push(res)
+          
         })
     }
   }

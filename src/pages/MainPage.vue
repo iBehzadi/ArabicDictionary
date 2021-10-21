@@ -133,7 +133,7 @@
       >
         <div
           v-if="isCategoryVisible"
-          v-for="(item, i) in CategoryDB.categoryTitle"
+          v-for="(item, i) in CategoryDB.category"
           :key="i"
           class="
             w-24

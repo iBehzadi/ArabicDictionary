@@ -5,7 +5,7 @@ import { ICategory } from "./database";
 export const useCategoryDB = defineStore('CategoryDB', {
   state: () => {
     return {
-      categoryTitle: [],
+      category: [],
       categoryID: [],
       Icon: []
     }
@@ -20,7 +20,7 @@ export const useCategoryDB = defineStore('CategoryDB', {
     },
     getCategory() {
       db.category.orderBy('CategoryID').each((res) => {
-        this.categoryTitle.push(res.Title);
+        this.category.push(res.Title);
         this.categoryID.push(res.CategoryID);
         this.Icon.push(res.Icon);
       })
