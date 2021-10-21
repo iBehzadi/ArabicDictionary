@@ -133,7 +133,7 @@
       >
         <template v-if="isCategoryVisible">
           <div
-            v-for="(item, i) in categories"
+            v-for="(item, i) in CategoryDB.category"
             :key="i"
             class="
               w-24
@@ -149,7 +149,7 @@
             <router-link :to="{ name: 'words' }">
               <div class="w-full">
                   <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-                <i class="pt-4 flex-center" v-html="Icon[i]"></i>
+                <i class="pt-4 flex-center w-9 mr-7" v-html="CategoryDB.Icon[i]"></i>
               </div>
               <div class="w-full absolute bottom-6">
                 <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
@@ -287,7 +287,6 @@ Request.then((res:any)=> {
   CategoryDB.getCategory();
   CategoryDB.getIcon();
 });
-
 
 
 </script>
