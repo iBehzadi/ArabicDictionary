@@ -146,7 +146,7 @@
               font-quran
             "
           >
-            <router-link :to="{ name: 'words' }">
+            <router-link :to="{ name: 'words', params:{id: CategoryDB.categoryID[i]}}">
               <div class="w-full">
                   <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
                 <i class="pt-4 flex-center w-9 mr-7" v-html="CategoryDB.Icon[i]"></i>
