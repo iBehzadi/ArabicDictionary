@@ -15,7 +15,7 @@ const routes = [
 ,
 {
   //=> /words/:category
-  path:"/Words",
+  path:"/Words/:id",
  name:"words",
   component: ()=> import("@/pages/pageLoghat.vue")
 }

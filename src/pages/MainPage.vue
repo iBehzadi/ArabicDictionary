@@ -227,7 +227,7 @@
 </template>
 
 <script setup lang="ts">
-// import loghat from '../components/pageLoghat.vue';
+
 import { useRouter } from "vue-router";
 import { ref } from "@vue/reactivity";
 import GuideModal from "@/components/ModalView.vue";
@@ -280,12 +280,11 @@ if(localStorage.getItem("lastUpdate") != null) {
 }
 
 const Request = httGet('/api/getUpdates.php?variant=normal&lastUpdate=' + lastUpdate);
-Request.then((res:any)=> {
+Request.then((res:any) => {
   CategoryDB.addAll(res.categories);
   WordDB.addAll(res.words);
   localStorage.setItem("lastUpdate", res.lastUpdate);
   CategoryDB.getCategory();
-  CategoryDB.getIcon();
 });
 
 
