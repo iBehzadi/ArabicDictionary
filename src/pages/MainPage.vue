@@ -248,6 +248,12 @@ let isNotFoundSearch = ref(false);
 let isWordFound = ref(false);
 let search:String;
 
+const loading = ref(true)
+CategoryDB.getCategory()
+  .finally(() => {
+    loading.value = false
+  })
+
 //setting-menu functions
 var settingSide = ref<HTMLDivElement>();
 var settings = ref<HTMLDivElement>();
@@ -270,23 +276,7 @@ function guideModal() {
 function paidVersionModal() {
   closeSetting();
   isPaidVersionModal.value = true;
-}
-//check localStorage
-let lastUpdate;
-if(localStorage.getItem("lastUpdate") != null) {
-  lastUpdate = localStorage.getItem("lastUpdate");
-} else {
-  lastUpdate = "-1";
-}
 
-const Request = httGet('/api/getUpdates.php?variant=normal&lastUpdate=' + lastUpdate);
-Request.then((res:any)=> {
-  CategoryDB.addAll(res.categories);
-  WordDB.addAll(res.words);
-  localStorage.setItem("lastUpdate", res.lastUpdate);
-  CategoryDB.getCategory();
-  CategoryDB.getIcon();
-});
 
 
 
