@@ -1,21 +1,25 @@
+import { getUpdates_API } from "@/api/UpdateAPI";
+import db from "@/database";
+import { UpdateCategory_DB, UpdateWord_DB } from "@/database/UpdateDB";
 import { defineStore } from "pinia";
-import db from "@/database/WordDB";
-import { IWord, ICategory } from "@/database/WordDB"
-import { UpdateHttp_GetUpdates } from "@/database/UpdateDB";
+
 export const useUpdateDB = defineStore('UpdateDB', {
   state: () => {
     return {
       lastCheck: Date,
+      Data: {} as Output,
     }
   },
   actions: {
+    async LastUpdateCheked() {
+      this.Data = await getUpdates_API(db.lastUpdate + '');
+      if (this.Data.lastUpdate > 0) {
+        // UpdateCategory_DB(this.Data.categories.values);
+        // UpdateWord_DB(this.Data.words.);
 
+      }
 
+    }
   }
 });
 
-type Output = {
-  lastUpdate: number
-  words: IWord[]
-  categories: ICategory[]
-};
