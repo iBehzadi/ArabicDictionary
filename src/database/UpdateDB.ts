@@ -1,35 +1,15 @@
-import db, { IWord, ICategory } from "@/database/WordDB"
-import { useWordDB } from "@/repo/Word";
-import { httpGet } from "@/api";
-import { useCategoryDB } from "@/repo/Category";
-let useWord = useWordDB();
-let useCategory = useCategoryDB();
-export function SetUpdateCategoryToDB(res:ICategory[]) {
-useCategory.addAll(res);
-
+import db from ".";
+export function UpdateCategory_DB(res: ICategory) {
+    db.category.add({
+        CategoryID: res.CategoryID, CustomOrder: res.CustomOrder, Icon: res.Icon, IsFree: res.IsFree,
+        LastUpdate: res.LastUpdate, SoundVersion: res.SoundVersion, Status: res.Status, Title: res.Title
+    });
 };
-export function SetUpdateWordToDB(res:IWord[]){
-useWord.addAll(res)
+export function UpdateWord_DB(res: IWord) {
+    db.word.add({
+        Ar: res.Ar, CategoryID: res.CategoryID, Dialect: res.Dialect, Example: res.Example, Fa: res.Fa,
+        LastUpdate: res.LastUpdate, ReferTo: res.ReferTo, SoundVersiona: res.SoundVersiona, Status: res.Status,
+        Type: res.Type, WordID: res.WordID
+    });
 };
 
-
-//   //check localStorage
-// let lastUpdate;
-// if(localStorage.getItem("lastUpdate") != null) {
-//   lastUpdate = localStorage.getItem("lastUpdate");
-// } else {
-//   lastUpdate = "-1";
-// };
-
-// // 
-// if(lastUpdate>0){
-//  const useWord = useWordDB();
-//  useWord.addAll()
-// }
-// };
-
-// type Output = {
-//   lastUpdate: number
-//   words: IWord[]
-//   categories: ICategory[]
-// };
