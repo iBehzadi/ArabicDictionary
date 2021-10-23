@@ -35,7 +35,7 @@ declare global {
     }
     interface ICategory {
         CategoryID: number,
-        Title : string,
+        Title: string,
         Icon: string,
         CustomOrder: number,
         IsFree: number,
@@ -43,4 +43,5 @@ declare global {
         SoundVersion: number,
         Status: number
     }
+
 }

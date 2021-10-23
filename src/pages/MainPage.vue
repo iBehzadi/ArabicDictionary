@@ -1,40 +1,18 @@
 <template>
   <!-- SETTING MENU-->
-  <pageLoader></pageLoader>
+  <pageLoader v-if="loading"></pageLoader>
   <div
     ref="settings"
     @click="closeSetting"
-    class="
-      bg-gray-300
-      t-0
-      right-0
-      left-0
-      bottom-0
-      fixed
-      z-10
-      h-full
-      w-0
-      bg-opacity-50
-    "
+    class="bg-gray-300 t-0 right-0 left-0 bottom-0 fixed z-10 h-full w-0 bg-opacity-50"
   >
     <div
       ref="settingSide"
       id="setting-nav"
-      class="
-        h-full
-        w-0
-        t-0
-        right-0
-        overflow-x-hidden
-        bg-white bg-opacity-100
-        transition-all
-        duration-300
-      "
+      class="h-full w-0 t-0 right-0 overflow-x-hidden bg-white bg-opacity-100 transition-all duration-300"
     >
       <div class="flex flex-col mt-5">
-        <button @click="paidVersionModal" class="text-yellow">
-          خرید نسخه طلایی
-        </button>
+        <button @click="paidVersionModal" class="text-yellow">خرید نسخه طلایی</button>
         <button @click="guideModal">راهنما</button>
         <button @click="router.push('/About')">درباره ما</button>
       </div>
@@ -43,36 +21,21 @@
 
   <div>
     <!-- HEADER-->
-    <header
-      class="pb-1 pr-1 pl-1 border-b bg-white flex items-center justify-between"
-    >
+    <header class="pb-1 pr-1 pl-1 border-b bg-white flex items-center justify-between">
       <!-- menu icon -->
       <div class="flex items-center justify-between">
         <button
           @click="openSetting"
           class="leading-none text-2xl text-gray-darkest mr-2 flex-center"
         >
-          <font-awesome-icon
-            :icon="['fas', 'bars']"
-            class="text-2xl text-gray-500"
-          />
+          <font-awesome-icon :icon="['fas', 'bars']" class="text-2xl text-gray-500" />
         </button>
       </div>
 
       <div class="w-full h-full">
         <span
-          class="
-            block
-            w-full
-            text-center
-            lg:text-5xl
-            md:text-4xl
-            sm:text-3xl
-            text-1xl text-black
-            font-bold
-          "
-          >دیکشرنی عربی نبراس</span
-        >
+          class="block w-full text-center lg:text-5xl md:text-4xl sm:text-3xl text-1xl text-black font-bold"
+        >دیکشرنی عربی نبراس</span>
         <div class="block w-full text-center text-gray-400 font-quran">
           <span class="text-2xs">
             لهجه
@@ -100,17 +63,7 @@
           <input
             type="text"
             v-bind="search"
-            class="
-              text-1xl
-              p-2
-              h-12
-              border
-              rounded-full
-              w-full
-              bg-white
-              focus:shadow-inner
-              pr-1
-            "
+            class="text-1xl p-2 h-12 border rounded-full w-full bg-white focus:shadow-inner pr-1"
             placeholder="جستجو کنید..."
           />
           <font-awesome-icon
@@ -122,46 +75,30 @@
 
       <!--category -->
       <div
-        class="
-          flex flex-fill
-          justify-content-center
-          flex-wrap
-          text-center
-          relative
-          pb-16
-          justify-evenly
-        "
+        class="flex flex-fill justify-content-center flex-wrap text-center relative pb-16 justify-evenly"
       >
-        <div
-          v-if="isCategoryVisible"
-          v-for="(item, i) in CategoryDB.category"
-          :key="i"
-          class="
-            w-24
-            mt-3
-            h-24
-            border
-            drop-shadow-md
-            rounded-3xl
-            bg-white
-            font-quran
-          "
-        >
-          <router-link :to="{ name: 'words' }">
-            <div class="w-full">
-                <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-              <i class="pt-4 flex-center w-8 mr-7" v-html="CategoryDB.Icon[i]"></i>
-            </div>
-            <div class="w-full absolute bottom-6">
-              <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-              <span class="text-black text-xs block bottom-5 left-14"
-                >{{item}}</span
-              >
-            </div>
-          </router-link>
-        </div>
-        <TranslateRequest v-if="isNotFoundSearch"> </TranslateRequest>
-        <WordComponent v-if="isWordFound"> </WordComponent>
+        <template v-if="isCategoryVisible">
+          <div
+            v-for="(item, i) in getCategory.category"
+            :key="i"
+            class="w-24 mt-3 h-24 border drop-shadow-md rounded-3xl bg-white font-quran"
+          >
+            <router-link :to="{ name: 'words', params: { id: i } }">
+              <div class="h-full">
+                <div class="w-full">
+                  <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
+                  <i class="pt-4 flex-center w-8 mr-7" v-html="getCategory.category[i].Icon"></i>
+                </div>
+                <div class="w-full absolute bottom-6">
+                  <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
+                  <span class="text-black text-xs block bottom-5 left-14">{{ item.Title }}</span>
+                </div>
+              </div>
+            </router-link>
+          </div>
+        </template>
+        <TranslateRequest @request="" v-if="isNotFoundSearch"></TranslateRequest>
+        <WordComponent v-if="isWordFound"></WordComponent>
       </div>
 
       <!-- Dokme Tamrin & Azmon -->
@@ -171,18 +108,12 @@
           @click="router.push('/Practice')"
         >
           <p class="text-sm">
-            <font-awesome-icon
-              :icon="['fas', 'pen']"
-              class="text-sm text-gray-600"
-            />تمرین لغات
+            <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600" />تمرین لغات
           </p>
         </button>
         <button class="w-2/4 border rounded-t-2xl bg-yellow text-center mr-1">
           <p class="text-sm">
-            <font-awesome-icon
-              :icon="['fas', 'question']"
-              class="text-sm text-gray-600"
-            />آزمون مرحله ای
+            <font-awesome-icon :icon="['fas', 'question']" class="text-sm text-gray-600" />آزمون مرحله ای
           </p>
         </button>
       </div>
@@ -190,14 +121,9 @@
   </div>
 
   <!-- Paid Version modal -->
-  <PaidVersionModal
-    v-if="isPaidVersionModal"
-    @close="isPaidVersionModal = false"
-  >
+  <PaidVersionModal v-if="isPaidVersionModal" @close="isPaidVersionModal = false">
     <template v-slot:body1>
-      <span>
-        برای استفاده از این قسمت باید نرم افزار را به نسخه طلایی ارتقاء دهید
-      </span>
+      <span>برای استفاده از این قسمت باید نرم افزار را به نسخه طلایی ارتقاء دهید</span>
     </template>
     <template v-slot:body2>
       با دریافت نسخه طلایی نرم افزار, امکان دسترسی به هزاران لغت در دسته بندی
@@ -227,32 +153,36 @@
 </template>
 
 <script setup lang="ts">
-// import loghat from '../components/pageLoghat.vue';
 import { useRouter } from "vue-router";
 import { ref } from "@vue/reactivity";
 import GuideModal from "@/components/ModalView.vue";
 import PaidVersionModal from "@/components/ModalView.vue";
 import TranslateRequest from "@/components/transliteRequest.vue";
 import WordComponent from "@/components/WordComponent.vue";
-import { useCategoryDB } from "@/stores/Category";
-import { useWordDB } from "@/stores/Word";
-import { httGet } from "@/datasource/http";
+import { useCategoryRepo } from "@/repo/Category";
+import { useUpdateRepo } from "@/repo/Update";
+import pageLoader from "@/components/pageLoader.vue";
 
-const CategoryDB = useCategoryDB();
-const WordDB = useWordDB();
+
+const update = useUpdateRepo();
+const loading = ref(false);
+
+update.DB_Update()
+  .finally(() => {
+    loading.value = false;
+  });
+
+const getCategory = useCategoryRepo();
+getCategory.getAll();
+
 const router = useRouter();
 let isCategoryVisible = ref(true);
 let isGuideModal = ref(false);
 let isPaidVersionModal = ref(false);
 let isNotFoundSearch = ref(false);
-let isWordFound = ref(false);
-let search:String;
+let isWordFound = ref(true);
+let search: string;
 
-const loading = ref(true)
-CategoryDB.getCategory()
-  .finally(() => {
-    loading.value = false
-  })
 
 //setting-menu functions
 var settingSide = ref<HTMLDivElement>();
@@ -276,10 +206,9 @@ function guideModal() {
 function paidVersionModal() {
   closeSetting();
   isPaidVersionModal.value = true;
-
-
-
+}
 
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

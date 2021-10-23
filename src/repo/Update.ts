@@ -1,21 +1,21 @@
 import { defineStore } from "pinia";
-import db from "@/database/WordDB";
-import { IWord, ICategory } from "@/database/WordDB"
-import { UpdateHttp_GetUpdates } from "@/database/UpdateDB";
-export const useUpdateDB = defineStore('UpdateDB', {
+import { getUpdates } from "@/api/UpdateAPI";
+import { CategoryDB_addAll } from "@/database/CategoryDB";
+import { WordDB_addAll } from "@/database/WordDB";
+
+
+//use updatedb updateapi
+export const useUpdateRepo = defineStore('getUpdateDB', {
   state: () => {
     return {
-      lastCheck: Date,
+
     }
   },
   actions: {
-
-
+    async DB_Update() {
+      let result = await getUpdates("-1");
+      CategoryDB_addAll(result.categories);
+      WordDB_addAll(result.words);
+    },
   }
 });
-
-type Output = {
-  lastUpdate: number
-  words: IWord[]
-  categories: ICategory[]
-};
