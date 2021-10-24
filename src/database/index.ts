@@ -7,7 +7,7 @@ class WordDatabase extends Dexie {
     constructor() {
         super("WordDatabase");
         this.version(1).stores({
-            category: "CategoryID,Title,IsFree,LastUpdate,Status",
+            category: "CategoryID,Title,IsFree,LastUpdate,Status,CustomOrder",
             word: "WordID,CategoryID,Fa,Ar,ReferTo,Dialect,LastUpdate"
         });
         this.word = this.table("word");

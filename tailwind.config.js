@@ -9,6 +9,7 @@ const config = {
     extend: {
       borderRadius: {
         '4xl': '65px',
+        '3xl2': '36px'
       },
       fontFamily: {
         sans: 'Vazir',
