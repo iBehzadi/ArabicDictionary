@@ -4,7 +4,7 @@
   <div
     ref="settings"
     @click="closeSetting"
-    class="bg-gray-300 t-0 right-0 left-0 bottom-0 fixed z-10 h-full w-0 bg-opacity-50"
+    class="bg-gray-300 t-0 right-0 left-0 bottom-0 fixed z-20 h-full w-0 bg-opacity-50"
   >
     <div
       ref="settingSide"
@@ -18,109 +18,105 @@
       </div>
     </div>
   </div>
-
-  <div>
-    <!-- HEADER-->
-    <header class="pb-1 pr-1 pl-1 border-b bg-white flex items-center justify-between">
+  <!-- HEADER-->
+  <header class="fixed left-0 right-0 top-0 z-10 ">
+    <div class="pb-1 pl-1 border-b bg-white flex items-center justify-between">
       <!-- menu icon -->
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between mt-2">
         <button
           @click="openSetting"
-          class="leading-none text-2xl text-gray-darkest mr-2 flex-center"
+          class="text-2xl text-gray-darkest mr-4 flex-center"
         >
-          <font-awesome-icon :icon="['fas', 'bars']" class="text-2xl text-gray-500" />
+          <font-awesome-icon :icon="['fas', 'bars']" class="text-lg text-gray-500" />
         </button>
       </div>
-
+      <!-- title -->
       <div class="w-full h-full">
         <span
-          class="block w-full text-center lg:text-5xl md:text-4xl sm:text-3xl text-1xl text-black font-bold"
+          class="block w-full text-center lg:text-5xl md:text-4xl sm:text-3xl text-1xl text-black font-bold leading-4 mt-2"
         >دیکشرنی عربی نبراس</span>
-        <div class="block w-full text-center text-gray-400 font-quran">
+        <div class="w-full text-center text-gray-400 font-quran leading-none">
           <span class="text-2xs">
             لهجه
             <span class="bg-gray-200 rounded-3xl">عراقی</span>
-            <span class="pr-2">و</span> لهجه
+            و
             <span class="bg-gray-200 rounded-2xl">خلیجی</span>
           </span>
         </div>
       </div>
       <!-- logo-->
-      <div>
-        <a class="py-2">
-          <img
-            class="w-12 h-12"
+      <div class="mt-2">
+        <img
+            class="w-12 h-10"
             src="../assets/img/ir.nebrasar-e425bdd1-f240-4a40-8807-c647c0713e0d_128x128 (1).png"
           />
-        </a>
       </div>
-    </header>
-    <!-- container -->
-    <div class="bg-gray-100">
-      <!--search-input -->
-      <div class="pt-4 relative h-16">
-        <form action="get" class="flex mb-11 mr-2 ml-2">
-          <input
-            type="text"
-            v-bind="search"
-            class="text-1xl p-2 h-12 border rounded-full w-full bg-white focus:shadow-inner pr-1"
-            placeholder="جستجو کنید..."
-          />
-          <font-awesome-icon
-            :icon="['fas', 'search']"
-            class="absolute text-lg text-gray-400 left-7 top-7"
-          />
-        </form>
-      </div>
-
-      <!--category -->
-      <div
-        class="flex flex-fill justify-content-center flex-wrap text-center relative pb-16 justify-evenly"
-      >
-        <template v-if="isCategoryVisible">
-          <div
-            v-for="(item, i) in getCategory.category"
-            :key="i"
-            class="w-24 mt-3 h-24 border drop-shadow-md rounded-3xl bg-white font-quran"
-          >
-            <router-link :to="{ name: 'words', params: { id: i } }">
-              <div class="h-full">
-                <div class="w-full">
-                  <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-                  <i class="pt-4 flex-center w-8 mr-7" v-html="getCategory.category[i].Icon"></i>
-                </div>
-                <div class="w-full absolute bottom-6">
-                  <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-                  <span class="text-black text-xs block bottom-5 left-14">{{ item.Title }}</span>
-                </div>
-              </div>
-            </router-link>
-          </div>
-        </template>
-        <TranslateRequest @request="" v-if="isNotFoundSearch"></TranslateRequest>
-        <WordComponent v-if="isWordFound"></WordComponent>
-      </div>
-
-      <!-- Dokme Tamrin & Azmon -->
-      <div class="w-full flex h-12 fixed bottom-0 inset-x-0">
-        <button
-          class="w-2/4 border rounded-t-2xl bg-yellow text-center"
-          @click="router.push('/Practice')"
+    </div>
+    <!--search-input -->
+    <div class="pt-1 relative h-14 bg-gray-100">
+      <form action="get" class="flex mr-2 ml-2">
+        <input
+          type="text"
+          v-model="search"
+          class="text-1xl p-2 h-12 border rounded-full w-full bg-white focus:shadow-inner pr-6 pl-12"
+          placeholder="جستجو کنید..."
+        />
+        <font-awesome-icon
+          :icon="['fas', 'search']"
+          class="absolute text-lg text-gray-400 left-7 top-5"
+        />
+      </form>
+    </div>
+  </header>
+  <!-- container -->
+  <div class="bg-gray-100 mt-28">
+    <!--category -->
+    <div
+      class="flex flex-fill justify-content-center flex-wrap text-center relative pb-16 justify-evenly"
+    >
+      <template v-if="isCategoryVisible">
+        <div
+          v-for="(item, i) in getCategory.category"
+          :key="i"
+          class="w-24 mt-3 h-24 border drop-shadow-md rounded-3xl bg-white font-quran"
         >
-          <p class="text-sm">
-            <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600" />تمرین لغات
-          </p>
-        </button>
-        <button class="w-2/4 border rounded-t-2xl bg-yellow text-center mr-1">
-          <p class="text-sm">
-            <font-awesome-icon :icon="['fas', 'question']" class="text-sm text-gray-600" />آزمون مرحله ای
-          </p>
-        </button>
-      </div>
+          <router-link :to="{ name: 'words', params: { id: i } }">
+            <div class="h-full">
+              <div class="w-full">
+                <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
+                <i class="pt-4 flex-center w-8 mr-7" v-html="getCategory.category[i].Icon"></i>
+              </div>
+              <div class="w-full absolute bottom-6">
+                <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
+                <span class="text-black text-xs block bottom-5 left-14">{{ item.Title }}</span>
+              </div>
+            </div>
+          </router-link>
+        </div>
+      </template>
+      <TranslateRequest v-if="isNotFoundSearch"></TranslateRequest>
+      <WordComponent v-if="isWordFound"></WordComponent>
+    </div>
+
+    <!-- practice & test buttons -->
+    <div class="w-full flex h-12 fixed bottom-0 inset-x-0">
+      <button
+        class="w-2/4 border rounded-t-2xl bg-yellow text-center"
+        @click="router.push('/Practice')"
+      >
+        <span class="text-sm">
+          <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600 ml-2" />تمرین لغات
+        </span>
+      </button>
+      <button class="w-2/4 border rounded-t-2xl bg-yellow text-center mr-1">
+        <span class="text-sm">
+          <font-awesome-icon :icon="['fas', 'question']" class="text-sm text-gray-600 ml-2" />آزمون مرحله ای
+        </span>
+      </button>
     </div>
   </div>
 
-  <!-- Paid Version modal -->
+  <!-- Paid modal -->
   <PaidVersionModal v-if="isPaidVersionModal" @close="isPaidVersionModal = false">
     <template v-slot:body1>
       <span>برای استفاده از این قسمت باید نرم افزار را به نسخه طلایی ارتقاء دهید</span>
