@@ -53,12 +53,12 @@
       </div>
     </div>
     <!--search-input -->
-    <div class="pt-1 relative h-14 bg-gray-100">
+    <div class="pt-1 relative h-16 bg-gray-100">
       <form action="get" class="flex mr-2 ml-2">
         <input
           type="text"
           v-model="search"
-          class="text-1xl p-2 h-12 border rounded-full w-full bg-white focus:shadow-inner pr-6 pl-12"
+          class="text-1xl h-14 border rounded-full w-full bg-white focus:shadow-inner pr-6 pl-12"
           placeholder="جستجو کنید..."
         />
         <font-awesome-icon
@@ -78,7 +78,7 @@
         <div
           v-for="(item, i) in getCategory.category"
           :key="i"
-          class="w-24 mt-3 h-24 border drop-shadow-md rounded-3xl bg-white font-quran"
+          class="w-24 mt-2 h-24 border drop-shadow rounded-3xl bg-white font-quran"
         >
           <router-link :to="{ name: 'words', params: { id: i } }">
             <div class="h-full">
@@ -99,7 +99,7 @@
     </div>
 
     <!-- practice & test buttons -->
-    <div class="w-full flex h-12 fixed bottom-0 inset-x-0">
+    <div class="w-full flex h-12 fixed bottom-0 inset-x-0 bg-gray-100">
       <button
         class="w-2/4 border rounded-t-2xl bg-yellow text-center"
         @click="router.push('/Practice')"

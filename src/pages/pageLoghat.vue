@@ -17,11 +17,13 @@ getWords.getWordByCategory(CategoryID);
 </script>
 <template >
   <div>
-    <header2 @back="router.back()">
+    <header2 class="fixed left-0 right-0 top-0" @back="router.back()">
       <template v-slot:title>{{ getCategory.category[+route.params.id].Title }}</template>
     </header2>
     <!-- route.params.data -->
-    <WordComponent :words="getWords.words"></WordComponent>
+    <div class="mt-16">
+      <WordComponent :words="getWords.words"></WordComponent>
+    </div>
 
     <button
       @click="router.push('/Practice')"
