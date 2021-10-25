@@ -202,17 +202,17 @@ import pageLoader from "@/components/pageLoader.vue";
 
 
 const update = useUpdateRepo();
-const loading = ref(false);
+const getCategory = useCategoryRepo();
+const router = useRouter();
 
+const loading = ref(false);
 update.DB_Update()
   .finally(() => {
     loading.value = false;
   });
 
-const getCategory = useCategoryRepo();
 getCategory.getAll();
 
-const router = useRouter();
 let isCategoryVisible = ref(true);
 let isGuideModal = ref(false);
 let isPaidVersionModal = ref(false);

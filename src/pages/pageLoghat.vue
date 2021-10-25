@@ -21,7 +21,7 @@ getWords.getWordByCategory(CategoryID);
       <template v-slot:title>{{ getCategory.category[+route.params.id].Title }}</template>
     </header2>
     <!-- route.params.data -->
-    <div class="mt-16">
+    <div class="mt-16 mb-12">
       <WordComponent :words="getWords.words"></WordComponent>
     </div>
 
