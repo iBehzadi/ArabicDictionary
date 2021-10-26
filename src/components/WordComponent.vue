@@ -1,3 +1,12 @@
+<script setup lang='ts'>
+
+import { defineProps } from "vue";
+const props = defineProps<{
+  words: IWord[]
+}>();
+
+</script>
+
 <template>
   <!-- کامپوننت لغات   -->
   <div
@@ -6,7 +15,9 @@
     :key="i"
   >
     <div class="flex-grow text-sm pt-1 pr-2">
-      <div class="text-gray-600 pb-1 text-xs"><slot></slot></div>
+      <div class="text-gray-600 pb-1 text-xs">
+        <slot></slot>
+      </div>
       <div class="font-black pb-1">{{ item.Ar }}</div>
       <div class="text-gray-600 pb-1">{{ item.Fa }}</div>
       <div class="text-gray-400 pb-1" v-if="item.Example">مثال: {{ item.Example }}</div>
@@ -22,15 +33,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang='ts'>
-
-import { defineProps } from "vue";
-const props = defineProps<{
-  words: IWord[]
-}>();
-
-</script>
 
 <style>
 </style>
