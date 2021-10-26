@@ -205,13 +205,14 @@ const update = useUpdateRepo();
 const getCategory = useCategoryRepo();
 const router = useRouter();
 
-const loading = ref(false);
+const loading = ref(true);
 update.DB_Update()
   .finally(() => {
     loading.value = false;
+    
   });
 
-getCategory.getAll();
+
 
 let isCategoryVisible = ref(true);
 let isGuideModal = ref(false);
