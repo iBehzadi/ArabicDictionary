@@ -1,6 +1,6 @@
 import { getUpdates_API } from "@/api/UpdateAPI";
 import db from "@/database";
-import { UpdateCategory_DB, UpdateWord_DB } from "@/database/UpdateDB";
+import { LastUpdate_Get, UpdateCategory_DB, UpdateWord_DB } from "@/database/LastUpdateDB";
 import { defineStore } from "pinia";
 
 export const useUpdateDB = defineStore('UpdateDB', {
@@ -12,14 +12,17 @@ export const useUpdateDB = defineStore('UpdateDB', {
   },
   actions: {
     async LastUpdateCheked() {
-      this.Data = await getUpdates_API(db.lastUpdate + '');
+let lastUpdate = LastUpdate_Get()
+      this.Data = await getUpdates_API((await lastUpdate.toString()));
       if (this.Data.lastUpdate > 0) {
-        // UpdateCategory_DB(this.Data.categories.values);
-        // UpdateWord_DB(this.Data.words.);
+        UpdateCategory_DB(this.Data.categories);
+        UpdateWord_DB(this.Data.words);
+
 
       }
 
     }
   }
 });
+
 
