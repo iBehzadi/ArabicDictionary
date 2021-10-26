@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import { WordDB_getAll }from "@/database/WordDB";
-import {WordDB_getSearchResult } from "@/database/WordDB"
+import { WordDB_GetAll }from "@/database/WordDB";
+import {WordDB_GetSearchResult } from "@/database/WordDB"
 export const useWordRepo = defineStore('getWords', {
   state: () => {
     return {
@@ -10,10 +10,10 @@ export const useWordRepo = defineStore('getWords', {
   },
   actions: {
     async getWordByCategory(CategoryID: number){
-      this.words = await WordDB_getAll(CategoryID);
+      this.words = await WordDB_GetAll(CategoryID);
     },
     async getSearchResult(searchInput: string){
-      this.searchResult = await WordDB_getSearchResult(searchInput);
+      this.searchResult = await WordDB_GetSearchResult(searchInput);
     }
   }
 });
