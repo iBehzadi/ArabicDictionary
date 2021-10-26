@@ -1,20 +1,15 @@
-import { CategoryDB_getAll } from "@/database/CategoryDB";
+import { CategoryDB_GetAll } from "@/database/CategoryDB";
 import { defineStore } from "pinia";
-import db from "./database";
-import { ICategory } from "./database";
 
-
-export const useCategoryDB = defineStore('CategoryDB', {
-  state :()=> {
+export const useCategoryRepo = defineStore('getCategory', {
+  state: () => {
     return {
-      category:[] as ICategory[],
+      category: [] as ICategory[],
     }
   },
   actions: {
-    
-async getAll(){
-  this.category = await CategoryDB_getAll()
-}
-   
+    async getAll() {
+      this.category = await CategoryDB_GetAll();
+    },
   }
-})
+});

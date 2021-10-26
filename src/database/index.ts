@@ -10,7 +10,7 @@ class WordDatabase extends Dexie {
         this.version(1).stores({
             lastUpdate: "LastUpdate",
             category: "CategoryID,Title,IsFree,LastUpdate,Status",
-            word: "WordID,CategoryID,Fa,Ar,ReferTo,Dialect,LastUpdate"
+            word: "WordID,CategoryID,Fa,Ar,ReferTo,Dialect,LastUpdate,CustomOrder"
         });
         this.lastUpdate = this.table("lastUpdate");
             this.word = this.table("word");
@@ -47,4 +47,5 @@ declare global {
         SoundVersion: number,
         Status: number
     }
+
 }

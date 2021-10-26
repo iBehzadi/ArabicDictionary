@@ -1,5 +1,14 @@
 import db from ".";
 
-export function WordDB_AddAll(res: IWord[]) {
-  db.word.bulkPut(res);
-};
+export async function WordDB_AddAll(word: IWord[]) {
+  await db.word.bulkPut(word);
+}
+
+export async function WordDB_GetAll(CategoryID: number) {
+  return await db.word.where('CategoryID').equals(CategoryID).toArray();
+}
+
+export async function WordDB_GetSearchResult(searchInput: string) {
+  return await db.word.where('Fa').startsWith(searchInput).toArray();
+}
+

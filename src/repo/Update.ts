@@ -1,9 +1,11 @@
 import { getUpdates_API } from "@/api/UpdateAPI";
 import db from "@/database";
-import { LastUpdate_Get, UpdateCategory_DB, UpdateWord_DB } from "@/database/LastUpdateDB";
+import { CategoryDB_AddAll } from "@/database/CategoryDB";
+import { LastUpdate_Get} from "@/database/LastUpdateDB";
+import { WordDB_AddAll } from "@/database/WordDB";
 import { defineStore } from "pinia";
 
-export const useUpdateDB = defineStore('UpdateDB', {
+export const useUpdateRepo = defineStore('UpdateDB', {
   state: () => {
     return {
       lastCheck: Date,
@@ -15,12 +17,9 @@ export const useUpdateDB = defineStore('UpdateDB', {
 let lastUpdate = LastUpdate_Get()
       this.Data = await getUpdates_API((await lastUpdate.toString()));
       if (this.Data.lastUpdate > 0) {
-        UpdateCategory_DB(this.Data.categories);
-        UpdateWord_DB(this.Data.words);
-
-
+        CategoryDB_AddAll(this.Data.categories);
+        WordDB_AddAll(this.Data.words);
       }
-
     }
   }
 });
