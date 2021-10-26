@@ -1,4 +1,4 @@
-import { CategoryDB_getAll } from "@/database/CategoryDB";
+import { CategoryDB_GetAll } from "@/database/CategoryDB";
 import { defineStore } from "pinia";
 
 export const useCategoryRepo = defineStore('getCategory', {
@@ -10,7 +10,7 @@ export const useCategoryRepo = defineStore('getCategory', {
   },
   actions: {
     async getAll() {
-      this.category = await CategoryDB_getAll();
+      this.category = await CategoryDB_GetAll();
     },
   }
 });

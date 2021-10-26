@@ -1,14 +1,14 @@
 import db from ".";
 
-export async function WordDB_addAll(word: IWord[]) {
+export async function WordDB_AddAll(word: IWord[]) {
   await db.word.bulkPut(word);
 }
 
-export async function WordDB_getAll(CategoryID: number) {
+export async function WordDB_GetAll(CategoryID: number) {
   return await db.word.where('CategoryID').equals(CategoryID).toArray();
 }
 
-export async function WordDB_getSearchResult(searchInput: string) {
+export async function WordDB_GetSearchResult(searchInput: string) {
   return await db.word.where('Ar').startsWith(searchInput).toArray();
 }
 
