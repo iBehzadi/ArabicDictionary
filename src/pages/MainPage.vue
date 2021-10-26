@@ -237,7 +237,7 @@ import WordComponent from "@/components/WordComponent.vue";
 import { useCategoryDB } from "@/stores/Category";
 import { useWordDB } from "@/stores/Word";
 import { httGet } from "@/datasource/http";
-
+import {useUpdateDB} from "@/repo/Update"
 const CategoryDB = useCategoryDB();
 const WordDB = useWordDB();
 const router = useRouter();
@@ -247,7 +247,8 @@ let isPaidVersionModal = ref(false);
 let isNotFoundSearch = ref(false);
 let isWordFound = ref(false);
 let search:String;
-
+const useUpdate = useUpdateDB();
+useUpdate.LastUpdateCheked();
 const loading = ref(true)
 CategoryDB.getCategory()
   .finally(() => {
