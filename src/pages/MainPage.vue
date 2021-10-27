@@ -49,7 +49,7 @@ function callSearch() {
     } else {
       wordRepo.searchResult = [];
     }
-  } else  {
+  } else {
     wordRepo.searchResult = [];
     isCategoryVisible.value = true;
   }
@@ -87,7 +87,7 @@ function paidVersionModal() {
   isPaidVersionModal.value = true;
 }
 
-function wordTranslateRequest(){
+function wordTranslateRequest() {
   //send word to server
   isNotFoundSearch.value = false;
   isCategoryVisible.value = true;
@@ -240,7 +240,10 @@ function wordTranslateRequest(){
           </router-link>
         </div>
       </template>
-      <TranslateRequest @request="wordTranslateRequest" v-if="wordRepo.searchResult.length === 0 && isNotFoundSearch"></TranslateRequest>
+      <TranslateRequest
+        @request="wordTranslateRequest"
+        v-if="wordRepo.searchResult.length === 0 && isNotFoundSearch"
+      ></TranslateRequest>
       <WordComponent :words="wordRepo.searchResult"></WordComponent>
     </div>
     <!-- practice & test buttons -->

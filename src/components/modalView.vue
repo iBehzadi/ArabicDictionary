@@ -17,7 +17,7 @@ function closeModal() {
 <template>
     <transition name="modal-fade">
         <div class="modal-backdrop" @click="closeModal">
-            <div class="modal text-xs" role="dialog" >
+            <div class="modal text-xs" role="dialog">
                 <header class="modal-body mx-2">
                     <slot name="body1"></slot>
                 </header>
@@ -32,7 +32,9 @@ function closeModal() {
                 </section>
 
                 <footer class="modal-footer">
-                    <button type="button" class="btn-green rounded-md" @click="close"><slot name="button">بستن</slot></button>
+                    <button type="button" class="btn-green rounded-md" @click="close">
+                        <slot name="button">بستن</slot>
+                    </button>
                 </footer>
             </div>
         </div>
@@ -63,7 +65,6 @@ function closeModal() {
     font-family: Vazir;
 }
 
-
 .modal-footer {
     padding: 15px;
     display: flex;
@@ -76,7 +77,6 @@ function closeModal() {
 .modal-body {
     position: relative;
     padding: 5px 10px;
-
 }
 
 .btn-green {

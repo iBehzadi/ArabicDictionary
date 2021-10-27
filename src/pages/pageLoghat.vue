@@ -27,7 +27,7 @@ getWords.getWordByCategory(CategoryID);
 
     <button
       @click="router.push('/Practice')"
-      class="bg-yellow w-full h-11 rounded-t-2xl flex justify-center pt-3 fixed bottom-0 "
+      class="bg-yellow w-full h-11 rounded-t-2xl flex justify-center pt-3 fixed bottom-0"
     >
       <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600" />
 

@@ -1,11 +1,9 @@
 import { getUpdates_API } from "@/api/UpdateAPI";
-import db from "@/database";
 import { CategoryDB_AddAll } from "@/database/CategoryDB";
 import { LastUpdate_Get } from "@/database/LastUpdateDB";
 import { WordDB_AddAll } from "@/database/WordDB";
 import { defineStore } from "pinia";
 
-//use updatedb updateapi
 export const useUpdateRepo = defineStore('getUpdateDB', {
   state: () => {
     return {
