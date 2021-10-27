@@ -192,7 +192,10 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { ref } from "@vue/reactivity";
-
+import TranslateRequest from "@/components/transliteRequest.vue";
+import GuideModal from "@/components/modalView.vue";
+import PaidVersionModal from "@/components/modalView.vue";
+import WordComponent from "@/components/WordComponent.vue";
 import { useCategoryRepo } from "@/repo/Category";
 import { useUpdateRepo } from "@/repo/Update";
 import pageLoader from "@/components/pageLoader.vue";
@@ -201,12 +204,11 @@ import pageLoader from "@/components/pageLoader.vue";
 const update = useUpdateRepo();
 const getCategory = useCategoryRepo();
 const router = useRouter();
-
 const loading = ref(false);
-// update.DB_Update()
-//   .finally(() => {
-//     loading.value = false;
-//   });
+
+update.LastUpdateCheked().then(()=> {
+  getCategory.getAll();
+});
 
 getCategory.getAll();
 

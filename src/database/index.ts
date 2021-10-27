@@ -9,11 +9,11 @@ class WordDatabase extends Dexie {
         super("WordDatabase");
         this.version(1).stores({
             lastUpdate: "LastUpdate",
-            category: "CategoryID,Title,IsFree,LastUpdate,Status",
+            category: "CategoryID,Title,IsFree,LastUpdate,Status,CustomOrder",
             word: "WordID,CategoryID,Fa,Ar,ReferTo,Dialect,LastUpdate,CustomOrder"
         });
         this.lastUpdate = this.table("lastUpdate");
-            this.word = this.table("word");
+        this.word = this.table("word");
         this.category = this.table("category");
     }
 }
