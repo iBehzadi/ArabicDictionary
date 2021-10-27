@@ -1,3 +1,88 @@
+<script setup lang="ts">
+import { useRouter } from "vue-router";
+import { ref } from "@vue/reactivity";
+import GuideModal from "@/components/ModalView.vue";
+import PaidVersionModal from "@/components/ModalView.vue";
+import TranslateRequest from "@/components/transliteRequest.vue";
+import WordComponent from "@/components/WordComponent.vue";
+import { useCategoryRepo } from "@/repo/Category";
+import { useUpdateRepo } from "@/repo/Update";
+import { useWordRepo } from "@/repo/Word";
+import pageLoader from "@/components/pageLoader.vue";
+
+
+let isCategoryVisible = ref(true);
+let isGuideModal = ref(false);
+let isPaidVersionModal = ref(false);
+let isNotFoundSearch = ref(false);
+let isWordFound = ref(true);
+let search = ref('');
+
+const update = useUpdateRepo();
+const router = useRouter();
+const word = useWordRepo();
+const categoryRepo = useCategoryRepo();
+let error=ref(false)
+const loading = ref(true);
+
+function reload(){ 
+  loading.value=true; 
+  error.value=false;
+  update.DB_Update()
+  .catch(e =>{
+    error.value=true
+
+  })
+  .finally(()=>{
+    loading.value=false;
+    categoryRepo.getAll()
+    })
+}
+reload()
+categoryRepo.getAll()
+
+
+function getSearch() {
+  if (search.value.length >= 1) {
+    isCategoryVisible.value = false;
+    if (search.value.length >= 2) {
+      word.getSearchResult(search.value);
+      //if not found
+    }
+  } else if (search.value.length == 0) {
+      word.searchResult = [];
+      isCategoryVisible.value = true;
+      isNotFoundSearch.value = false;
+    }
+}
+
+//setting-menu functions
+var settingSide = ref<HTMLDivElement>();
+var settings = ref<HTMLDivElement>();
+function openSetting() {
+  settingSide.value!.style.width = "65%";
+  settings.value!.style.width = "100%";
+}
+function closeSetting() {
+  settingSide.value!.style.width = "0";
+  settings.value!.style.width = "0";
+  document.getElementById("setting-nav")?.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+}
+//guideModal open
+function guideModal() {
+  closeSetting();
+  isGuideModal.value = true;
+}
+function paidVersionModal() {
+  closeSetting();
+  isPaidVersionModal.value = true;
+}
+
+
+</script>
+
 <template>
   <!-- SETTING MENU-->
   <div
@@ -58,6 +143,7 @@
         <input
           type="text"
           v-model="search"
+          @input="getSearch"
           class="text-1xl h-14 border rounded-full w-full bg-white focus:shadow-inner pr-6 pl-12"
           placeholder="جستجو کنید..."
         />
@@ -141,7 +227,7 @@
         </div>
       </template>
       <TranslateRequest v-if="isNotFoundSearch"></TranslateRequest>
-      <WordComponent v-if="isWordFound"></WordComponent>
+      <WordComponent :words="word.searchResult" v-if="isWordFound"></WordComponent>
     </div>
     <!-- practice & test buttons -->
     <div class="w-full flex h-12 fixed bottom-0 inset-x-0 bg-gray-100">
@@ -191,75 +277,6 @@
     </template>
   </GuideModal>
 </template>
-
-<script setup lang="ts">
-import { useRouter } from "vue-router";
-import { ref } from "@vue/reactivity";
-import GuideModal from "@/components/ModalView.vue";
-import PaidVersionModal from "@/components/ModalView.vue";
-import TranslateRequest from "@/components/transliteRequest.vue";
-import WordComponent from "@/components/WordComponent.vue";
-import { useCategoryRepo } from "@/repo/Category";
-import { useUpdateRepo } from "@/repo/Update";
-import pageLoader from "@/components/pageLoader.vue";
-
-
-const update = useUpdateRepo();
-const router = useRouter();
-const categoryRepo = useCategoryRepo();
-let error=ref(false)
-const loading = ref(true);
-
-function reload(){ 
-  loading.value=true; 
-  error.value=false;
-  update.DB_Update()
-  .catch(e =>{
-    error.value=true
-
-  })
-  .finally(()=>{
-    loading.value=false;
-    categoryRepo.getAll()
-    })
-}
-reload()
-categoryRepo.getAll()
-
-
-let isCategoryVisible = ref(true);
-let isGuideModal = ref(false);
-let isPaidVersionModal = ref(false);
-let isNotFoundSearch = ref(false);
-let isWordFound = ref(true);
-let search: string;
-
-
-//setting-menu functions
-var settingSide = ref<HTMLDivElement>();
-var settings = ref<HTMLDivElement>();
-function openSetting() {
-  settingSide.value!.style.width = "65%";
-  settings.value!.style.width = "100%";
-}
-function closeSetting() {
-  settingSide.value!.style.width = "0";
-  settings.value!.style.width = "0";
-  document.getElementById("setting-nav")?.addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
-}
-//guideModal open
-function guideModal() {
-  closeSetting();
-  isGuideModal.value = true;
-}
-function paidVersionModal() {
-  closeSetting();
-  isPaidVersionModal.value = true;
-}
-
-</script>
 
 <style scoped>
 </style>

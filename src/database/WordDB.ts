@@ -9,6 +9,6 @@ export async function WordDB_GetAll(CategoryID: number) {
 }
 
 export async function WordDB_GetSearchResult(searchInput: string) {
-  return await db.word.where('Fa').startsWith(searchInput).toArray();
+  return await db.word.where('Ar').startsWith(searchInput).toArray();
 }
 
