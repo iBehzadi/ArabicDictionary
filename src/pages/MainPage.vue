@@ -20,40 +20,46 @@ let search = ref('');
 
 const update = useUpdateRepo();
 const router = useRouter();
-const word = useWordRepo();
+const wordRepo = useWordRepo();
 const categoryRepo = useCategoryRepo();
-let error=ref(false)
+let error = ref(false);
 const loading = ref(true);
 
-function reload(){ 
-  loading.value=true; 
-  error.value=false;
+function reload() {
+  loading.value = true;
+  error.value = false;
   update.DB_Update()
-  .catch(e =>{
-    error.value=true
-
-  })
-  .finally(()=>{
-    loading.value=false;
-    categoryRepo.getAll()
+    .catch(e => {
+      error.value = true;
+    })
+    .finally(() => {
+      loading.value = false;
+      categoryRepo.getAll();
     })
 }
-reload()
-categoryRepo.getAll()
+reload();
+categoryRepo.getAll();
 
-
-function getSearch() {
+//search function
+function callSearch() {
   if (search.value.length >= 1) {
     isCategoryVisible.value = false;
     if (search.value.length >= 2) {
-      word.getSearchResult(search.value);
-      //if not found
+      wordRepo.getSearchResult(search.value);
+    } else {
+      wordRepo.searchResult = [];
     }
-  } else if (search.value.length == 0) {
-      word.searchResult = [];
-      isCategoryVisible.value = true;
-      isNotFoundSearch.value = false;
-    }
+  } else  {
+    wordRepo.searchResult = [];
+    isCategoryVisible.value = true;
+  }
+
+  if (search.value.length >= 3) {
+    isNotFoundSearch.value = true;
+  }
+  else {
+    isNotFoundSearch.value = false;
+  }
 }
 
 //setting-menu functions
@@ -70,17 +76,23 @@ function closeSetting() {
     e.stopPropagation();
   });
 }
-//guideModal open
+//guide Modal open
 function guideModal() {
   closeSetting();
   isGuideModal.value = true;
 }
+//paidversion Modal open
 function paidVersionModal() {
   closeSetting();
   isPaidVersionModal.value = true;
 }
 
+function wordTranslateRequest(){
+  //send word to server
+  isNotFoundSearch.value = false;
 
+  isCategoryVisible.value = true;
+}
 </script>
 
 <template>
@@ -103,11 +115,9 @@ function paidVersionModal() {
     </div>
   </div>
   <!-- HEADER-->
-
-  <pageLoader :error="false" class="z-20"  v-if="categoryRepo.category.length === 0"></pageLoader>
- 
-  <pageLoader :error="error" class="z-20"  v-if="error" @reload="reload()"></pageLoader>
- <header class="fixed left-0 right-0 top-0 z-10 ">
+  <pageLoader :error="false" class="z-20" v-if="categoryRepo.category.length === 0"></pageLoader>
+  <pageLoader :error="error" class="z-20" v-if="error" @reload="reload()"></pageLoader>
+  <header class="fixed left-0 right-0 top-0 z-10">
     <div class="pb-1 pl-1 border-b bg-white flex items-center justify-between">
       <!-- menu icon -->
       <div class="flex items-center justify-between mt-1">
@@ -143,7 +153,7 @@ function paidVersionModal() {
         <input
           type="text"
           v-model="search"
-          @input="getSearch"
+          @input="callSearch"
           class="text-1xl h-14 border rounded-full w-full bg-white focus:shadow-inner pr-6 pl-12"
           placeholder="جستجو کنید..."
         />
@@ -213,7 +223,10 @@ function paidVersionModal() {
                   class="absolute text-lg text-gray-500 right-3 top-3"
                 />
                 <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-                <i class="pt-4 flex-center w-8 mr-7" v-html="categoryRepo.category[i].Icon"></i>
+                <i
+                  class="pt-4 flex-center w-8 mr-7 absolute right-3 top-3"
+                  v-html="categoryRepo.category[i].Icon"
+                ></i>
               </div>
               <div class="w-full absolute bottom-6">
                 <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
@@ -226,8 +239,8 @@ function paidVersionModal() {
           </router-link>
         </div>
       </template>
-      <TranslateRequest v-if="isNotFoundSearch"></TranslateRequest>
-      <WordComponent :words="word.searchResult" v-if="isWordFound"></WordComponent>
+      <TranslateRequest @request="wordTranslateRequest" v-if="wordRepo.searchResult.length === 0 && isNotFoundSearch"></TranslateRequest>
+      <WordComponent :words="wordRepo.searchResult"></WordComponent>
     </div>
     <!-- practice & test buttons -->
     <div class="w-full flex h-12 fixed bottom-0 inset-x-0 bg-gray-100">

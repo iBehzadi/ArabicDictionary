@@ -5,7 +5,6 @@ export const useCategoryRepo = defineStore('getCategory', {
   state: () => {
     return {
       category: [] as ICategory[],
-      categoryByWCId:[] as ICategory[]
     }
   },
   actions: {
