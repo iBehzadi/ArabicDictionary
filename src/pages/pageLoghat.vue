@@ -16,7 +16,7 @@ getWords.getWordByCategory(CategoryID);
 
 </script>
 <template >
-  <div>
+  <div class="">
     <header2 @back="router.back()">
       <template v-slot:title>{{ getCategory.category[+route.params.id].Title }}</template>
     </header2>
@@ -25,7 +25,7 @@ getWords.getWordByCategory(CategoryID);
 
     <button
       @click="router.push('/Practice')"
-      class="bg-yellow w-full h-11 rounded-t-2xl flex justify-center pt-3 fixed bottom-0"
+      class="bg-yellow w-full h-11 rounded-t-2xl flex justify-center pt-3 fixed bottom-0 "
     >
       <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600" />
 
