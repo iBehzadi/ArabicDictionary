@@ -1,6 +1,5 @@
 <template>
   <!-- SETTING MENU-->
-  <pageLoader v-if="loading"></pageLoader>
   <div
     ref="settings"
     @click="closeSetting"
@@ -19,7 +18,11 @@
     </div>
   </div>
   <!-- HEADER-->
-  <header class="fixed left-0 right-0 top-0 z-10">
+
+  <pageLoader :error="false" class="z-20"  v-if="categoryRepo.category.length === 0"></pageLoader>
+ 
+  <pageLoader :error="error" class="z-20"  v-if="error" @reload="reload()"></pageLoader>
+ <header class="fixed left-0 right-0 top-0 z-10 ">
     <div class="pb-1 pl-1 border-b bg-white flex items-center justify-between">
       <!-- menu icon -->
       <div class="flex items-center justify-between mt-1">
@@ -110,7 +113,7 @@
         </div>
 
         <div
-          v-for="(item, i) in getCategory.category"
+          v-for="(item, i) in categoryRepo.category"
           :key="i"
           class="w-28 mt-2 h-28 border drop-shadow rounded-3xl2 bg-white"
           :class="{ 'bg-gray-300': !item.IsFree }"
@@ -124,7 +127,7 @@
                   class="absolute text-lg text-gray-500 right-3 top-3"
                 />
                 <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-                <i class="pt-8 flex-center w-8 mr-10" v-html="item.Icon"></i>
+                <i class="pt-4 flex-center w-8 mr-7" v-html="categoryRepo.category[i].Icon"></i>
               </div>
               <div class="w-full absolute bottom-6">
                 <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
@@ -202,16 +205,26 @@ import pageLoader from "@/components/pageLoader.vue";
 
 
 const update = useUpdateRepo();
-const getCategory = useCategoryRepo();
 const router = useRouter();
-
+const categoryRepo = useCategoryRepo();
+let error=ref(false)
 const loading = ref(true);
-update.DB_Update()
-  .finally(() => {
-    loading.value = false;
-    
-  });
 
+function reload(){ 
+  loading.value=true; 
+  error.value=false;
+  update.DB_Update()
+  .catch(e =>{
+    error.value=true
+
+  })
+  .finally(()=>{
+    loading.value=false;
+    categoryRepo.getAll()
+    })
+}
+reload()
+categoryRepo.getAll()
 
 
 let isCategoryVisible = ref(true);
