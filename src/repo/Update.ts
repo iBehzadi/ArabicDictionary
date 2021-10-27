@@ -5,13 +5,14 @@ import { LastUpdate_Get } from "@/database/LastUpdateDB";
 import { WordDB_AddAll } from "@/database/WordDB";
 import { defineStore } from "pinia";
 
-export const useUpdateRepo = defineStore('UpdateDB', {
+//use updatedb updateapi
+export const useUpdateRepo = defineStore('getUpdateDB', {
   state: () => {
     return {
     }
   },
   actions: {
-    async LastUpdateCheked() {
+    async DB_Update() {
       let lastUpdate = await LastUpdate_Get();
       let result = await getUpdates_API(lastUpdate[0]);
       CategoryDB_AddAll(result.categories);
