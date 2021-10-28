@@ -105,7 +105,7 @@
     <div class="w-full flex h-12 fixed bottom-0 inset-x-0">
       <button
         class="w-2/4 border rounded-t-2xl bg-yellow text-center"
-        @click="router.push('/Practice')"
+        @click="goToVocabularyTest()"
       >
         <span class="text-sm">
           <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600 ml-2" />تمرین لغات
@@ -216,6 +216,16 @@ function paidVersionModal() {
   closeSetting();
   isPaidVersionModal.value = true;
 }
+
+function goToVocabularyTest(){
+  let CategoryID =Math.floor(Math.random()* categoryRepo.category.length)
+
+
+router.push(`/Practice/${CategoryID}`)
+
+
+}
+
 
 </script>
 

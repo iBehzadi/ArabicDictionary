@@ -1,13 +1,20 @@
 <script setup lang="ts">
-
 import VocabularyTestOptions from "../components/VocabularyTestOptions.vue";
 import header2 from "../components/Header2.vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { ref } from "@vue/reactivity";
-import Modal from "../components/ModalView.vue"
+import Modal from "../components/ModalView.vue";
+import { useWordRepo } from "@/repo/Word";
+import { useCategoryRepo } from "@/repo/Category";
 
 let isModalVisible = ref(false);
 const router = useRouter();
+const routes= useRoute()
+
+const getWords = useWordRepo();
+
+
+getWords.getWordByRandom(+routes.params.categoryID);
 
 
 </script>
@@ -18,19 +25,55 @@ const router = useRouter();
       <template v-slot:title>تمرین لغات</template>
     </header2>
     <div class="flex relative justify-start p-2 mt-2">
-      <div class="flex rounded-full mr-3 p-1 justify-around bg-green-600 w-12 h-6 gap-2">
-        <font-awesome-icon class="text-white self-center" :icon="['far', 'check-circle']" />
+      <div
+        class="
+          flex
+          rounded-full
+          mr-3
+          p-1
+          justify-around
+          bg-green-600
+          w-12
+          h-6
+          gap-2
+        "
+      >
+        <font-awesome-icon
+          class="text-white self-center"
+          :icon="['far', 'check-circle']"
+        />
         <p class="ml-1 text-white text-sm self-center">۲</p>
       </div>
-      <div class="flex rounded-full mr-2 justify-around p-1 bg-red-600 w-12 h-6 gap-2">
-        <font-awesome-icon class="text-white self-center" :icon="['far', 'times-circle']" />
+      <div
+        class="
+          flex
+          rounded-full
+          mr-2
+          justify-around
+          p-1
+          bg-red-600
+          w-12
+          h-6
+          gap-2
+        "
+      >
+        <font-awesome-icon
+          class="text-white self-center"
+          :icon="['far', 'times-circle']"
+        />
         <p class="ml-1 text-white text-sm self-center">۱</p>
       </div>
     </div>
     <div class="flex px-5 pt-3 justify-center flex-col gap-7">
       <div class="rounded-3xl bg-white p-14 shadow-lg drop-shadow-md">
         <p class="text-xs text-center">معنی عبارت زیر چیست؟</p>
-        <p class="mt-5 text-lg font-semibold text-center">لاتندل (مخاطب مذکر)</p>
+        <p
+          class="mt-5 text-lg font-semibold text-center"
+          v-for="(item, i) in [getWords.wordRnadom]"
+          :key="i"
+        >
+          {{ item.Ar }}
+        </p>
       </div>
       <div>
         <div class="flex justify-between gap-2">
@@ -61,13 +104,13 @@ const router = useRouter();
       </div>
     </template>
     <template v-slot:body2>
-      <div class="test-result" style="color: green;">
+      <div class="test-result" style="color: green">
         <span>تعداد پاسخ درست</span>
         <span>6</span>
       </div>
     </template>
     <template v-slot:body3>
-      <div class="test-result" style="color: red;">
+      <div class="test-result" style="color: red">
         <span>تعداد پاسخ غلط</span>
         <span>4</span>
       </div>
@@ -88,4 +131,3 @@ const router = useRouter();
   justify-content: space-between;
 }
 </style>
-

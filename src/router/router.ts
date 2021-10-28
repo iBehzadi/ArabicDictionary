@@ -3,7 +3,7 @@ import main from "../pages/MainPage.vue";
 const routes = [
   {path: "/", name: "main", component: main},
   {
-    path: "/Practice",
+    path: "/Practice/:categoryID",
     name: "VocabularyPractice",
     component: () => import("@/pages/VocabularyPracticePage.vue")
   },

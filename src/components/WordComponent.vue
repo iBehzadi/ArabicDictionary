@@ -28,7 +28,7 @@
 import { defineProps } from "vue";
 const props = defineProps<{
   words: IWord[]
-}>();
+}>();    
 
 </script>
 

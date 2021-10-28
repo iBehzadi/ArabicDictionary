@@ -14,6 +14,8 @@ getCategory.getAll();
 const CategoryID = getCategory.category[+route.params.id].CategoryID;
 getWords.getWordByCategory(CategoryID);
 
+
+
 </script>
 <template >
   <div class="">
@@ -24,7 +26,7 @@ getWords.getWordByCategory(CategoryID);
     <WordComponent :words="getWords.words"></WordComponent>
 
     <button
-      @click="router.push('/Practice')"
+      @click="router.push(`/Practice/${CategoryID}`)"
       class="bg-yellow w-full h-11 rounded-t-2xl flex justify-center pt-3 fixed bottom-0 "
     >
       <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600" />

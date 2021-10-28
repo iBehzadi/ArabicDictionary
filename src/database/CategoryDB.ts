@@ -6,4 +6,5 @@ export async function CategoryDB_addAll(category: ICategory[]) {
 
 export async function CategoryDB_getAll() {
    return db.category.orderBy('CategoryID').toArray();
+
 }
