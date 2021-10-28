@@ -1,6 +1,6 @@
 import db from ".";
 
-export async function searchDB_AddWords(word: IWord[]) {
+export async function searchDB_AddWordsInDB(word: IWord[]) {
   for (let i = 0; i < word.length; i++) {
     let wordList = [
       ...word[i].Ar.split(" "),
