@@ -2,14 +2,17 @@
 import Dexie from "dexie";
 
 class WordDatabase extends Dexie {
+    lastUpdate: Dexie.Table<ILastUpdate, number>
     word: Dexie.Table<IWord, number>; // number = type of the primkey
     category: Dexie.Table<ICategory, number>;
     constructor() {
         super("WordDatabase");
         this.version(1).stores({
-            category: "CategoryID,Title,IsFree,LastUpdate,Status",
-            word: "WordID,CategoryID,Fa,Ar,ReferTo,Dialect,LastUpdate"
+            lastUpdate: "LastUpdate",
+            category: "CategoryID,Title,IsFree,LastUpdate,Status,CustomOrder",
+            word: "WordID,CategoryID,Fa,Ar,ReferTo,Dialect,LastUpdate,CustomOrder"
         });
+        this.lastUpdate = this.table("lastUpdate");
         this.word = this.table("word");
         this.category = this.table("category");
     }
@@ -17,9 +20,10 @@ class WordDatabase extends Dexie {
 
 let db = new WordDatabase()
 
-export default db
+export default db;
 
 declare global {
+    interface ILastUpdate { LastUpdate: number }
     interface IWord {
         WordID: number,
         CategoryID: number,
