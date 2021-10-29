@@ -7,7 +7,7 @@ export const useWordRepo = defineStore('getWords', {
     return {
       words:[] as IWord[],
       searchResult:[] as IWord[],
-      wordRnadom:{} as IWord
+      wordRnadom:[] as IWord[]
     }
   },
   actions: {

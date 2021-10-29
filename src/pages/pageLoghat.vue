@@ -10,11 +10,10 @@ const router = useRouter();
 const getCategory = useCategoryRepo();
 const getWords = useWordRepo();
 
-getCategory.getAll();
 const CategoryID = getCategory.category[+route.params.id].CategoryID;
 getWords.getWordByCategory(CategoryID);
 
-
+getCategory.getAll()
 
 </script>
 <template >

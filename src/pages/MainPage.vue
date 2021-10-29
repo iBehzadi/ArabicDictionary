@@ -40,6 +40,12 @@ function reload() {
 reload();
 categoryRepo.getAll();
 
+// Random Word
+function goToVocabularyTest(){
+  let CategoryID =Math.floor(Math.random()* categoryRepo.category.length)
+router.push(`/Practice/${CategoryID}`)
+}
+
 //search function
 function callSearch() {
   if (search.value.length >= 1) {
@@ -47,7 +53,7 @@ function callSearch() {
     if (search.value.length >= 2) {
       wordRepo.getSearchResult(search.value);
     } else {
-      wordRepo.searchResult = [];
+      wordRepo.searchResult = []; 
     }
   } else {
     wordRepo.searchResult = [];
@@ -96,14 +102,7 @@ function wordTranslateRequest() {
 }
 
 
-function goToVocabularyTest(){
-  let CategoryID =Math.floor(Math.random()* categoryRepo.category.length)
 
-
-router.push(`/Practice/${CategoryID}`)
-
-
-}
 </script>
 
 <template>

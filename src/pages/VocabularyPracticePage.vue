@@ -12,11 +12,15 @@ const router = useRouter();
 const routes= useRoute()
 
 const getWords = useWordRepo();
-
-
 getWords.getWordByRandom(+routes.params.categoryID);
 
 
+
+function trueFalseWord() {
+ let worddss= getWords.wordRnadom[Math.floor(Math.random() *4)]  
+console.log(worddss.WordID)
+    return worddss 
+}
 </script>
 
 <template>
@@ -68,28 +72,25 @@ getWords.getWordByRandom(+routes.params.categoryID);
       <div class="rounded-3xl bg-white p-14 shadow-lg drop-shadow-md">
         <p class="text-xs text-center">معنی عبارت زیر چیست؟</p>
         <p
-          class="mt-5 text-lg font-semibold text-center"
-          v-for="(item, i) in [getWords.wordRnadom]"
-          :key="i"
-        >
-          {{ item.Ar }}
+          class="mt-5 text-lg font-semibold text-center"        >
+          {{trueFalseWord().Ar}}
         </p>
       </div>
       <div>
         <div class="flex justify-between gap-2">
           <vocabulary-test-options class="bg-green-500">
-            <template v-slot:option>گزینه صحیح</template>
+            <template v-slot:option  >{{getWords.wordRnadom[Math.floor(0)].Fa  }}</template>
           </vocabulary-test-options>
           <vocabulary-test-options class>
-            <template v-slot:option>نیاز نداشته باش</template>
+            <template v-slot:option>{{getWords.wordRnadom[Math.floor(1)].Fa  }}</template>
           </vocabulary-test-options>
         </div>
         <div class="flex justify-between gap-2 mt-2">
           <vocabulary-test-options class>
-            <template v-slot:option>ترس</template>
+            <template v-slot:option>{{getWords.wordRnadom[Math.floor(2)].Fa  }}</template>
           </vocabulary-test-options>
           <vocabulary-test-options class="bg-red-500">
-            <template v-slot:option>گزینه غلط</template>
+            <template v-slot:option>{{getWords.wordRnadom[Math.floor(3)].Fa  }}</template>
           </vocabulary-test-options>
         </div>
       </div>
