@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
 import { WordDB_GetAll }from "@/database/WordDB";
 import { WordDB_RandomId }from "@/database/WordDB";
-import {WordDB_getWordBySearch } from "@/database/WordDB"
-export const useWordRepo = defineStore('getWords', {
+import {WordDB_GetWordBySearch } from "@/database/WordDB"
+export const useWordRepo = defineStore('wordRepo', {
   state: () => {
     return {
       words:[] as IWord[],
@@ -15,10 +15,10 @@ export const useWordRepo = defineStore('getWords', {
       this.words = await WordDB_GetAll(CategoryID);
     },
     async getSearchResult(searchInput: string){
-      this.searchResult = await WordDB_getWordBySearch(searchInput);
+      this.searchResult = await WordDB_GetWordBySearch(searchInput);
     },
     async getWordByRandom(categoryID:number){
-      this.wordRnadom = await WordDB_RandomId(categoryID);
+      this.randomWord = await WordDB_RandomId(categoryID);
         
     }
 

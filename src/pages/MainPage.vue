@@ -53,7 +53,7 @@ function callSearch() {
     if (search.value.length >= 2) {
       wordRepo.getSearchResult(search.value);
     } else {
-      wordRepo.searchResult = []; 
+      wordRepo.searchResult = [];
     }
   } else {
     wordRepo.searchResult = [];
