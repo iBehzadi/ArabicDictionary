@@ -95,15 +95,11 @@ function wordTranslateRequest() {
   alert('درخواست شما برای ترجمه لغت انجام شد')
 }
 
-
-function goToVocabularyTest(){
-  let CategoryID =Math.floor(Math.random()* categoryRepo.category.length)
-
-
-router.push(`/Practice/${CategoryID}`)
-
-
+function goToVocabularyTest() {
+  let CategoryID = Math.floor(Math.random() * categoryRepo.category.length);
+  router.push(`/Practice/${CategoryID}`);
 }
+
 </script>
 
 <template>
@@ -179,7 +175,7 @@ router.push(`/Practice/${CategoryID}`)
   <div class="bg-gray-100 mt-28">
     <!--category -->
     <div
-      class="flex flex-fill justify-content-center flex-wrap text-center relative pb-16 justify-evenly"
+      class="flex flex-wrap text-center relative pb-16 justify-evenly"
     >
       <template v-if="isCategoryVisible">
         <!-- bookmark -->

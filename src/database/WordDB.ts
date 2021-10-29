@@ -12,11 +12,11 @@ export async function WordDB_GetWordBySearch(searchInput: string) {
   return await db.word.where('Ar').startsWith(searchInput).toArray();
 }
 
-export async function WordDB_RandomId(categoryID:number,) {
-  let loghatRnd= await db.word.where("CategoryID").equals(categoryID).toArray()
- 
-  console.log(loghatRnd[ Math.floor(Math.random() * loghatRnd.length)]);
-  return loghatRnd[ Math.floor(Math.random() * loghatRnd.length)]
-    
+export async function WordDB_RandomId(categoryID: number,) {
+  let loghatRnd = await db.word.where("CategoryID").equals(categoryID).toArray();
+  let temp = [] as IWord[];
+  for (let i = 0; i <= 3; i++) {
+   temp[i] = loghatRnd[Math.floor(Math.random() * loghatRnd.length)];
   }
- 
+  return temp
+}

@@ -1,96 +1,68 @@
 <script setup lang="ts">
-import VocabularyTestOptions from "../components/VocabularyTestOptions.vue";
 import header2 from "../components/Header2.vue";
 import { useRoute, useRouter } from "vue-router";
 import { ref } from "@vue/reactivity";
 import Modal from "../components/ModalView.vue";
 import { useWordRepo } from "@/repo/Word";
-import { useCategoryRepo } from "@/repo/Category";
+import { computed } from "vue-demi";
 
 let isModalVisible = ref(false);
 const router = useRouter();
-const routes= useRoute()
+const route = useRoute()
+const wordRepo = useWordRepo();
 
-const getWords = useWordRepo();
+let trueResult = ref(0);
+let falseResult = ref(0);
 
+wordRepo.getWordByRandom(+route.params.categoryID);
 
-getWords.getWordByRandom(+routes.params.categoryID);
+let questionWord = computed((): IWord => {
+  return wordRepo.randomWord[Math.floor(Math.random() * wordRepo.randomWord.length)]
+})
+let answerWord = computed((): IWord[] => {
+  return wordRepo.randomWord
+})
 
+function questionAnswer(word: IWord) {
+  if (word.WordID === questionWord.value?.WordID) {
+    trueResult.value++;
+  } else {
+    falseResult.value++;
+  }
 
+  setTimeout(()=>{ wordRepo.getWordByRandom(+route.params.categoryID); }, 1000);
+}
 </script>
-
 <template>
   <div class="h-screen bg-gray-200">
     <header2 @click="isModalVisible = true">
       <template v-slot:title>تمرین لغات</template>
     </header2>
     <div class="flex relative justify-start p-2 mt-2">
-      <div
-        class="
-          flex
-          rounded-full
-          mr-3
-          p-1
-          justify-around
-          bg-green-600
-          w-12
-          h-6
-          gap-2
-        "
-      >
-        <font-awesome-icon
-          class="text-white self-center"
-          :icon="['far', 'check-circle']"
-        />
-        <p class="ml-1 text-white text-sm self-center">۲</p>
+      <div class="flex rounded-full mr-3 p-1 justify-around bg-green-600 w-12 h-6 gap-2">
+        <font-awesome-icon class="text-white self-center" :icon="['far', 'check-circle']" />
+        <p class="ml-1 text-white text-sm self-center">{{ trueResult }}</p>
       </div>
-      <div
-        class="
-          flex
-          rounded-full
-          mr-2
-          justify-around
-          p-1
-          bg-red-600
-          w-12
-          h-6
-          gap-2
-        "
-      >
-        <font-awesome-icon
-          class="text-white self-center"
-          :icon="['far', 'times-circle']"
-        />
-        <p class="ml-1 text-white text-sm self-center">۱</p>
+      <div class="flex rounded-full mr-2 justify-around p-1 bg-red-600 w-12 h-6 gap-2">
+        <font-awesome-icon class="text-white self-center" :icon="['far', 'times-circle']" />
+        <p class="ml-1 text-white text-sm self-center">{{ falseResult }}</p>
       </div>
     </div>
     <div class="flex px-5 pt-3 justify-center flex-col gap-7">
       <div class="rounded-3xl bg-white p-14 shadow-lg drop-shadow-md">
         <p class="text-xs text-center">معنی عبارت زیر چیست؟</p>
-        <p
-          class="mt-5 text-lg font-semibold text-center"
-          v-for="(item, i) in [getWords.wordRnadom]"
-          :key="i"
-        >
-          {{ item.Ar }}
-        </p>
+        <p class="mt-5 text-lg font-semibold text-center">{{ questionWord?.Ar }}</p>
       </div>
       <div>
-        <div class="flex justify-between gap-2">
-          <vocabulary-test-options class="bg-green-500">
-            <template v-slot:option>گزینه صحیح</template>
-          </vocabulary-test-options>
-          <vocabulary-test-options class>
-            <template v-slot:option>نیاز نداشته باش</template>
-          </vocabulary-test-options>
-        </div>
-        <div class="flex justify-between gap-2 mt-2">
-          <vocabulary-test-options class>
-            <template v-slot:option>ترس</template>
-          </vocabulary-test-options>
-          <vocabulary-test-options class="bg-red-500">
-            <template v-slot:option>گزینه غلط</template>
-          </vocabulary-test-options>
+        <div class="flex flex-wrap justify-evenly items-center gap-2">
+          <div
+            v-for="(item, i) in answerWord"
+            :key="i"
+            @click="questionAnswer(wordRepo.randomWord[i])"
+            class="h-36 w-36 rounded-3xl bg-white p-3 flex items-center justify-center shadow-lg drop-shadow-md"
+          >
+            <span class="text-base text-center font-normal">{{ item.Fa }}</span>
+          </div>
         </div>
       </div>
     </div>
