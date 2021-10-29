@@ -12,7 +12,7 @@ export const useUpdateRepo = defineStore('getUpdateDB', {
   actions: {
     async DB_Update() {
       let lastUpdate = await LastUpdate_Get();
-      let result = await getUpdates_API(lastUpdate[0]);
+      let result = await getUpdates_API(lastUpdate[0]+'');
       CategoryDB_AddAll(result.categories);
       WordDB_AddAll(result.words);
     }
