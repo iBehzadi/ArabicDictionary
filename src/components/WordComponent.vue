@@ -1,6 +1,5 @@
 <script setup lang='ts'>
 
-import { defineProps } from "vue";
 const props = defineProps<{
   words: IWord[]
 }>();
@@ -11,7 +10,7 @@ const props = defineProps<{
   <!-- کامپوننت لغات   -->
   <div
     class="w-full h-auto shadow-sm border flex bg-gray-50 mb-1 rounded-xl odd:bg-gray-300 mt-1"
-    v-for="(item,i) in words"
+    v-for="(item,i) in props.words"
     :key="i"
   >
     <div class="flex-grow text-sm pt-1 pr-2">

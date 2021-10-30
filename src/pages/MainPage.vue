@@ -94,6 +94,12 @@ function wordTranslateRequest() {
   search.value = '';
   alert('درخواست شما برای ترجمه لغت انجام شد')
 }
+
+function goToVocabularyTest() {
+  let CategoryID = Math.floor(Math.random() * categoryRepo.category.length);
+  router.push(`/Practice/${CategoryID}`);
+}
+
 </script>
 
 <template>
@@ -169,7 +175,7 @@ function wordTranslateRequest() {
   <div class="bg-gray-100 mt-28">
     <!--category -->
     <div
-      class="flex flex-fill justify-content-center flex-wrap text-center relative pb-16 justify-evenly"
+      class="flex flex-wrap text-center relative pb-16 justify-evenly"
     >
       <template v-if="isCategoryVisible">
         <!-- bookmark -->
@@ -250,7 +256,7 @@ function wordTranslateRequest() {
     <div class="w-full flex h-12 fixed bottom-0 inset-x-0 bg-gray-100">
       <button
         class="w-2/4 border rounded-t-2xl bg-yellow text-center"
-        @click="router.push('/Practice')"
+        @click="goToVocabularyTest()"
       >
         <span class="text-sm">
           <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600 ml-2" />تمرین لغات
