@@ -7,7 +7,6 @@ const props = defineProps<{
 // isBookmark: false;
 const bookmarksRepo = useBookmarksRepo();
 let bookmarks = computed(() => bookmarksRepo.$state.bookmarks);
-bookmarks.value.includes(w.WordId);
 </script>
 
 <template>
