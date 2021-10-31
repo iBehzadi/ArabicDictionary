@@ -100,6 +100,12 @@ function goToVocabularyTest() {
   router.push(`/Practice/${CategoryID}`);
 }
 
+function SearchCall(search: string) {
+  if (search.length > 2) {
+    wordRepo.getSearchResult(search);
+  }
+}
+
 </script>
 
 <template>
@@ -107,15 +113,37 @@ function goToVocabularyTest() {
   <div
     ref="settings"
     @click="closeSetting"
-    class="bg-gray-300 t-0 right-0 left-0 bottom-0 fixed z-20 h-full w-0 bg-opacity-50"
+    class="
+      bg-gray-300
+      t-0
+      right-0
+      left-0
+      bottom-0
+      fixed
+      z-20
+      h-full
+      w-0
+      bg-opacity-50
+    "
   >
     <div
       ref="settingSide"
       id="setting-nav"
-      class="h-full w-0 t-0 right-0 overflow-x-hidden bg-white bg-opacity-100 transition-all duration-300"
+      class="
+        h-full
+        w-0
+        t-0
+        right-0
+        overflow-x-hidden
+        bg-white bg-opacity-100
+        transition-all
+        duration-300
+      "
     >
       <div class="flex flex-col mt-5">
-        <button @click="paidVersionModal" class="text-yellow">خرید نسخه طلایی</button>
+        <button @click="paidVersionModal" class="text-yellow">
+          خرید نسخه طلایی
+        </button>
         <button @click="guideModal">راهنما</button>
         <button @click="router.push('/About')">درباره ما</button>
       </div>
@@ -128,15 +156,33 @@ function goToVocabularyTest() {
     <div class="pb-1 pl-1 border-b bg-white flex items-center justify-between">
       <!-- menu icon -->
       <div class="flex items-center justify-between mt-1">
-        <button @click="openSetting" class="text-2xl text-gray-darkest mr-4 flex-center">
-          <font-awesome-icon :icon="['fas', 'bars']" class="text-lg text-gray-500" />
+        <button
+          @click="openSetting"
+          class="text-2xl text-gray-darkest mr-4 flex-center"
+        >
+          <font-awesome-icon
+            :icon="['fas', 'bars']"
+            class="text-lg text-gray-500"
+          />
         </button>
       </div>
       <!-- title -->
       <div class="w-full h-full">
         <span
-          class="block w-full text-center lg:text-5xl md:text-4xl sm:text-3xl text-1xl text-black font-bold leading-4 mt-2"
-        >دیکشرنی عربی نبراس</span>
+          class="
+            block
+            w-full
+            text-center
+            lg:text-5xl
+            md:text-4xl
+            sm:text-3xl
+            text-1xl text-black
+            font-bold
+            leading-4
+            mt-2
+          "
+          >دیکشرنی عربی نبراس</span
+        >
         <div class="w-full text-center text-gray-400 font-quran leading-none">
           <span class="text-2xs">
             لهجه
@@ -158,6 +204,7 @@ function goToVocabularyTest() {
     <div class="pt-1 relative h-16 bg-gray-100">
       <form action="get" class="flex mr-2 ml-2">
         <input
+          @input.stop="SearchCall(search)"
           type="text"
           v-model="search"
           @input="callSearch"
@@ -191,7 +238,9 @@ function goToVocabularyTest() {
               </div>
               <div class="w-full absolute bottom-6">
                 <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-                <span class="text-black text-xs block bottom-5 left-14">نشان شده ها</span>
+                <span class="text-black text-xs block bottom-5 left-14"
+                  >نشان شده ها</span
+                >
               </div>
             </div>
           </router-link>
@@ -209,7 +258,9 @@ function goToVocabularyTest() {
               </div>
               <div class="w-full absolute bottom-6">
                 <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-                <span class="text-black text-xs block bottom-5 left-14">پیشنهادات مردمی</span>
+                <span class="text-black text-xs block bottom-5 left-14"
+                  >پیشنهادات مردمی</span
+                >
               </div>
             </div>
           </router-link>
@@ -240,7 +291,8 @@ function goToVocabularyTest() {
                 <span
                   :class="{ 'text-gray-500': !item.IsFree }"
                   class="text-black text-xs block bottom-5 left-14"
-                >{{ item.Title }}</span>
+                  >{{ item.Title }}</span
+                >
               </div>
             </div>
           </router-link>
@@ -259,20 +311,33 @@ function goToVocabularyTest() {
         @click="goToVocabularyTest()"
       >
         <span class="text-sm">
-          <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600 ml-2" />تمرین لغات
+          <font-awesome-icon
+            :icon="['fas', 'pen']"
+            class="text-sm text-gray-600 ml-2"
+          />تمرین لغات
         </span>
       </button>
       <button class="w-2/4 border rounded-t-2xl bg-yellow text-center mr-1">
         <span class="text-sm">
-          <font-awesome-icon :icon="['fas', 'question']" class="text-sm text-gray-600 ml-2" />آزمون مرحله ای
+          <font-awesome-icon
+            :icon="['fas', 'question']"
+            class="text-sm text-gray-600 ml-2"
+          />آزمون مرحله ای
         </span>
       </button>
     </div>
   </div>
   <!-- Paid modal -->
-  <PaidVersionModal class="z-10" v-if="isPaidVersionModal" @close="isPaidVersionModal = false">
+  <PaidVersionModal
+    class="z-10"
+    v-if="isPaidVersionModal"
+    @close="isPaidVersionModal = false"
+  >
     <template v-slot:body1>
-      <span>برای استفاده از این قسمت باید نرم افزار را به نسخه طلایی ارتقاء دهید</span>
+      <span
+        >برای استفاده از این قسمت باید نرم افزار را به نسخه طلایی ارتقاء
+        دهید</span
+      >
     </template>
     <template v-slot:body2>
       با دریافت نسخه طلایی نرم افزار, امکان دسترسی به هزاران لغت در دسته بندی

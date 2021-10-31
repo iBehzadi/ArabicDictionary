@@ -3,6 +3,8 @@ import { CategoryDB_AddAll } from "@/database/CategoryDB";
 import { LastUpdate_Get } from "@/database/LastUpdateDB";
 import { WordDB_AddAll } from "@/database/WordDB";
 import { defineStore } from "pinia";
+import { searchDB_AddWordsInDB } from "@/database/SearchDB";
+
 
 export const useUpdateRepo = defineStore('getUpdateDB', {
   state: () => {
@@ -15,8 +17,7 @@ export const useUpdateRepo = defineStore('getUpdateDB', {
       let result = await getUpdates_API(lastUpdate[0]);
       CategoryDB_AddAll(result.categories);
       WordDB_AddAll(result.words);
+      searchDB_AddWordsInDB(result.words);
     }
   }
-});
-
-
+})
