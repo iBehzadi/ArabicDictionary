@@ -10,7 +10,8 @@ export const useBookmarksRepo = defineStore("Bookmarks", {
   },
   actions: {
     Bookmarks_ChangeStatusWord(WordID: number) {
-      BookmarksDB_ChangeStatusWord(WordID);
+      let i = { WordID: WordID };
+      BookmarksDB_ChangeStatusWord(i);
     },
     async Bookmarks_GetAll() {
       BookmarksDB_GetAll();
