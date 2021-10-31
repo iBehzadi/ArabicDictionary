@@ -18,24 +18,55 @@ wordRepo.getWordByRandom(+route.params.categoryID);
 
 let questionWord = computed((): IWord => {
   return wordRepo.randomWord[Math.floor(Math.random() * wordRepo.randomWord.length)]
-})
+});
 let answerWord = computed((): IWord[] => {
   return wordRepo.randomWord
-})
+});
 
-function questionAnswer(word: IWord) {
-  if (word.WordID === questionWord.value?.WordID) {
-    trueResult.value++;
-  } else {
-    falseResult.value++;
+let startTime = Date.now();
+let stopTime = ref();
+let timer = setInterval(function () {
+  stopTime.value = Date.now() - startTime;
+}, 1000);
+
+function showTime(millis: number) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + " دقیقه و " + seconds + " ثانیه";
+}
+
+let count = ref(0);
+let redStyle = ref(false);
+let greenStyle = ref(false);
+let clicked = false;
+function questionAnswer(word: IWord, i: number) {
+  if (!clicked) {
+    if (word.WordID === questionWord.value?.WordID) {
+      greenStyle.value = true;
+      trueResult.value++;
+    } else {
+      redStyle.value = true;
+      falseResult.value++;
+    }
+    clicked = true;
+    setTimeout(() => {
+      wordRepo.getWordByRandom(+route.params.categoryID);
+      redStyle.value = false;
+      greenStyle.value = false;
+      clicked = false;
+    }, 1000);
+    count.value++;
   }
+}
 
-  setTimeout(()=>{ wordRepo.getWordByRandom(+route.params.categoryID); }, 1000);
+function exit() {
+  isModalVisible.value = true;
+  clearInterval(timer);
 }
 </script>
 <template>
   <div class="h-screen bg-gray-200">
-    <header2 @click="isModalVisible = true">
+    <header2 @click="exit">
       <template v-slot:title>تمرین لغات</template>
     </header2>
     <div class="flex relative justify-start p-2 mt-2">
@@ -58,7 +89,9 @@ function questionAnswer(word: IWord) {
           <div
             v-for="(item, i) in answerWord"
             :key="i"
-            @click="questionAnswer(wordRepo.randomWord[i])"
+            @click="questionAnswer(wordRepo.randomWord[i], i)"
+            id="testAnswer"
+            :class="{ 'bg-red-600': redStyle, 'bg-green-600': greenStyle }"
             class="h-36 w-36 rounded-3xl bg-white p-3 flex items-center justify-center shadow-lg drop-shadow-md"
           >
             <span class="text-base text-center font-normal">{{ item.Fa }}</span>
@@ -72,25 +105,25 @@ function questionAnswer(word: IWord) {
     <template v-slot:body1>
       <div class="test-result">
         <span>تعداد کل سوالات</span>
-        <span>10</span>
+        <span>{{ count }}</span>
       </div>
     </template>
     <template v-slot:body2>
       <div class="test-result" style="color: green">
         <span>تعداد پاسخ درست</span>
-        <span>6</span>
+        <span>{{ trueResult }}</span>
       </div>
     </template>
     <template v-slot:body3>
       <div class="test-result" style="color: red">
         <span>تعداد پاسخ غلط</span>
-        <span>4</span>
+        <span>{{ falseResult }}</span>
       </div>
     </template>
     <template v-slot:body4>
       <div class="test-result">
         <span>زمان</span>
-        <span>5 دقیقه و 52 ثانیه</span>
+        <span>{{ showTime(stopTime) }}</span>
       </div>
     </template>
     <template v-slot:button>خروج از تمرین لغات</template>
