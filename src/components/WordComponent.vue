@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { computed, defineProps } from "vue";
 import { useBookmarksRepo } from "@/repo/Bookmarks";
+
 const props = defineProps<{
   words: IWord[];
 }>();
 // isBookmark: false;
 const bookmarksRepo = useBookmarksRepo();
-let bookmarks = computed(() => bookmarksRepo.$state.bookmarks);
+bookmarksRepo.Bookmarks_GetAll();
+let bookmarks = computed(() => {
+  bookmarksRepo.Bookmarks_GetAll()
+  return bookmarksRepo.$state.bookmarks
+  });
+
 </script>
 
 <template>
@@ -41,12 +47,13 @@ let bookmarks = computed(() => bookmarksRepo.$state.bookmarks);
     <div class="flex items-center">
       <button class="w-12 h-12 flex-center">
         <font-awesome-icon
+        @click.stop="bookmarksRepo.Bookmarks_ChangeStatusWord(item.WordID)"
           :icon="['fas', 'bookmark']"
           class="text-sm text-gray-600"
-          :class="{ 'bg-black': bookmarks.includes(item.WordID) }"
+          :class="{ 'text-green-600': bookmarks.includes(item.WordID) }"
         />
       </button>
-      <button class="w-12 h-12 flex-center">
+      <button class="w-12 h-12 flex-center" >
         <font-awesome-icon
           :icon="['fas', 'play']"
           class="text-sm text-gray-600"
