@@ -6,7 +6,9 @@ import { defineStore } from "pinia";
 
 export const useBookmarksRepo = defineStore("Bookmarks", {
   state: () => {
-    return {};
+    return {
+      bookmarks: [] as number[],
+    };
   },
   actions: {
     Bookmarks_ChangeStatusWord(WordID: number) {
@@ -14,7 +16,8 @@ export const useBookmarksRepo = defineStore("Bookmarks", {
       BookmarksDB_ChangeStatusWord(i);
     },
     async Bookmarks_GetAll() {
-      BookmarksDB_GetAll();
+      let bookmarksWord = await BookmarksDB_GetAll();
+      this.bookmarks = bookmarksWord.map((x) => x.WordID);
     },
   },
 });
