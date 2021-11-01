@@ -32,7 +32,7 @@ let categoryTitle = "نشان شده ها";
           flex
         "
       >
-        <span>
+        <span class="font-sans">
           <h3 class="font-bold pt-2"> راهنما </h3>
           <p>در این قسمت کلمات انتخابی شما رو نمایش میدهیم.</p>
           <p class="inline-block">
@@ -41,8 +41,8 @@ let categoryTitle = "نشان شده ها";
                   :icon="['fas', 'bookmark']"
                   class=" text-lg text-gray-600 "
                 />
-                کلیک کنید
-          </p>
+        در کلمات کلیک کنید
+  </p>
         </span>
       </div>
     </div>
