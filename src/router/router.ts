@@ -11,8 +11,13 @@ const routes = [
     path: "/About",
     name: "About",
     component: () => import("@/pages/AboutUsPage.vue")
+  },
+  {
+    path: "/bookmark",
+    name: "bookmark",
+    component: () => import("@/pages/bookmarkInfo.vue")
   }
-,
+  ,
 {
   //=> /words/:category
   path:"/Words/:id",

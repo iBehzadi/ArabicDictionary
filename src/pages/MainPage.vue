@@ -183,7 +183,7 @@ function wordTranslateRequest() {
       <template v-if="isCategoryVisible">
         <!-- bookmark -->
         <div class="w-28 mt-2 h-28 border drop-shadow rounded-3xl2 bg-white">
-          <router-link :to="{ name: 'words', params: { id: 0 } }">
+          <router-link :to="{ name: 'bookmark'}">
             <div class="h-full">
               <div class="w-full">
                 <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->

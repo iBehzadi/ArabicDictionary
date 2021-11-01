@@ -41,11 +41,14 @@ let greenStyle = ref(false);
 let clicked = false;
 function questionAnswer(word: IWord, i: number) {
   if (!clicked) {
-    if (word.WordID === questionWord.value?.WordID) {
-      greenStyle.value = true;
-      trueResult.value++;
+    if (word.WordID === questionWord.value?.WordID  ) {
+   
+   greenStyle.value=true 
+    trueResult.value++;
+     console.log(i);
+
     } else {
-      redStyle.value = true;
+      redStyle.value=true
       falseResult.value++;
     }
     clicked = true;
@@ -87,14 +90,14 @@ function exit() {
       <div>
         <div class="flex flex-wrap justify-evenly items-center gap-2">
           <div
+            @click="questionAnswer(wordRepo.randomWord[i],i) "
             v-for="(item, i) in answerWord"
-            :key="i"
-            @click="questionAnswer(wordRepo.randomWord[i], i)"
+            :key='i' 
             id="testAnswer"
-            :class="{ 'bg-red-600': redStyle, 'bg-green-600': greenStyle }"
+          :class="{ 'bg-red-600':redStyle , 'bg-green-600':greenStyle}"
             class="h-36 w-36 rounded-3xl bg-white p-3 flex items-center justify-center shadow-lg drop-shadow-md"
           >
-            <span class="text-base text-center font-normal">{{ item.Fa }}</span>
+            <span class="text-base text-center font-normal" >{{ item.Fa }}</span>
           </div>
         </div>
       </div>
