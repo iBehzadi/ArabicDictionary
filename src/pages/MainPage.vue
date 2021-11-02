@@ -41,11 +41,11 @@ reload();
 categoryRepo.getAll();
 
 //search function
-function callSearch() {
-  if (search.value.length >= 1) {
+function SearchCall(search: string) {
+  if (search.length >= 1) {
     isCategoryVisible.value = false;
-    if (search.value.length >= 2) {
-      wordRepo.getSearchResult(search.value);
+    if (search.length >= 2) {
+      wordRepo.getSearchResult(search);
     } else {
       wordRepo.searchResult = [];
     }
@@ -54,7 +54,7 @@ function callSearch() {
     isCategoryVisible.value = true;
   }
 
-  if (search.value.length >= 3) {
+  if (search.length >= 3) {
     isNotFoundSearch.value = true;
   }
   else {
@@ -99,13 +99,6 @@ function goToVocabularyTest() {
   let CategoryID = Math.floor(Math.random() * categoryRepo.category.length);
   router.push(`/Practice/${CategoryID}`);
 }
-
-function SearchCall(search: string) {
-  if (search.length > 2) {
-    wordRepo.getSearchResult(search);
-  }
-}
-
 </script>
 
 <template>
@@ -207,7 +200,6 @@ function SearchCall(search: string) {
           @input.stop="SearchCall(search)"
           type="text"
           v-model="search"
-          @input="callSearch"
           class="text-1xl h-14 border rounded-full w-full bg-white focus:shadow-inner pr-6 pl-12"
           placeholder="جستجو کنید..."
         />
