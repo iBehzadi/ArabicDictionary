@@ -23,7 +23,13 @@ export const useWordRepo = defineStore('wordRepo', {
     async getSearchResult(search_value: string) {
       this.searchValue = search_value;
       let result = await searchDB_GetSearchResult(this.searchValue);
-      //this.searchResult = await WordDB_GetWordBySearch();
+      let searchDB_Result :number[]=[];
+      for (const a of result){
+        searchDB_Result.push(a.WordID)
+      }
+      let searchArray = [...new Set(searchDB_Result)] ;
+      this.searchResult = await WordDB_GetWordBySearch(searchArray);
+
     },
   },
 })
