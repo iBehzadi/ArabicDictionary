@@ -24,5 +24,15 @@ export async function searchDB_AddWordsInDB(word: IWord[]) {
 };
 
 export async function searchDB_GetSearchResult(searchValue: string) {
-  return await db.search.where("Word").startsWith(searchValue).toArray();
+  let tempArray: number[] = []
+  await db.search.where("Word").startsWith(searchValue).each((res) => {
+    tempArray.push(res.WordID);
+  })
+  let uniqueWordIDs: number[] = [];
+  tempArray.forEach((c) => {
+    if (!uniqueWordIDs.includes(c)) {
+      uniqueWordIDs.push(c);
+    }
+  });
+  return uniqueWordIDs
 };

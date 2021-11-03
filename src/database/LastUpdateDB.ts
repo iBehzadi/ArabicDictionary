@@ -1,10 +1,11 @@
 import db from ".";
 
-export async function LastUpdate_Add(lastUpdate: ILastUpdate) {
-    db.lastUpdate.put(lastUpdate)
+export async function LastUpdate_Add(lastUpdate: number) {
+    db.lastUpdate.put({ LastUpdate: lastUpdate })
 }
 
 export async function LastUpdate_Get() {
-    return await db.lastUpdate.toArray()
-
+    const result = await db.lastUpdate.toArray()
+    if (!result || result.length == 0) return -1
+    return result[0].LastUpdate
 }

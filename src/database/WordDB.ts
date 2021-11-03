@@ -8,8 +8,9 @@ export async function WordDB_GetAll(CategoryID: number) {
   return await db.word.where('CategoryID').equals(CategoryID).toArray();
 }
 
-export async function WordDB_GetWordBySearch(WordID: number[]) {
-  return db.word.where("WordID").equals(WordID).toArray();
+export async function WordDB_GetWordBySearch(words: number[]) {
+     return await db.word.where("WordID").anyOf(words).toArray();
+  
 }
 
 export async function WordDB_RandomId(categoryID: number,) {

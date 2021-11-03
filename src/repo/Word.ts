@@ -9,7 +9,7 @@ export const useWordRepo = defineStore('wordRepo', {
       searchResult: [] as IWord[],
       randomWord: [] as IWord[],
       searchValue: "",
-      
+
     }
   },
   actions: {
@@ -23,7 +23,7 @@ export const useWordRepo = defineStore('wordRepo', {
     async getSearchResult(search_value: string) {
       this.searchValue = search_value;
       let result = await searchDB_GetSearchResult(this.searchValue);
-      //this.searchResult = await WordDB_GetWordBySearch();
+      this.searchResult = await WordDB_GetWordBySearch(result)
     },
   },
 })
