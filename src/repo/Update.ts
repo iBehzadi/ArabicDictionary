@@ -18,7 +18,6 @@ export const useUpdateRepo = defineStore('getUpdateDB', {
       CategoryDB_AddAll(result.categories);
       WordDB_AddAll(result.words);
       searchDB_AddWordsInDB(result.words);
-      
     }
   }
 })
