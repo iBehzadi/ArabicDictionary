@@ -13,12 +13,11 @@ export const useUpdateRepo = defineStore('getUpdateDB', {
   },
   actions: {
     async DB_Update() {
-      //debugger
       let result = await getUpdates_API();
       LastUpdate_Add(result.lastUpdate)
       CategoryDB_AddAll(result.categories);
       WordDB_AddAll(result.words);
-      //searchDB_AddWordsInDB(result.words);
+      searchDB_AddWordsInDB(result.words);
       
     }
   }
