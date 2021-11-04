@@ -47,11 +47,11 @@ router.push(`/Practice/${CategoryID}`)
 }
 
 //search function
-function SearchCall(search: string) {
-  if (search.length >= 1) {
+function SearchCall() {
+  if (search.value.length >= 1) {
     isCategoryVisible.value = false;
-    if (search.length >= 2) {
-      wordRepo.getSearchResult(search);
+    if (search.value.length >= 2) {
+      wordRepo.getSearchResult(search.value);
     } else {
       wordRepo.searchResult = [];
     }
@@ -60,7 +60,7 @@ function SearchCall(search: string) {
     isCategoryVisible.value = true;
   }
 
-  if (search.length >= 3) {
+  if (search.value.length >= 3) {
     isNotFoundSearch.value = true;
   }
   else {
@@ -191,7 +191,7 @@ function wordTranslateRequest() {
       <div class="mt-2">
         <img
           class="w-12 h-10"
-          src="../assets/img/ir.nebrasar-e425bdd1-f240-4a40-8807-c647c0713e0d_128x128 (1).png"
+          src="../assets/img/logo.png"
         />
       </div>
     </div>
@@ -199,7 +199,7 @@ function wordTranslateRequest() {
     <div class="pt-1 relative h-16 bg-gray-100">
       <form action="get" class="flex mr-2 ml-2">
         <input
-          @input.stop="SearchCall(search)"
+          @input.stop="SearchCall()"
           type="text"
           v-model="search"
           class="text-1xl h-14 border rounded-full w-full bg-white focus:shadow-inner pr-6 pl-12"

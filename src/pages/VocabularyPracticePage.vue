@@ -97,7 +97,6 @@ function exit() {
               'bg-green-500': userChoice !== null && item.WordID === questionWord.WordID,
               'bg-red-500': item.WordID === userChoice?.WordID && item.WordID !== questionWord.WordID,
             }"
-            @click="questionAnswer(wordRepo.randomWord[i])"
             
             class="h-36 w-36 rounded-3xl bg-white flex items-center justify-center shadow-lg drop-shadow-md"
           >
