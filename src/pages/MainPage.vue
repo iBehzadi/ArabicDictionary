@@ -10,12 +10,13 @@ import { useUpdateRepo } from "@/repo/Update";
 import { useWordRepo } from "@/repo/Word";
 import pageLoader from "@/components/pageLoader.vue";
 
+// @ts-ignore
+import { useRegisterSW } from 'virtual:pwa-register/vue'
 
 let isCategoryVisible = ref(true);
 let isGuideModal = ref(false);
 let isPaidVersionModal = ref(false);
 let isNotFoundSearch = ref(false);
-let isWordFound = ref(true);
 let search = ref('');
 
 const update = useUpdateRepo();
@@ -24,6 +25,17 @@ const wordRepo = useWordRepo();
 const categoryRepo = useCategoryRepo();
 let error = ref(false);
 const loading = ref(true);
+
+const {
+  offlineReady,
+  needRefresh,
+  updateServiceWorker,
+} = useRegisterSW();
+
+const close = async () => {
+  offlineReady.value = false
+  needRefresh.value = false
+};
 
 function reload() {
   loading.value = true;
@@ -358,6 +370,16 @@ function wordTranslateRequest() {
       <br />با تشکر از همراهی شما ...
     </template>
   </GuideModal>
+
+    <div v-if="offlineReady || needRefresh" class="fixed right-0 bottom-0 m-4 p-3 border-pezeshki rounded-md z-10 text-left" role="alert">
+    <div class="mb-2">
+      <span v-if="offlineReady">App ready to work offline</span>
+      <span v-else>New content available, click on reload button to update.</span>
+    </div>
+    <button class="outline-none mr-2 rounded pt-1 pb-1 pl-2 pr-2" v-if="needRefresh" @click="updateServiceWorker()">Reload</button>
+    <button @click="close">Close</button>
+  </div>
+
 </template>
 
 <style scoped>

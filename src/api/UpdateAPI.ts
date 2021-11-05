@@ -1,4 +1,4 @@
-import { LastUpdate_Add, LastUpdate_Get } from "@/database/LastUpdateDB";
+import { LastUpdate_Get } from "@/database/LastUpdateDB";
 import { httpGet } from ".";
 
 export async function getUpdates_API() {
