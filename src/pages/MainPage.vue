@@ -101,7 +101,22 @@ function wordTranslateRequest() {
   alert('درخواست شما برای ترجمه لغت انجام شد')
 }
 
+if (navigator.serviceWorker) {
 
+ navigator
+    .serviceWorker
+    .register('../sw.js').then(registration =>{
+      console.log('service worker registration succeeded',registration);
+      
+    }).catch(err=>{
+            console.log('service worker registration NOT succeeded',err);
+
+    })
+}
+else{
+  console.log('ServicWorker Is Not Supported.');
+  
+}
 
 </script>
 
