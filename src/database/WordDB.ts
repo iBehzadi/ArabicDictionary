@@ -13,6 +13,10 @@ export async function WordDB_GetWordBySearch(words: number[]) {
   
 }
 
+export async function WordDB_GetWordByID(words: number[]) {
+  return await db.word.where("WordID").anyOf(words).toArray();
+
+}
 export async function WordDB_RandomId(categoryID: number,) {
   let loghatRnd = await db.word.where("CategoryID").equals(categoryID).toArray();
   let temp = [] as IWord[];
