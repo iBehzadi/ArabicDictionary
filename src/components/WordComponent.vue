@@ -1,8 +1,17 @@
-<script setup lang='ts'>
+<script setup lang="ts">
+import { computed } from "vue";
+import { useBookmarksRepo } from "@/repo/Bookmarks";
 
 const props = defineProps<{
-  words: IWord[]
+  words: IWord[];
 }>();
+// isBookmark: false;
+const bookmarksRepo = useBookmarksRepo();
+bookmarksRepo.Bookmarks_GetAll();
+let bookmarks = computed(() => {
+  bookmarksRepo.Bookmarks_GetAll()
+  return bookmarksRepo.$state.bookmarks
+  });
 
 </script>
 
@@ -19,19 +28,28 @@ const props = defineProps<{
       </div>
       <div class="font-black pb-1">{{ item.Ar }}</div>
       <div class="text-gray-600 pb-1">{{ item.Fa }}</div>
-      <div class="text-gray-400 pb-1" v-if="item.Example">مثال: {{ item.Example }}</div>
+      <div class="text-gray-400 pb-1" v-if="item.Example">
+        مثال: {{ item.Example }}
+      </div>
     </div>
 
     <div class="flex items-center">
       <button class="w-12 h-12 flex-center">
-        <font-awesome-icon :icon="['fas', 'bookmark']" class="text-sm text-gray-600" />
+        <font-awesome-icon
+        @click.stop="bookmarksRepo.Bookmarks_ChangeStatusWord(item.WordID)"
+          :icon="['fas', 'bookmark']"
+          class="text-sm text-gray-600"
+          :class="{ 'text-green-400': bookmarks.includes(item.WordID) }"
+        />
       </button>
-      <button class="w-12 h-12 flex-center">
-        <font-awesome-icon :icon="['fas', 'play']" class="text-sm text-gray-600" />
+      <button class="w-12 h-12 flex-center" >
+        <font-awesome-icon
+          :icon="['fas', 'play']"
+          class="text-sm text-gray-600"
+        />
       </button>
     </div>
   </div>
 </template>
 
-<style>
-</style>
+<style></style>

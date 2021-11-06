@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { VitePWA } from 'vite-plugin-pwa'
 // @ts-ignore
 import path from 'path'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -13,14 +14,13 @@ export default defineConfig({
       '/api': 'https://nebrasar.ir/'
     }
   },
-  plugins: [vue(),      VitePWA({
-
-    includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],  
+  plugins: [vue(), VitePWA({
+    includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
     manifest: {
-      name: 'Name of your app',
-      short_name: 'Translite Ar To Fa',
-      description: 'ترجمه ',
-      theme_color: '#00ccc2',
+      name: 'Nebras Dictionary',
+      short_name: 'Nebras',
+      description: 'A sample project for internship at Faravin BootCamp',
+      theme_color: '#fbd83a',
       icons: [
         {
           src: 'pwa-192x192.png',

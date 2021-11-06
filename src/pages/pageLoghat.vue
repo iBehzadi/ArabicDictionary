@@ -17,9 +17,9 @@ categoryRepo.getAll().then(() => {
   });
 
 
-let categoryTitle = computed(() => { return categoryRepo.category[+route.params.id].Title })
-let words = computed((): IWord[] => { return wordRepo.words });
-let CategoryID = computed(() => { return categoryRepo.category[+route.params.id].CategoryID; });
+let categoryTitle = computed(() => categoryRepo.category[+route.params.id]?.Title)
+let words = computed((): IWord[] =>  wordRepo.words );
+let CategoryID = computed(() =>  categoryRepo.category[+route.params.id].CategoryID);
 
 </script>
 <template >

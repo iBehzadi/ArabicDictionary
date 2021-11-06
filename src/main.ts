@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import './style.css';
 import App from './App.vue';
 import router from "./router/router";
-import {createPinia} from "pinia";
+import { createPinia } from "pinia";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUserSecret,faUsers,faArrowRight,faBars,faBookmark,faSearch,faPen,faQuestion,faPlay,faLock} from '@fortawesome/free-solid-svg-icons';

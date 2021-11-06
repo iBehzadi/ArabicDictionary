@@ -1,14 +1,9 @@
-import { LastUpdate_Add, LastUpdate_Get } from "@/database/LastUpdateDB";
+import { LastUpdate_Get } from "@/database/LastUpdateDB";
 import { httpGet } from ".";
 
-export async function getUpdates_API(lastUpdate: ILastUpdate) {
-    if (lastUpdate == null || undefined) {
-        await LastUpdate_Add({
-            LastUpdate: -1
-        })
-    }
+export async function getUpdates_API() {
     let getLastUpdate = await LastUpdate_Get();
-    return httpGet<Output>('/api/getUpdates.php?variant=normal&lastUpdate=' + getLastUpdate[0].LastUpdate)
+    return httpGet<Output>('/api/getUpdates.php?variant=normal&lastUpdate=' + getLastUpdate)
 }
 
 declare global {
