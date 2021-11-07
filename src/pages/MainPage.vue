@@ -9,6 +9,7 @@ import { useCategoryRepo } from "@/repo/Category";
 import { useUpdateRepo } from "@/repo/Update";
 import { useWordRepo } from "@/repo/Word";
 import pageLoader from "@/components/pageLoader.vue";
+// @ts-ignore
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 
 let isCategoryVisible = ref(true);
