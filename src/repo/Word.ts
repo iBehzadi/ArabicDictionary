@@ -7,7 +7,6 @@ import {
 } from "@/database/WordDB";
 import { searchDB_GetSearchResult } from "@/database/SearchDB";
 import { BookmarksDB_GetWordIDs } from "@/database/BookmarksDB";
-import { getSoundOfWord_API } from "@/api/SoundAPI";
 
 export const useWordRepo = defineStore("wordRepo", {
   state: () => {
@@ -34,10 +33,6 @@ export const useWordRepo = defineStore("wordRepo", {
     async getBookmarkWords() {
       let result = await BookmarksDB_GetWordIDs();
       this.bookmarkWords = await WordDB_GetWordByID(result);
-    },
-    async getSoundOfWord(wordId: number) {
-      let urlAudio = "https://nebrasar.ir/sounds/" + wordId + ".m4a";
-      getSoundOfWord_API(urlAudio);
     },
   },
 });

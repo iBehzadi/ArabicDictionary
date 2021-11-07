@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed,ref } from "vue";
 import { useBookmarksRepo } from "@/repo/Bookmarks";
 import { useWordRepo } from "@/repo/Word";
+import ModalView from "./modalView.vue";
 
 const props = defineProps<{
   words: IWord[];
@@ -14,8 +15,17 @@ let bookmarks = computed(() => {
   return bookmarksRepo.$state.bookmarks;
 });
 const wordRepo = useWordRepo();
+const urlAudio = ref();
 function playSound(wordId: number) {
-  wordRepo.getSoundOfWord(wordId);
+     urlAudio.value = "https://nebrasar.ir/sounds/" + wordId + ".m4a";
+}
+// function SoundErr(err) {
+// }
+function SoundErr(event:Event) {
+  setTimeout(()=>{
+// audioErr.value = true;
+alert("خطای شبکه: ارتباط برقرار نیست")
+  },10) 
 }
 </script>
 
@@ -67,8 +77,14 @@ function playSound(wordId: number) {
           v-if="(item.SoundVersiona = 1)"
         />
       </button>
+       <!-- <ModalView class="" v-if="audioErr">
+        <template v-slot:body1>خطای شبکه</template>
+        <template v-slot:body2> لطفا به اینترنت متصل شوید</template>
+        <template v-slot:></template>
+      </ModalView> -->
     </div>
   </div>
+  <audio :src=urlAudio type="audio/mp4" autoplay  @error="SoundErr($event)" ></audio>
 </template>
 
 <style></style>
