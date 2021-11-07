@@ -12,7 +12,6 @@ let bookmarks = computed(() => {
   bookmarksRepo.Bookmarks_GetAll()
   return bookmarksRepo.$state.bookmarks
   });
-
 </script>
 
 <template>
@@ -45,7 +44,7 @@ let bookmarks = computed(() => {
       <button class="w-12 h-12 flex-center" >
         <font-awesome-icon
           :icon="['fas', 'play']"
-          class="text-sm text-gray-600"
+          class="text-sm text-gray-600" v-if="item.SoundVersiona=1"
         />
       </button>
     </div>
