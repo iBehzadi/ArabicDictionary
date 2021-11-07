@@ -40,9 +40,12 @@ const close = async () => {
 function reload() {
   loading.value = true;
   error.value = false;
+  console.log(categoryRepo.category.length)
   update.DB_Update()
     .catch(e => {
-      error.value = true;
+      if(categoryRepo.category.length === 0){
+        error.value = true;
+      }
     })
     .finally(() => {
       loading.value = false;
@@ -371,14 +374,14 @@ function wordTranslateRequest() {
     </template>
   </GuideModal>
 
-    <div v-if="offlineReady || needRefresh" class="fixed right-0 bottom-0 m-4 p-3 border-pezeshki rounded-md z-10 text-left" role="alert">
+    <!-- <div v-if="offlineReady || needRefresh" class="fixed right-0 bottom-0 m-4 p-3 border-pezeshki rounded-md z-10 text-left" role="alert">
     <div class="mb-2">
       <span v-if="offlineReady">App ready to work offline</span>
       <span v-else>New content available, click on reload button to update.</span>
     </div>
     <button class="outline-none mr-2 rounded pt-1 pb-1 pl-2 pr-2" v-if="needRefresh" @click="updateServiceWorker()">Reload</button>
     <button @click="close">Close</button>
-  </div>
+  </div> -->
 
 </template>
 

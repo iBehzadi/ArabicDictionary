@@ -14,6 +14,16 @@ export default defineConfig({
     }
   },
   plugins: [vue(), VitePWA({
+    registerType: 'autoUpdate',
+    injectManifest: {
+      globPatterns: [
+        '**/*.{png,js,jpg,css,woff,woff2,ico,html,webmanifest,txt}'
+      ],
+    },
+    workbox: {
+      sourcemap: true
+    },
+    strategies: 'injectManifest',
     includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
     manifest: {
       name: 'Nebras Dictionary',
