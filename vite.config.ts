@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
 // @ts-ignore
 import path from 'path'
+import { injectManifest } from 'workbox-build'
 /**
  * @type {import('vite').UserConfig}
  */
