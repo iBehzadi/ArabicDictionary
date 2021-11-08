@@ -13,7 +13,7 @@ class WordDatabase extends Dexie {
     this.version(1).stores({
       lastUpdate: "LastUpdate",
       category: "CategoryID,Title,IsFree,LastUpdate,Status,CustomOrder",
-      word: "WordID,CategoryID,Fa,Ar,ReferTo,Dialect,LastUpdate,CustomOrder",
+      word: "WordID,CategoryID,Fa,Ar,ReferTo,Dialect,LastUpdate,CustomOrder,SoundVersiona",
       bookmark: "++id,WordID",
       search:"++id,WordID,Word"
     });
