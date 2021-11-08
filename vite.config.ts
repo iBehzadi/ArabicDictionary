@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
 // @ts-ignore
 import path from 'path'
+import { injectManifest } from 'workbox-build'
 /**
  * @type {import('vite').UserConfig}
  */
@@ -14,6 +15,12 @@ export default defineConfig({
     }
   },
   plugins: [vue(), VitePWA({
+    injectManifest: {
+      globPatterns: ["**/*.{js,css,html,png,woff,woff2}"],
+    }  ,
+    srcDir: 'src',
+    filename: 'sw.ts',
+    strategies:"injectManifest" ,
     includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
     manifest: {
       name: 'Nebras Dictionary',
