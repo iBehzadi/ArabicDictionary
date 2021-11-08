@@ -40,10 +40,10 @@ const close = async () => {
 function reload() {
   loading.value = true;
   error.value = false;
-  console.log(categoryRepo.category.length)
+
   update.DB_Update()
     .catch(e => {
-      if(categoryRepo.category.length === 0){
+      if (categoryRepo.category.length === 0) {
         error.value = true;
       }
     })
@@ -56,9 +56,9 @@ reload();
 categoryRepo.getAll();
 
 // Random Word
-function goToVocabularyTest(){
-  let CategoryID =Math.floor(Math.random()* categoryRepo.category.length)
-router.push(`/Practice/${CategoryID}`)
+function goToVocabularyTest() {
+  let CategoryID = Math.floor(Math.random() * categoryRepo.category.length)
+  router.push(`/Practice/${CategoryID}`)
 }
 
 //search function
@@ -116,6 +116,16 @@ function wordTranslateRequest() {
   alert('درخواست شما برای ترجمه لغت انجام شد')
 }
 
+let prompter: any
+const showInstallButton = ref(false)
+window.addEventListener("beforeinstallprompt", function(e) {
+  prompter = e
+  showInstallButton.value = true
+});
+
+function install() {
+  prompter.prompt()
+}
 </script>
 
 <template>
@@ -123,37 +133,15 @@ function wordTranslateRequest() {
   <div
     ref="settings"
     @click="closeSetting"
-    class="
-      bg-gray-300
-      t-0
-      right-0
-      left-0
-      bottom-0
-      fixed
-      z-20
-      h-full
-      w-0
-      bg-opacity-50
-    "
+    class="bg-gray-300 t-0 right-0 left-0 bottom-0 fixed z-20 h-full w-0 bg-opacity-50"
   >
     <div
       ref="settingSide"
       id="setting-nav"
-      class="
-        h-full
-        w-0
-        t-0
-        right-0
-        overflow-x-hidden
-        bg-white bg-opacity-100
-        transition-all
-        duration-300
-      "
+      class="h-full w-0 t-0 right-0 overflow-x-hidden bg-white bg-opacity-100 transition-all duration-300"
     >
       <div class="flex flex-col mt-5">
-        <button @click="paidVersionModal" class="text-yellow">
-          خرید نسخه طلایی
-        </button>
+        <button @click="paidVersionModal" class="text-yellow">خرید نسخه طلایی</button>
         <button @click="guideModal">راهنما</button>
         <button @click="router.push('/About')">درباره ما</button>
       </div>
@@ -166,33 +154,15 @@ function wordTranslateRequest() {
     <div class="pb-1 pl-1 border-b bg-white flex items-center justify-between">
       <!-- menu icon -->
       <div class="flex items-center justify-between mt-1">
-        <button
-          @click="openSetting"
-          class="text-2xl text-gray-darkest mr-4 flex-center"
-        >
-          <font-awesome-icon
-            :icon="['fas', 'bars']"
-            class="text-lg text-gray-500"
-          />
+        <button @click="openSetting" class="text-2xl text-gray-darkest mr-4 flex-center">
+          <font-awesome-icon :icon="['fas', 'bars']" class="text-lg text-gray-500" />
         </button>
       </div>
       <!-- title -->
       <div class="w-full h-full">
         <span
-          class="
-            block
-            w-full
-            text-center
-            lg:text-5xl
-            md:text-4xl
-            sm:text-3xl
-            text-1xl text-black
-            font-bold
-            leading-4
-            mt-2
-          "
-          >دیکشرنی عربی نبراس</span
-        >
+          class="block w-full text-center lg:text-5xl md:text-4xl sm:text-3xl text-1xl text-black font-bold leading-4 mt-2"
+        >دیکشرنی عربی نبراس</span>
         <div class="w-full text-center text-gray-400 font-quran leading-none">
           <span class="text-2xs">
             لهجه
@@ -204,10 +174,7 @@ function wordTranslateRequest() {
       </div>
       <!-- logo-->
       <div class="mt-2">
-        <img
-          class="w-12 h-10"
-          src="../assets/img/logo.png"
-        />
+        <img class="w-12 h-10" src="../assets/img/logo.png" />
       </div>
     </div>
     <!--search-input -->
@@ -236,7 +203,7 @@ function wordTranslateRequest() {
       <template v-if="isCategoryVisible">
         <!-- bookmark -->
         <div class="w-28 mt-2 h-28 border drop-shadow rounded-3xl2 bg-white">
-          <router-link :to="{ name: 'bookmark'}">
+          <router-link :to="{ name: 'bookmark' }">
             <div class="h-full">
               <div class="w-full">
                 <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
@@ -247,9 +214,7 @@ function wordTranslateRequest() {
               </div>
               <div class="w-full absolute bottom-6">
                 <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-                <span class="text-black text-xs block bottom-5 left-14"
-                  >نشان شده ها</span
-                >
+                <span class="text-black text-xs block bottom-5 left-14">نشان شده ها</span>
               </div>
             </div>
           </router-link>
@@ -267,9 +232,7 @@ function wordTranslateRequest() {
               </div>
               <div class="w-full absolute bottom-6">
                 <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-                <span class="text-black text-xs block bottom-5 left-14"
-                  >پیشنهادات مردمی</span
-                >
+                <span class="text-black text-xs block bottom-5 left-14">پیشنهادات مردمی</span>
               </div>
             </div>
           </router-link>
@@ -300,8 +263,7 @@ function wordTranslateRequest() {
                 <span
                   :class="{ 'text-gray-500': !item.IsFree }"
                   class="text-black text-xs block bottom-5 left-14"
-                  >{{ item.Title }}</span
-                >
+                >{{ item.Title }}</span>
               </div>
             </div>
           </router-link>
@@ -320,33 +282,23 @@ function wordTranslateRequest() {
         @click="goToVocabularyTest()"
       >
         <span class="text-sm">
-          <font-awesome-icon
-            :icon="['fas', 'pen']"
-            class="text-sm text-gray-600 ml-2"
-          />تمرین لغات
+          <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600 ml-2" />تمرین لغات
         </span>
       </button>
       <button class="w-2/4 border rounded-t-2xl bg-yellow text-center mr-1">
         <span class="text-sm">
-          <font-awesome-icon
-            :icon="['fas', 'question']"
-            class="text-sm text-gray-600 ml-2"
-          />آزمون مرحله ای
+          <font-awesome-icon :icon="['fas', 'question']" class="text-sm text-gray-600 ml-2" />آزمون مرحله ای
         </span>
       </button>
     </div>
   </div>
   <!-- Paid modal -->
-  <PaidVersionModal
-    class="z-10"
-    v-if="isPaidVersionModal"
-    @close="isPaidVersionModal = false"
-  >
+  <PaidVersionModal class="z-10" v-if="isPaidVersionModal" @close="isPaidVersionModal = false">
     <template v-slot:body1>
-      <span
-        >برای استفاده از این قسمت باید نرم افزار را به نسخه طلایی ارتقاء
-        دهید</span
-      >
+      <span>
+        برای استفاده از این قسمت باید نرم افزار را به نسخه طلایی ارتقاء
+        دهید
+      </span>
     </template>
     <template v-slot:body2>
       با دریافت نسخه طلایی نرم افزار, امکان دسترسی به هزاران لغت در دسته بندی
@@ -374,15 +326,21 @@ function wordTranslateRequest() {
     </template>
   </GuideModal>
 
-    <!-- <div v-if="offlineReady || needRefresh" class="fixed right-0 bottom-0 m-4 p-3 border-pezeshki rounded-md z-10 text-left" role="alert">
+  <div
+    v-if="needRefresh"
+    class="fixed right-0 bottom-0 m-4 p-3 border-pezeshki rounded-md z-10 text-left"
+    role="alert"
+  >
     <div class="mb-2">
-      <span v-if="offlineReady">App ready to work offline</span>
-      <span v-else>New content available, click on reload button to update.</span>
+      <span v-if="needRefresh">نسخه جدیدی از برنامه در دسترس است برای بارگزاری کلیک کنید</span>
     </div>
-    <button class="outline-none mr-2 rounded pt-1 pb-1 pl-2 pr-2" v-if="needRefresh" @click="updateServiceWorker()">Reload</button>
-    <button @click="close">Close</button>
-  </div> -->
-
+    <button
+      class="outline-none mr-2 rounded pt-1 pb-1 pl-2 pr-2"
+      v-if="needRefresh"
+      @click="updateServiceWorker()"
+    >بارگزاری مجدد</button>
+    <button @click="close">بستن</button>
+  </div>
 </template>
 
 <style scoped>

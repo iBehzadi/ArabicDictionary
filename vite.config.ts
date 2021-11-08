@@ -14,7 +14,9 @@ export default defineConfig({
     }
   },
   plugins: [vue(), VitePWA({
-    registerType: 'autoUpdate',
+    strategies: 'injectManifest',
+    srcDir: 'src',
+    filename: 'sw.ts',
     injectManifest: {
       globPatterns: [
         '**/*.{png,js,jpg,css,woff,woff2,ico,html,webmanifest,txt}'
@@ -23,7 +25,6 @@ export default defineConfig({
     workbox: {
       sourcemap: true
     },
-    strategies: 'injectManifest',
     includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
     manifest: {
       name: 'Nebras Dictionary',
