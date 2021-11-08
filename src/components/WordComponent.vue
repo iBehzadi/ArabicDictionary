@@ -84,7 +84,7 @@ alert("خطای شبکه: ارتباط برقرار نیست")
       </ModalView> -->
     </div>
   </div>
-  <audio :src=urlAudio type="audio/mp4" autoplay  @error="SoundErr($event)" ></audio>
+  <audio :src="urlAudio" type="audio/mp4" autoplay  @error="SoundErr($event)" ></audio>
 </template>
 
 <style></style>
