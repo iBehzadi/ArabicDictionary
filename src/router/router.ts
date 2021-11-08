@@ -23,6 +23,11 @@ const routes = [
   path:"/Words/:id",
   name:"words",
   component: ()=> import("@/pages/pageLoghat.vue")
+},
+{
+  path:"/popular",
+  name:"popular",
+  component: ()=> import("@/pages/PopularSuggestions.vue")
 }
 ];
 

@@ -28,7 +28,7 @@ let CategoryID = computed(() =>  categoryRepo.category[+route.params.id].Categor
       <template v-slot:title>{{ categoryTitle }}</template>
     </header2>
     <!-- route.params.data -->
-    <div class="mt-16 mb-12">
+    <div class="mt-16 mb-12 ">
       <WordComponent :words="words"></WordComponent>
     </div>
 
