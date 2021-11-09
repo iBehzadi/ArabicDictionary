@@ -8,7 +8,7 @@ import { computed } from "vue-demi";
 
 let isModalVisible = ref(false);
 const router = useRouter();
-const route = useRoute()
+const route = useRoute();
 const wordRepo = useWordRepo();
 
 let trueResult = ref(0);
@@ -17,10 +17,12 @@ let falseResult = ref(0);
 wordRepo.getWordByRandom(+route.params.categoryID);
 
 let questionWord = computed((): IWord => {
-  return wordRepo.randomWord[Math.floor(Math.random() * wordRepo.randomWord.length)]
+  return wordRepo.randomWord[
+    Math.floor(Math.random() * wordRepo.randomWord.length)
+  ];
 });
 let answerWord = computed((): IWord[] => {
-  return wordRepo.randomWord
+  return wordRepo.randomWord;
 });
 
 let startTime = Date.now();
@@ -38,11 +40,11 @@ let count = ref(0);
 let redStyle = ref(false);
 let greenStyle = ref(false);
 let clicked = false;
-let userChoice = ref<IWord | null>(null)
+let userChoice = ref<IWord | null>(null);
 
 function questionAnswer(word: IWord) {
   if (!clicked) {
-    userChoice.value = word
+    userChoice.value = word;
     clicked = true;
     setTimeout(() => {
       if (word.WordID === questionWord.value?.WordID) {
@@ -50,7 +52,7 @@ function questionAnswer(word: IWord) {
       } else {
         falseResult.value++;
       }
-      userChoice.value = null
+      userChoice.value = null;
       wordRepo.getWordByRandom(+route.params.categoryID);
       redStyle.value = false;
       greenStyle.value = false;
@@ -64,43 +66,91 @@ function exit() {
   isModalVisible.value = true;
   clearInterval(timer);
 }
-
-
 </script>
 <template>
-  <div class="h-screen bg-gray-200">
-    <header2 @click="exit">
-      <template v-slot:title>تمرین لغات</template>
-    </header2>
+  <header2 class="sm:px-10" @click="exit">
+    <template v-slot:title>تمرین لغات</template>
+  </header2>
+  <div class="h-screen bg-gray-200 sm:px-10">
     <div class="flex relative justify-start p-2 mt-2">
-      <div class="flex rounded-full mr-3 p-1 justify-around bg-green-600 w-12 h-6 gap-2">
-        <font-awesome-icon class="text-white self-center" :icon="['far', 'check-circle']" />
+      <div
+        class="
+          flex
+          rounded-full
+          mr-3
+          p-1
+          justify-around
+          bg-green-600
+          w-12
+          h-6
+          gap-2
+        "
+      >
+        <font-awesome-icon
+          class="text-white self-center"
+          :icon="['far', 'check-circle']"
+        />
         <p class="ml-1 text-white text-sm self-center">{{ trueResult }}</p>
       </div>
-      <div class="flex rounded-full mr-2 justify-around p-1 bg-red-600 w-12 h-6 gap-2">
-        <font-awesome-icon class="text-white self-center" :icon="['far', 'times-circle']" />
+      <div
+        class="
+          flex
+          rounded-full
+          mr-2
+          justify-around
+          p-1
+          bg-red-600
+          w-12
+          h-6
+          gap-2
+        "
+      >
+        <font-awesome-icon
+          class="text-white self-center"
+          :icon="['far', 'times-circle']"
+        />
         <p class="ml-1 text-white text-sm self-center">{{ falseResult }}</p>
       </div>
     </div>
-    <div class="flex px-5 pt-3 justify-center flex-col gap-7">
+    <div class="flex px-5 pt-3 justify-center flex-col gap-7 sm:px-16" >
       <div class="rounded-3xl bg-white p-14 shadow-lg drop-shadow-md">
-        <p class="text-xs text-center">معنی عبارت زیر چیست؟</p>
-        <p class="mt-5 text-lg font-semibold text-center">{{ questionWord?.Ar }}</p>
+        <p class="text-xs text-center sm:text-xl">معنی عبارت زیر چیست؟</p>
+        <p class="mt-5 text-lg font-semibold text-center sm:text-2xl">
+          {{ questionWord?.Ar }}
+        </p>
       </div>
-      <div>
-        <div class="flex flex-wrap justify-evenly items-center gap-2">
+      <div class="flex justify-evenly items-center">
+        <div class="grid grid-cols-2  gap-4 sm:gap-6">
           <div
-            @click="questionAnswer(wordRepo.randomWord[i]) "
+            @click="questionAnswer(wordRepo.randomWord[i])"
             v-for="(item, i) in answerWord"
             :key="i"
             :class="{
-              'bg-green-500': userChoice !== null && item.WordID === questionWord.WordID,
-              'bg-red-500': item.WordID === userChoice?.WordID && item.WordID !== questionWord.WordID,
+              'bg-green-500':
+                userChoice !== null && item.WordID === questionWord.WordID,
+              'bg-red-500':
+                item.WordID === userChoice?.WordID &&
+                item.WordID !== questionWord.WordID,
             }"
-            
-            class="h-36 w-36 rounded-3xl bg-white flex items-center justify-center shadow-lg drop-shadow-md"
+            class="
+              h-36
+              sm:h-44
+              w-36
+              sm:w-44
+              sm:text-xl
+              sm:font-bold
+              p-1
+              sm:p-0
+              rounded-3xl
+              bg-white
+              flex
+              items-center
+              justify-center
+              shadow-lg
+              drop-shadow-md
+            "
           >
-            <span class="text-base text-center font-normal" >{{ item.Fa }}</span>
+            <span class="text-base text-center font-normal">{{ item.Fa }}</span>
           </div>
         </div>
       </div>
@@ -136,6 +186,4 @@ function exit() {
   </Modal>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
