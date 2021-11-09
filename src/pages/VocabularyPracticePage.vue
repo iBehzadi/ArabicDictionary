@@ -112,15 +112,15 @@ function exit() {
         <p class="ml-1 text-white text-sm self-center">{{ falseResult }}</p>
       </div>
     </div>
-    <div class="flex px-5 pt-3 justify-center flex-col gap-7 sm:px-16" >
-      <div class="rounded-3xl bg-white p-14 shadow-lg drop-shadow-md">
+    <div class="flex px-5 pt-3 justify-center flex-col gap-7 sm:px-16  " >
+      <div class="rounded-3xl bg-white p-10 shadow-lg drop-shadow-md sm:p-8 md:py-14">
         <p class="text-xs text-center sm:text-xl">معنی عبارت زیر چیست؟</p>
         <p class="mt-5 text-lg font-semibold text-center sm:text-2xl">
           {{ questionWord?.Ar }}
         </p>
       </div>
-      <div class="flex justify-evenly items-center">
-        <div class="grid grid-cols-2  gap-4 sm:gap-6">
+      <div class=" justify-center ">
+        <div class="grid   grid-cols-2 md:flex  justify-items-center  py-5  gap-2 sm:gap-4">
           <div
             @click="questionAnswer(wordRepo.randomWord[i])"
             v-for="(item, i) in answerWord"
@@ -133,13 +133,11 @@ function exit() {
                 item.WordID !== questionWord.WordID,
             }"
             class="
-              h-36
-              sm:h-44
-              w-36
-              sm:w-44
+              w-full
+              sm:w-3/5
+              
               sm:text-xl
               sm:font-bold
-              p-1
               sm:p-0
               rounded-3xl
               bg-white
@@ -150,6 +148,7 @@ function exit() {
               drop-shadow-md
             "
           >
+          <div class="pt-[100%] sm:pt-[60%]"></div>
             <span class="text-base text-center font-normal">{{ item.Fa }}</span>
           </div>
         </div>
