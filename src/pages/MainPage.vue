@@ -9,6 +9,7 @@ import { useCategoryRepo } from "@/repo/Category";
 import { useUpdateRepo } from "@/repo/Update";
 import { useWordRepo } from "@/repo/Word";
 import pageLoader from "@/components/pageLoader.vue";
+
 // @ts-ignore
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 
@@ -17,7 +18,7 @@ let isGuideModal = ref(false);
 let isPaidVersionModal = ref(false);
 let isNotFoundSearch = ref(false);
 let search = ref('');
-
+let responsiv="<div > Hello </div>"
 const update = useUpdateRepo();
 const router = useRouter();
 const wordRepo = useWordRepo();
@@ -41,8 +42,11 @@ function reload() {
   error.value = false;
   update.DB_Update()
     .catch(e => {
+      if(categoryRepo.category.length === 0){
       error.value = true;
-    })
+        
+      }
+    }) 
     .finally(() => {
       loading.value = false;
       categoryRepo.getAll();
@@ -158,17 +162,19 @@ function wordTranslateRequest() {
   <!-- HEADER-->
   <pageLoader :error="false" class="z-20" v-if="categoryRepo.category.length === 0"></pageLoader>
   <pageLoader :error="error" class="z-20" v-if="error" @reload="reload()"></pageLoader>
-  <header class="fixed left-0 right-0 top-0 z-10">
+  
+  <header class="sticky left-0 right-0 top-0 z-10">
+    
     <div class="pb-1 pl-1 border-b bg-white flex items-center justify-between">
       <!-- menu icon -->
-      <div class="flex items-center justify-between mt-1">
+      <div class="flex items-center justify-between mt-1 lg:mr-3">
         <button
           @click="openSetting"
-          class="text-2xl text-gray-darkest mr-4 flex-center"
+          class="  text-gray-darkest mr-4 flex-center"
         >
           <font-awesome-icon
             :icon="['fas', 'bars']"
-            class="text-lg text-gray-500"
+            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl  text-gray-500"
           />
         </button>
       </div>
@@ -182,15 +188,16 @@ function wordTranslateRequest() {
             lg:text-5xl
             md:text-4xl
             sm:text-3xl
-            text-1xl text-black
+            
+            text-lg text-black
             font-bold
             leading-4
             mt-2
           "
           >دیکشرنی عربی نبراس</span
         >
-        <div class="w-full text-center text-gray-400 font-quran leading-none">
-          <span class="text-2xs">
+        <div class="w-full text-center pt-2 mb-2 text-gray-400 font-quran leading-none">
+          <span class="text-2xs sm:text-base">
             لهجه
             <span class="bg-gray-200 rounded-3xl">عراقی</span>
             و
@@ -199,21 +206,23 @@ function wordTranslateRequest() {
         </div>
       </div>
       <!-- logo-->
-      <div class="mt-2">
+      <div class="mt-2 ">
         <img
-          class="w-12 h-10"
+          class="w-12  lg:h-16 ml-5
+            md:w-16 h-14
+            sm:w-14  "
           src="../assets/img/logo.png"
         />
       </div>
     </div>
     <!--search-input -->
-    <div class="pt-1 relative h-16 bg-gray-100">
+    <div class="pt-1 relative h-16 bg-gray-100 ">
       <form action="get" class="flex mr-2 ml-2">
         <input
           @input.stop="SearchCall()"
           type="text"
           v-model="search"
-          class="text-1xl h-14 border rounded-full w-full bg-white focus:shadow-inner pr-6 pl-12"
+          class="text-1xl h-14  rounded-full w-full bg-white  pr-6 pl-12 outline-none"
           placeholder="جستجو کنید..."
         />
         <font-awesome-icon
@@ -223,26 +232,25 @@ function wordTranslateRequest() {
       </form>
     </div>
   </header>
+ 
   <!-- container -->
-  <div class="bg-gray-100 mt-28">
+  <div class="bg-gray-100  ">
     <!--category -->
     <div
-      class="flex flex-fill justify-content-center flex-wrap text-center relative pb-16 justify-evenly"
-    >
+      class="flex flex-fill justify-content-center flex-wrap text-center  pb-16 md:pb-28  justify-evenly "
+    > 
       <template v-if="isCategoryVisible">
         <!-- bookmark -->
-        <div class="w-28 mt-2 h-28 border drop-shadow rounded-3xl2 bg-white">
+        <div style="filter: blur(1px) ;" class="shadow-2xl w-28 filter  mt-2 h-28 border sm:w-32 sm:h-32 md:h-40 md:w-40  lg:h-48 lg:w-48  xl:h-60 xl:w-60  drop-shadow rounded-3xl2 bg-white">
           <router-link :to="{ name: 'bookmark'}">
             <div class="h-full">
               <div class="w-full">
-                <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
                 <font-awesome-icon
                   :icon="['fas', 'bookmark']"
-                  class="absolute text-lg text-green-600 top-8 right-12"
+                  class="absolute  text-lg text-green-600 top-8 right-12"
                 />
               </div>
               <div class="w-full absolute bottom-6">
-                <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
                 <span class="text-black text-xs block bottom-5 left-14"
                   >نشان شده ها</span
                 >
@@ -251,14 +259,14 @@ function wordTranslateRequest() {
           </router-link>
         </div>
         <!-- Popular suggestions -->
-        <div class="w-28 mt-2 h-28 border drop-shadow rounded-3xl2 bg-white">
+        <div class="w-28 mt-2 h-28  sm:w-32 sm:h-32 md:h-40 md:w-40  lg:h-48 lg:w-48  xl:h-60 xl:w-60  border drop-shadow rounded-3xl2 bg-white">
           <router-link :to="{ name: 'words', params: { id: 0 } }">
             <div class="h-full">
               <div class="w-full">
                 <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
                 <font-awesome-icon
                   :icon="['fas', 'users']"
-                  class="absolute text-lg text-red-400 top-8 right-11"
+                  class="  absolute text-lg  text-red-400 top-8 right-11"
                 />
               </div>
               <div class="w-full absolute bottom-6">
@@ -274,28 +282,29 @@ function wordTranslateRequest() {
         <div
           v-for="(item, i) in categoryRepo.category"
           :key="i"
-          class="w-28 mt-2 h-28 border drop-shadow rounded-3xl2 bg-white"
+          class="w-28 mt-2 h-28 border sm:w-32 sm:h-32 md:h-40 md:w-40  lg:h-48 lg:w-48  xl:h-60 xl:w-60   drop-shadow rounded-3xl2 bg-white"
           :class="{ 'bg-gray-300': !item.IsFree }"
         >
           <router-link :to="{ name: 'words', params: { id: i } }">
             <div class="h-full">
-              <div class="w-full">
-                <font-awesome-icon
+              <div class="w-full" >
+                <font-awesome-icon 
                   v-if="!item.IsFree"
                   :icon="['fas', 'lock']"
-                  class="absolute text-lg text-gray-500 right-3 top-3"
-                />
-                <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-                <i
-                  class="pt-4 flex-center w-8 mr-7 absolute right-3 top-3"
-                  v-html="categoryRepo.category[i].Icon"
-                ></i>
+                  class=" absolute  text-gray-500 right-3 top-3 text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl"
+                  
+               />
+                <div
+                  class="sm:w-12 md:w-20 lg:w-28 xl:w-32 pt-4 flex-center w-8  mr-7 absolute right-3 top-3 category_icon "
+                  v-html ="categoryRepo.category[i].Icon "
+                  
+                ></div>
               </div>
-              <div class="w-full absolute bottom-6">
-                <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
+              <div  class="w-full absolute bottom-6" >
                 <span
+                  
                   :class="{ 'text-gray-500': !item.IsFree }"
-                  class="text-black text-xs block bottom-5 left-14"
+                  class="sm:text-sm md:text-lg lg:text-2xl xl:text-2xl text-black text-xs block bottom-5 left-14"
                   >{{ item.Title }}</span
                 >
               </div>
@@ -310,23 +319,23 @@ function wordTranslateRequest() {
       <WordComponent :words="wordRepo.searchResult"></WordComponent>
     </div>
     <!-- practice & test buttons -->
-    <div class="w-full flex h-12 fixed bottom-0 inset-x-0 bg-gray-100">
+    <div class="w-full flex h-12 md:h-16 xl:h-24 fixed bottom-0 inset-x-0 bg-gray-100 justify-center md:bg-opacity-5 xl:bg-opacity-5 ">
       <button
-        class="w-2/4 border rounded-t-2xl bg-yellow text-center"
+        class="w-2/4 sm:w-3/5 md:w-2/6 border rounded-t-2xl bg-yellow text-center"
         @click="goToVocabularyTest()"
       >
-        <span class="text-sm">
+        <span class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl">
           <font-awesome-icon
             :icon="['fas', 'pen']"
-            class="text-sm text-gray-600 ml-2"
+            class="text-sm text-gray-600 ml-2 sm:text-base md:text-xl lg:text-2xl xl:text-3xl"
           />تمرین لغات
         </span>
       </button>
-      <button class="w-2/4 border rounded-t-2xl bg-yellow text-center mr-1">
-        <span class="text-sm">
+      <button class="w-2/4 sm:w-3/5 md:w-2/6   border rounded-t-2xl bg-yellow text-center mr-1">
+        <span class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl">
           <font-awesome-icon
             :icon="['fas', 'question']"
-            class="text-sm text-gray-600 ml-2"
+            class="text-sm text-gray-600 ml-2 sm:text-base md:text-xl lg:text-2xl xl:text-3xl"
           />آزمون مرحله ای
         </span>
       </button>
@@ -381,5 +390,10 @@ function wordTranslateRequest() {
 
 </template>
 
-<style scoped>
+<style >
+
+.category_icon svg {
+  @apply w-20 h-20  !important;
+}
+
 </style>
