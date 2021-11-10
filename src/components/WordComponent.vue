@@ -36,10 +36,12 @@ alert("خطای شبکه: ارتباط برقرار نیست")
       class="
         w-full
         h-auto
-        shadow-sm
-        border
+        test
+        shadow-lg
+        backdrop-blur-md
         flex
         bg-gray-50
+        hover:bg-blue-100
         mb-1
         mt-1
         rounded-xl
@@ -63,21 +65,21 @@ alert("خطای شبکه: ارتباط برقرار نیست")
         </div>
       </div>
       <div class="flex items-center">
-        <button class="w-12 h-12 flex-center">
+        <button @click.stop="bookmarksRepo.Bookmarks_ChangeStatusWord(item.WordID)" class="w-12 h-12 flex-center ">
           <font-awesome-icon
-            @click.stop="bookmarksRepo.Bookmarks_ChangeStatusWord(item.WordID)"
+            
             :icon="['fas', 'bookmark']"
-            class="text-sm text-gray-600"
+            class="text-sm text-gray-600 hover:text-green-400"
             :class="{ 'text-green-400': bookmarks.includes(item.WordID) }"
           />
         </button>
         <button
-          class="w-12 h-12 flex-center"
+          class="w-12 h-12 flex-center "
           @click.stop="playSound(item.WordID)"
         >
           <font-awesome-icon
             :icon="['fas', 'play']"
-            class="text-sm text-gray-600"
+            class="text-sm text-gray-600 hover:text-green-400"
             v-if="(item.SoundVersiona = 1)"
           />
         </button>
@@ -92,4 +94,6 @@ alert("خطای شبکه: ارتباط برقرار نیست")
   <audio :src="urlAudio" type="audio/mp4" autoplay @error="SoundErr($event)" ></audio>
 </template>
 
-<style></style>
+<style>
+
+</style>

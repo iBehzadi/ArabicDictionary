@@ -153,8 +153,8 @@ function install() {
   <header class="fixed left-0 right-0 top-0 z-10">
     <div class="pb-1 pl-1 border-b bg-white flex items-center justify-between">
       <!-- menu icon -->
-      <div class="flex items-center justify-between mt-1">
-        <button @click="openSetting" class="text-2xl text-gray-darkest mr-4 flex-center">
+      <div @click="openSetting" class="flex cursor-pointer items-center justify-between mt-1">
+        <button  class="text-2xl text-gray-darkest mr-4 flex-center">
           <font-awesome-icon :icon="['fas', 'bars']" class="text-lg text-gray-500" />
         </button>
       </div>

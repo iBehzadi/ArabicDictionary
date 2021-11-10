@@ -11,7 +11,7 @@ let categoryTitle = "پیشنهادات مردمی  ";
 
 <template>
     <div>
-        <Header2Vue class="fixed left-0 right-0 top-0" @back="router.back()">
+        <Header2Vue class="fixed z-10 left-0 right-0 top-0" @back="router.back()">
             <template v-slot:title>{{ categoryTitle }}</template>
         </Header2Vue>
     </div>
