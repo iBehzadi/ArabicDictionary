@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-    body {background: linear-gradient(
-        0deg,#b8ff2e,#2ea8ff);}
+    body {}
     @font-face {
         font-family: Vazir;
         src: url('./assets/fonts/Vazir-Regular-FD-WOL-UI.woff2') format('woff2'), url('./assets/fonts/Vazir-Regular-FD-WOL-UI.woff') format('woff');

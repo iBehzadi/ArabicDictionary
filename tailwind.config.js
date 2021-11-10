@@ -19,13 +19,17 @@ const config = {
         
         pezeshki:"#22a79a",
         yellow:"#fbd83a",
-
+        YelloRgb:"#efa00b",
         pink:"#d290dc"
         
       },
       fontSize:{
         "2xs":'10px'
+      },
+      boxShadow:{
+        shadowBottom:"1px 3px 3px #b0b5b0;"
       }
+      
     },
   },
   variants: {
