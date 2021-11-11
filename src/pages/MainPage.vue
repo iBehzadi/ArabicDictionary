@@ -179,7 +179,7 @@ function wordTranslateRequest() {
     @reload="reload()"
   ></pageLoader>
 
-  <header class="sticky left-0 right-0 top-0 z-10 hidden">
+  <header class="sticky left-0 right-0 top-0 z-10 lg:hidden">
     <div class="pb-1 pl-1 border-b bg-white flex items-center justify-between">
       <!-- menu icon -->
 
@@ -196,13 +196,7 @@ function wordTranslateRequest() {
       </div>
 
       <!-- Meno For DeskTop-->
-      <div class="bottom-20 right-3 text-sm">
-        <ul class="flex">
-          <li @click="paidVersionModal" class="pr-3 h-9">خرید نسخه طلایی</li>
-          <li @click="guideModal" class="pr-3">راهنما</li>
-          <li @click="router.push('/About')" class="pr-3">درباره ما</li>
-        </ul>
-      </div>
+     
       <!-- title -->
       <div class="h-full">
         <span
@@ -274,53 +268,65 @@ function wordTranslateRequest() {
       </form>
     </div>
   </header>
-
-  <header class="w-full h-16  flex shadowBottom sticky">
-    <div class="h-16 w-full">
-      <div class="h-2/4">
-        <span
+  <header class="w-full  flex  shadow-shadowBottom sticky z-50 ">
+    <div class="h-full w-full">
+      <div class="h-12">
+        <div
           class="
-            w-full
-            flex
-            text-center text-lg text-gray-800
+          float-right
+             text-4xl
             font-bold
+            text-gray-600
             leading-4
+            items-center
             mt-1
-            pr-6
+            h-3/4
+            pr-11
+            pt-5
           "
-          >دیکشرنی عربی نبراس</span
-        >
-      </div>
-      <div class="w-full text-center mr-3 flex">
-        <ul class="flex blackk tracking-tighter w-2/3">
-          <li @click="paidVersionModal" class="mr-2 pl-3 h-7 bordersh inline-block">
+          >دیکشرنی عربی نبراس
+          
+          
+          </div>
+        <div class="float-left pb-2">
+      <img
+        class="w-12 lg:h-16 ml-5 md:w-16 h-14 sm:w-14"
+        src="../assets/img/logo.png"
+      />
+    </div>
+</div>
+
+      <div class="w-full text-center pr-4 flex bg-gray-300 h-11">
+        <ul class="flex blackk tracking-tighter w-2/3 leading-9 text-base">
+          <li
+            @click="paidVersionModal"
+            class="mr-2 pl-3 h-8 bordersh inline-block"
+          >
             خرید نسخه طلایی
           </li>
-          <li @click="guideModal" class="mr-4 pl-3 h-7 bordersh">راهنما</li>
-          <li @click="router.push('/About')" class="mr-4 pl-3 h-7 bordersh">
+          <li @click="guideModal" class="mr-4 pl-3 h-8 bordersh">راهنما</li>
+          <li @click="router.push('/About')" class="mr-4 pl-3 h-8 bordersh">
             درباره ما
           </li>
-          <li > 
+          <li>
             <div class="dropdown absolute">
               <span class="">
                 <button
                   class="
                     inline-flex
                     justify-center
-                   bordersh  
+                    bordersh
                     leading-5
                     transition
                     duration-150
                     ease-in-out
-                    bg-white
-                  
+                    h-7
                   "
                   type="button"
-                 
                 >
                   <span>تمرین</span>
                   <svg
-                    class="w-5 h-5 ml-2 mr-1 "
+                    class="w-5 h-5 ml-2 mr-1"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -333,9 +339,8 @@ function wordTranslateRequest() {
               ></span>
               <div
                 class="
-                mt-2
-                border-b-2
-                border-yellow
+                  mt-2
+                  border-b-1 border-yellow
                   leading-7
                   relative
                   top-1
@@ -351,60 +356,79 @@ function wordTranslateRequest() {
                   bg-white
                 "
               >
-                
-                <div class="hover:bg-red-900  p-3">تمرین لغات</div> 
+                <div class="hover:bg-red-900 p-3">تمرین لغات</div>
                 <div class="hover:bg-red-900 p-3">آزمون مرحله ای</div>
-                 
               </div>
             </div>
           </li>
-          
         </ul>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-300 h-9 py-3 " >
-            <input type="text" name="" placeholder="Type Serach">
-            <a class="to-blue-400 w-12 h-12 bg-yellow flex justify-center items-center " href="#">
-              <font-awesome-icon
-          :icon="['fas', 'search']"
-            class="bg-none border-none outline-none p-0 text-lg transition w-44 "
-            />
-            </a>
-
+        <div
+          class="
+            group
+            absolute
+           
+            bottom-5
+            --tw-translate-x:-50%;--tw-translate-y:-50%;
+            bg-gray-600
+            h-8
+           left-24
+           top-5
+            rounded-3xl
+          "
+        >
+          <input
+            class="
+              bg-transparent
+              border-none
+              outline-none
+              p-0
+              float-right
+              leading-8
+              text-white text-lg
+              transition-all
+              duration-500
+              transform
+              origin-bottom-left
+              -translate-y-2
+              w-0
+              group-focus-within:w-60
+              relative
+              top-2
+              right-2
+            "
+            type="text"
+            name=""
+            placeholder="جستجوکنید..."
+          />
+          <a
+            class="
+            text-red-400
+              w-10
+              h-10
+              float-left
+              bg-gray-600
+              rounded-4xl
+              flex
+              justify-center
+              items-center
+              relative
+              bottom-1
+              left-0
+            "
+            href="#"
+          >
+            <font-awesome-icon :icon="['fas', 'search']" class="" />
+          </a>
         </div>
       </div>
     </div>
-    <div class="">
-        <img
-          class="w-12 lg:h-16 ml-5 md:w-16 h-14 sm:w-14"
-          src="../assets/img/logo.png"
-        />
-      </div>
+    
   </header>
   <!-- container -->
-  <div class="bg-gray-100 z-2">
-
-
-
-
-     <div class=" group absolute top-1/2 left-1/2 --tw-translate-x:-50%;--tw-translate-y:-50%; bg-red-500 h-9 p-3 rounded-4xl " >
-            <input class="group-hover:w-60 bg-none border-none outline-none p-0 float-left   text-lg transition w-0 "  type="text" name="" placeholder="Type Serach">
-            <a class=" to-blue-400 w-12 h-12 float-right bg-yellow rounded-4xl flex justify-center items-center " href="#">
-              <font-awesome-icon
-          :icon="['fas', 'search']"
-            class=""
-            />
-            </a>
-
-        </div>
-
-
-
-
-
-
+  <div class="bg-gray-100 z-2 mt-1">
     <!--category -->
     <div
       class="
-      hidden
         flex flex-fill
         justify-content-center
         flex-wrap
@@ -417,11 +441,9 @@ function wordTranslateRequest() {
       <template v-if="isCategoryVisible">
         <!-- bookmark -->
         <div
-          style="filter: blur(1px)"
+         
           class="
-            shadow-2xl
             w-28
-            filter
             mt-2
             h-28
             border
@@ -713,9 +735,9 @@ function wordTranslateRequest() {
 }
 .bordersh:hover {
   transition: all 0.3s ease-in-out;
-  border-bottom: 3px solid #efa00b;
-  color: #efa00b;
- 
+  border-bottom: 1px solid #f2ff7f;
+  color: #f2ff7f;
+  padding-top: 1px;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -723,4 +745,5 @@ function wordTranslateRequest() {
   transform: translate(1) scale(1);
   visibility: visible;
 }
+
 </style>
