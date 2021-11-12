@@ -116,15 +116,15 @@ function wordTranslateRequest() {
   alert('درخواست شما برای ترجمه لغت انجام شد')
 }
 
-let prompter: any
-const showInstallButton = ref(false)
+let prompter: any;
+const showInstallButton = ref(false);
 window.addEventListener("beforeinstallprompt", function(e) {
-  prompter = e
-  showInstallButton.value = true
+  prompter = e;
+  showInstallButton.value = true;
 });
 
 function install() {
-  prompter.prompt()
+  prompter.prompt();
 }
 </script>
 
@@ -144,6 +144,7 @@ function install() {
         <button @click="paidVersionModal" class="text-yellow">خرید نسخه طلایی</button>
         <button @click="guideModal">راهنما</button>
         <button @click="router.push('/About')">درباره ما</button>
+        <button v-if="showInstallButton" @click="install">نصب برنامه</button>
       </div>
     </div>
   </div>

@@ -2,7 +2,6 @@
 import { computed,ref } from "vue";
 import { useBookmarksRepo } from "@/repo/Bookmarks";
 import { useWordRepo } from "@/repo/Word";
-import ModalView from "./modalView.vue";
 
 const props = defineProps<{
   words: IWord[];
@@ -14,7 +13,7 @@ let bookmarks = computed(() => {
   bookmarksRepo.Bookmarks_GetAll();
   return bookmarksRepo.$state.bookmarks;
 });
-const wordRepo = useWordRepo();
+
 const urlAudio = ref();
 function playSound(wordId: number) {
      urlAudio.value = "https://nebrasar.ir/sounds/" + wordId + ".m4a";
