@@ -166,7 +166,7 @@ function wordTranslateRequest() {
       </div>
     </div>
   </div>
-  <!-- HEADER-->
+
   <pageLoader
     :error="false"
     class="z-20"
@@ -178,566 +178,628 @@ function wordTranslateRequest() {
     v-if="error"
     @reload="reload()"
   ></pageLoader>
-
-  <header class="sticky left-0 right-0 top-0 z-10 lg:hidden">
-    <div class="pb-1 pl-1 border-b bg-white flex items-center justify-between">
-      <!-- menu icon -->
-
+  <!-- HEADER-->
+  <div>
+    <header class="sticky left-0 right-0 top-0 z-10 lg:hidden md:hidden">
       <div
-        class="flex items-center justify-between mt-1 lg:mr-3"
-        v-if="mobileView"
+        class="pb-1 pl-1 border-b bg-white flex items-center justify-between"
       >
-        <button @click="openSetting" class="text-gray-darkest mr-4 flex-center">
-          <font-awesome-icon
-            :icon="['fas', 'bars']"
-            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-500"
-          />
-        </button>
-      </div>
+        <!-- menu icon -->
 
-      <!-- Meno For DeskTop-->
-     
-      <!-- title -->
-      <div class="h-full">
-        <span
-          class="
-            w-2/3
-            inline-block
-            text-center
-            lg:text-5xl
-            md:text-4xl
-            sm:text-3xl
-            text-lg text-black
-            font-bold
-            leading-4
-            mt-2
-          "
-          >دیکشرنی عربی نبراس</span
-        >
         <div
-          class="
-            w-full
-            text-center
-            pt-2
-            mb-2
-            text-gray-400
-            font-quran
-            leading-none
-            hidden
-          "
+          class="flex items-center justify-between mt-1 lg:mr-3"
+          v-if="mobileView"
         >
-          <span class="text-2xs sm:text-base">
-            لهجه
-            <span class="bg-gray-200 rounded-3xl">عراقی</span>
-            و
-            <span class="bg-gray-200 rounded-2xl">خلیجی</span>
-          </span>
+          <button
+            @click="openSetting"
+            class="text-gray-darkest mr-4 flex-center"
+          >
+            <font-awesome-icon
+              :icon="['fas', 'bars']"
+              class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-500"
+            />
+          </button>
         </div>
-      </div>
-      <!-- logo-->
-      <div class="mt-2">
-        <img
-          class="w-12 lg:h-16 ml-5 md:w-16 h-14 sm:w-14"
-          src="../assets/img/logo.png"
-        />
-      </div>
-    </div>
-    <!--search-input -->
-    <div class="pt-1 relative h-16 bg-gray-100">
-      <form action="get" class="flex mr-2 ml-2">
-        <input
-          @input.stop="SearchCall()"
-          type="text"
-          v-model="search"
-          class="
-            text-1xl
-            h-14
-            rounded-full
-            w-full
-            bg-white
-            pr-6
-            pl-12
-            outline-none
-          "
-          placeholder="جستجو کنید..."
-        />
-        <font-awesome-icon
-          :icon="['fas', 'search']"
-          class="absolute text-lg text-gray-400 left-7 top-5"
-        />
-      </form>
-    </div>
-  </header>
-  <header class="w-full  flex  shadow-shadowBottom sticky z-50 ">
-    <div class="h-full w-full">
-      <div class="h-12">
-        <div
-          class="
-          float-right
-             text-4xl
-            font-bold
-            text-gray-600
-            leading-4
-            items-center
-            mt-1
-            h-3/4
-            pr-11
-            pt-5
-          "
-          >دیکشرنی عربی نبراس
-          
-          
+
+        <!-- Meno For DeskTop-->
+
+        <!-- title -->
+        <div class="h-full">
+          <span
+            class="
+              w-2/3
+              inline-block
+              text-center
+              lg:text-5xl
+              md:text-4xl
+              sm:text-3xl
+              text-lg text-black
+              font-bold
+              leading-4
+              mt-2
+            "
+            >دیکشرنی عربی نبراس</span
+          >
+          <div
+            class="
+              w-full
+              text-center
+              pt-2
+              mb-2
+              text-gray-400
+              font-quran
+              leading-none
+              hidden
+            "
+          >
+            <span class="text-2xs sm:text-base">
+              لهجه
+              <span class="bg-gray-200 rounded-3xl">عراقی</span>
+              و
+              <span class="bg-gray-200 rounded-2xl">خلیجی</span>
+            </span>
           </div>
-        <div class="float-left pb-2">
-      <img
-        class="w-12 lg:h-16 ml-5 md:w-16 h-14 sm:w-14"
-        src="../assets/img/logo.png"
-      />
-    </div>
-</div>
-
-      <div class="w-full text-center pr-4 flex bg-gray-300 h-11">
-        <ul class="flex blackk tracking-tighter w-2/3 leading-9 text-base">
-          <li
-            @click="paidVersionModal"
-            class="mr-2 pl-3 h-8 bordersh inline-block"
-          >
-            خرید نسخه طلایی
-          </li>
-          <li @click="guideModal" class="mr-4 pl-3 h-8 bordersh">راهنما</li>
-          <li @click="router.push('/About')" class="mr-4 pl-3 h-8 bordersh">
-            درباره ما
-          </li>
-          <li>
-            <div class="dropdown absolute">
-              <span class="">
-                <button
-                  class="
-                    inline-flex
-                    justify-center
-                    bordersh
-                    leading-5
-                    transition
-                    duration-150
-                    ease-in-out
-                    h-7
-                  "
-                  type="button"
-                >
-                  <span>تمرین</span>
-                  <svg
-                    class="w-5 h-5 ml-2 mr-1"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg></button
-              ></span>
-              <div
-                class="
-                  mt-2
-                  border-b-1 border-yellow
-                  leading-7
-                  relative
-                  top-1
-                  bottom-0
-                  z-20
-                  opacity-0
-                  dropdown-menu
-                  transition-all
-                  duration-300
-                  transform
-                  origin-top-right
-                  -translate-y-2
-                  bg-white
-                "
-              >
-                <div class="hover:bg-red-900 p-3">تمرین لغات</div>
-                <div class="hover:bg-red-900 p-3">آزمون مرحله ای</div>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <div
-          class="
-            group
-            absolute
-           
-            bottom-5
-            --tw-translate-x:-50%;--tw-translate-y:-50%;
-            bg-gray-600
-            h-8
-           left-24
-           top-5
-            rounded-3xl
-          "
-        >
-          <input
-            class="
-              bg-transparent
-              border-none
-              outline-none
-              p-0
-              float-right
-              leading-8
-              text-white text-lg
-              transition-all
-              duration-500
-              transform
-              origin-bottom-left
-              -translate-y-2
-              w-0
-              group-focus-within:w-60
-              relative
-              top-2
-              right-2
-            "
-            type="text"
-            name=""
-            placeholder="جستجوکنید..."
+        </div>
+        <!-- logo-->
+        <div class="mt-2">
+          <img
+            class="w-12 lg:h-16 ml-5 md:w-16 h-14 sm:w-14"
+            src="../assets/img/logo.png"
           />
-          <a
-            class="
-            text-red-400
-              w-10
-              h-10
-              float-left
-              bg-gray-600
-              rounded-4xl
-              flex
-              justify-center
-              items-center
-              relative
-              bottom-1
-              left-0
-            "
-            href="#"
-          >
-            <font-awesome-icon :icon="['fas', 'search']" class="" />
-          </a>
         </div>
       </div>
-    </div>
-    
-  </header>
-  <!-- container -->
-  <div class="bg-gray-100 z-2 mt-1">
-    <!--category -->
-    <div
+      <!--search-input -->
+      <div class="pt-1 relative  bg-gray-100">
+        <form action="#" class="flex mr-2 ml-2">
+          <input
+            @input.stop="SearchCall()"
+            type="text"
+            v-model="search"
+            class="
+              text-1xl
+              h-14
+              rounded-full
+              w-full
+              bg-white
+              pr-6
+              pl-12
+              outline-none
+            "
+            placeholder="جستجو کنید..."
+          />
+          <font-awesome-icon
+            :icon="['fas', 'search']"
+            class="absolute text-lg text-gray-400 left-7 top-5"
+          />
+        </form>
+      </div>
+    </header>
+    <header
       class="
-        flex flex-fill
-        justify-content-center
-        flex-wrap
-        text-center
-        pb-16
-        md:pb-28
-        justify-evenly
+        w-full
+        shadow-shadowBottom
+        z-50
+        top-0
+        sticky
+        hidden
+        lg:flex
+        md:flex
       "
     >
-      <template v-if="isCategoryVisible">
-        <!-- bookmark -->
-        <div
-         
-          class="
-            w-28
-            mt-2
-            h-28
-            border
-            sm:w-32 sm:h-32
-            md:h-40 md:w-40
-            lg:h-48 lg:w-48
-            xl:h-60 xl:w-60
-            drop-shadow
-            rounded-3xl2
-            bg-white
-          "
-        >
-          <router-link :to="{ name: 'bookmark' }">
-            <div class="h-full">
-              <div class="w-full">
-                <font-awesome-icon
-                  :icon="['fas', 'bookmark']"
-                  class="absolute text-lg text-green-600 top-8 right-12"
-                />
-              </div>
-              <div class="w-full absolute bottom-6">
-                <span class="text-black text-xs block bottom-5 left-14"
-                  >نشان شده ها</span
-                >
-              </div>
-            </div>
-          </router-link>
-        </div>
-        <!-- Popular suggestions -->
-        <div
-          class="
-            w-28
-            mt-2
-            h-28
-            sm:w-32 sm:h-32
-            md:h-40 md:w-40
-            lg:h-48 lg:w-48
-            xl:h-60 xl:w-60
-            border
-            drop-shadow
-            rounded-3xl2
-            bg-white
-          "
-        >
-          <router-link :to="{ name: 'words', params: { id: 0 } }">
-            <div class="h-full">
-              <div class="w-full">
-                <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-                <font-awesome-icon
-                  :icon="['fas', 'users']"
-                  class="absolute text-lg text-red-400 top-8 right-11"
-                />
-              </div>
-              <div class="w-full absolute bottom-6">
-                <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-                <span class="text-black text-xs block bottom-5 left-14"
-                  >پیشنهادات مردمی</span
-                >
-              </div>
-            </div>
-          </router-link>
+      <div class="h-full w-full">
+        <div class="h-20 bg-gray-50">
+          <div
+            class="
+              float-right
+              text-4xl
+              font-bold
+              text-gray-600
+              leading-4
+              items-center
+              mt-1
+              h-3/4
+              pr-11
+              pt-5
+            "
+          >
+            دیکشرنی عربی نبراس
+          </div>
+          <div class="float-left pb-2">
+            <img
+              class="w-12 lg:h-16 ml-5 md:w-16 h-14 sm:w-14"
+              src="../assets/img/logo.png"
+            />
+          </div>
         </div>
 
-        <div
-          v-for="(item, i) in categoryRepo.category"
-          :key="i"
-          class="
-            w-28
-            mt-2
-            h-28
-            border
-            sm:w-32 sm:h-32
-            md:h-40 md:w-40
-            lg:h-48 lg:w-48
-            xl:h-60 xl:w-60
-            drop-shadow
-            rounded-3xl2
-            bg-white
-          "
-          :class="{ 'bg-gray-300': !item.IsFree }"
-        >
-          <router-link :to="{ name: 'words', params: { id: i } }">
-            <div class="h-full">
-              <div class="w-full">
-                <font-awesome-icon
-                  v-if="!item.IsFree"
-                  :icon="['fas', 'lock']"
+        <div class="w-full text-center pr-4 flex bg-gray-200 h-11">
+          <ul class="flex blackk tracking-tighter w-2/3 leading-9 text-base">
+            <li
+              @click="paidVersionModal"
+              class="mr-2 pl-3 h-8 hover:text-blue-400 inline-block"
+            >
+              خرید نسخه طلایی
+            </li>
+            <li @click="guideModal" class="mr-4 pl-3 h-8 hover:text-blue-400">
+              راهنما
+            </li>
+            <li
+              @click="router.push('/About')"
+              class="mr-4 pl-3 h-8 hover:text-blue-400"
+            >
+              درباره ما
+            </li>
+            <li class="">
+              <div class="dropdown absolute">
+                <span class="">
+                  <button
+                    class="
+                      inline-flex
+                      justify-center
+                      hover:text-blue-400
+                      leading-5
+                      transition
+                      duration-150
+                      ease-in-out
+                      h-7
+                    "
+                    type="button"
+                  >
+                    <span>تمرین</span>
+                    <svg
+                      class="w-5 h-5 ml-2 mr-1"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg></button
+                ></span>
+                <div
                   class="
-                    absolute
-                    text-gray-500
-                    right-3
-                    top-3
-                    text-sm
-                    sm:text-base
-                    md:text-lg
-                    lg:text-2xl
-                    xl:text-3xl
+                    mt-2
+                    border-b-1 border-yellow
+                    leading-7
+                    relative
+                    top-1
+                    bottom-0
+                    z-20
+                    opacity-0
+                    dropdown-menu
+                    transition-all
+                    duration-300
+                    transform
+                    origin-top-right
+                    -translate-y-2
+                    bg-white
                   "
-                />
+                >
+                  <div
+                    @click="goToVocabularyTest()"
+                    class="hover:bg-blue-100 p-3"
+                  >
+                    تمرین لغات
+                  </div>
+                  <div class="hover:bg-blue-100 p-3">آزمون مرحله ای</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div
+            class="
+              group
+              absolute
+              bottom-5
+              --tw-translate-x:-50%;--tw-translate-y:-50%;
+              bg-blue-100
+              h-8
+              left-24
+              top-5
+              rounded-3xl
+            "
+          >
+            <input
+              @input.stop="SearchCall()"
+              v-model="search"
+              class="
+                bg-transparent
+                border-none
+                outline-none
+                p-0
+                float-right
+                leading-8
+                text-white text-lg
+                transition-all
+                duration-500
+                transform
+                origin-bottom-left
+                -translate-y-2
+                w-0
+                group-focus-within:w-60
+                relative
+                top-2
+                right-2
+              "
+              type="text"
+              name=""
+              placeholder="جستجوکنید..."
+            />
+            <a
+              class="
+                text-gray-700
+                w-10
+                h-10
+                float-left
+                bg-blue-100
+                rounded-4xl
+                flex
+                justify-center
+                items-center
+                relative
+                bottom-1
+                left-0
+              "
+              href="#"
+            >
+              <font-awesome-icon :icon="['fas', 'search']" class="" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- container -->
+
+    <div class="bg-gray-100 z-2 lg:mt-1 md:mt-1 xl:mt-1 ">
+      <!--category -->
+      <div
+        class="
+          flex flex-fill
+          justify-content-center
+          flex-wrap
+          text-center
+          pb-16
+          md:pb-28
+          justify-evenly
+        "
+      >
+        <template v-if="isCategoryVisible">
+          <!-- bookmark -->
+          <div
+            class="
+              w-28
+              mt-2
+              h-28
+              border
+              sm:w-32 sm:h-32
+              md:w-96 md:h-16
+              lg:w-96 lg:h-16
+              xl:w-96 xl:h-16
+              drop-shadow
+              rounded-3xl2
+              bg-white
+            "
+          >
+            <router-link :to="{ name: 'bookmark' }">
+              <div class="h-full">
+                <div
+                  class="
+                     sm:w-12
+                      md:w-20
+                      lg:w-28
+                      xl:w-32
+                      pt-4
+                      md:pt-0
+                      lg:pt-0
+                      xl:pt-0
+                      flex-center
+                      w-8
+                      mr-7
+                      absolute
+                      right-3
+                      top-3
+                      category_icon
+                  "
+                >
+                  <font-awesome-icon
+                    :icon="['fas', 'bookmark']"
+                    class="text-green-600 md:w-2"
+                  />
+                </div>
+                <div class="w-full absolute bottom-6">
+                  <span class="text-black text-xs block bottom-5 left-14"
+                    >نشان شده ها</span
+                  >
+                </div>
+              </div>
+            </router-link>
+          </div>
+          <!-- Popular suggestions -->
+          <div
+            class="
+              w-28
+              mt-2
+              h-28
+              sm:w-32 sm:h-32
+              md:w-96 md:h-16
+              lg:w-96 lg:h-16
+              xl:w-96 xl:h-16
+              border
+              drop-shadow
+              rounded-3xl2
+              bg-white
+            "
+          >
+            <router-link :to="{ name: 'words', params: { id: 0 } }">
+              <div class="h-full">
                 <div
                   class="
                     sm:w-12
-                    md:w-20
-                    lg:w-28
-                    xl:w-32
-                    pt-4
-                    flex-center
-                    w-8
-                    mr-7
-                    absolute
-                    right-3
-                    top-3
-                    category_icon
+                      md:w-20
+                      lg:w-28
+                      xl:w-32
+                      pt-4
+                      md:pt-0
+                      lg:pt-0
+                      xl:pt-0
+                      flex-center
+                      w-8
+                      mr-7
+                      absolute
+                      right-3
+                      top-3
+                      category_icon
                   "
-                  v-html="categoryRepo.category[i].Icon"
-                ></div>
-              </div>
-              <div class="w-full absolute bottom-6">
-                <span
-                  :class="{ 'text-gray-500': !item.IsFree }"
-                  class="
-                    sm:text-sm
-                    md:text-lg
-                    lg:text-2xl
-                    xl:text-2xl
-                    text-black text-xs
-                    block
-                    bottom-5
-                    left-14
-                  "
-                  >{{ item.Title }}</span
                 >
+                  <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
+                  <font-awesome-icon
+                    :icon="['fas', 'users']"
+                    class="text-lg text-red-400 "
+                  />
+                </div>
+                <div class="w-full absolute bottom-6">
+                  <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
+                  <span class="text-black text-xs block bottom-5 left-14"
+                    >پیشنهادات مردمی</span
+                  >
+                </div>
               </div>
-            </div>
-          </router-link>
-        </div>
-      </template>
-      <TranslateRequest
-        @request="wordTranslateRequest"
-        v-if="wordRepo.searchResult.length === 0 && isNotFoundSearch"
-      ></TranslateRequest>
-      <WordComponent :words="wordRepo.searchResult"></WordComponent>
-    </div>
-    <!-- practice & test buttons -->
-    <div
-      class="
-        lg:hidden
-        w-full
-        flex
-        h-12
-        md:h-16
-        xl:h-24
-        fixed
-        bottom-0
-        inset-x-0
-        bg-gray-100
-        justify-center
-        md:bg-opacity-5
-        xl:bg-opacity-5
-      "
-    >
-      <button
-        class="
-          w-2/4
-          sm:w-3/5
-          md:w-2/6
-          border
-          rounded-t-2xl
-          bg-yellow
-          text-center
-        "
-        @click="goToVocabularyTest()"
-      >
-        <span class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl">
-          <font-awesome-icon
-            :icon="['fas', 'pen']"
-            class="
-              text-sm text-gray-600
-              ml-2
-              sm:text-base
-              md:text-xl
-              lg:text-2xl
-              xl:text-3xl
-            "
-          />تمرین لغات
-        </span>
-      </button>
-      <button
-        class="
-          w-2/4
-          sm:w-3/5
-          md:w-2/6
-          border
-          rounded-t-2xl
-          bg-yellow
-          text-center
-          mr-1
-        "
-      >
-        <span class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl">
-          <font-awesome-icon
-            :icon="['fas', 'question']"
-            class="
-              text-sm text-gray-600
-              ml-2
-              sm:text-base
-              md:text-xl
-              lg:text-2xl
-              xl:text-3xl
-            "
-          />آزمون مرحله ای
-        </span>
-      </button>
-    </div>
-  </div>
-  <!-- Paid modal -->
-  <PaidVersionModal
-    class="z-10"
-    v-if="isPaidVersionModal"
-    @close="isPaidVersionModal = false"
-  >
-    <template v-slot:body1>
-      <span
-        >برای استفاده از این قسمت باید نرم افزار را به نسخه طلایی ارتقاء
-        دهید</span
-      >
-    </template>
-    <template v-slot:body2>
-      با دریافت نسخه طلایی نرم افزار, امکان دسترسی به هزاران لغت در دسته بندی
-      های مختلف را خواهد داشت.
-    </template>
-    <template v-slot:button>ارتقا‌ء به نسخه طایی</template>
-  </PaidVersionModal>
-  <!-- guide modal -->
-  <GuideModal class="z-10" v-if="isGuideModal" @close="isGuideModal = false">
-    <template v-slot:body1>چند نکته قابل توجه!</template>
-    <template v-slot:body2>
-      1- اشتراک بین لحجه عراقی و خلیجی زیاد است و تنها در موارد کمی تفاوت وجود
-      دارد. برخی از این تفاوت ها را در بخش (اصطلاحات خلیجی) می توانید بررسی
-      کنید.
-      <br />2- دسته بندی های موجود,به صورت مشترک بین لحجه عراقی و خلیجی می باشد.
-      <br />3- لغات نرم افزار به صورت آنلاین و مداوم بروز رسانی می شوند.
-      <br />4- در صورتی که لغت مد نظر خود را جستجو کرده و آن را پیدا نکردید,از
-      بخش (درخواست ترجمه) میتوانید آن را به اطلاع ما رسانده و نهایتاً پس از چند
-      روز لغت به صورت آنلاین به دیکشنری اضافه خواهد شد.
-    </template>
-    <template v-slot:body3>
-      کلیه حقوق این نرم افزار متعلق به گروه آموزشی نبراس است و هرگونه کپی برداری
-      از آن بدون ذکر منبع شرعاً و قانوناً ممنوع است.
-      <br />با تشکر از همراهی شما ...
-    </template>
-  </GuideModal>
+            </router-link>
+          </div>
 
-  <div
-    v-if="offlineReady || needRefresh"
-    class="
-      fixed
-      right-0
-      bottom-0
-      m-4
-      p-3
-      border-pezeshki
-      rounded-md
-      z-10
-      text-left
-    "
-    role="alert"
-  >
-    <div class="mb-2">
-      <span v-if="offlineReady">App ready to work offline</span>
-      <span v-else
-        >New content available, click on reload button to update.</span
+          <div
+            v-for="(item, i) in categoryRepo.category"
+            :key="i"
+            class="
+              w-28
+              mt-2
+              h-28
+              border
+              sm:w-32 sm:h-32
+              md:w-96 md:h-16
+              lg:w-96 lg:h-16
+              xl:w-96 xl:h-16
+              drop-shadow
+              rounded-3xl2
+              bg-white
+              md:mt-3
+            "
+            :class="{ 'bg-gray-300': !item.IsFree }"
+          >
+            <router-link :to="{ name: 'words', params: { id: i } }">
+              <div class="h-full">
+                <div class="w-full">
+                  <font-awesome-icon
+                    v-if="!item.IsFree"
+                    :icon="['fas', 'lock']"
+                    class="
+                      absolute
+                      text-gray-500
+                      right-3
+                      top-3
+                      text-sm
+                      sm:text-base
+                      md:text-lg
+                      lg:text-2xl
+                      xl:text-3xl
+                    "
+                  />
+                  <div
+                    class="
+                      sm:w-12
+                      md:w-20
+                      lg:w-28
+                      xl:w-32
+                      pt-4
+                      md:pt-0
+                      lg:pt-0
+                      xl:pt-0
+                      flex-center
+                      w-8
+                      mr-7
+                      absolute
+                      right-3
+                      top-3
+                      category_icon
+                    "
+                    v-html="categoryRepo.category[i].Icon"
+                  ></div>
+                </div>
+                <div class="w-full absolute bottom-6">
+                  <span
+                    :class="{ 'text-gray-500': !item.IsFree }"
+                    class="
+                      sm:text-sm
+                      md:text-lg
+                      lg:text-1xl
+                      xl:text-1xl
+                      text-black text-xs
+                      block
+                      bottom-5
+                      left-14
+                    "
+                    >{{ item.Title }}</span
+                  >
+                </div>
+              </div>
+            </router-link>
+          </div>
+        </template>
+        <TranslateRequest
+          @request="wordTranslateRequest"
+          v-if="wordRepo.searchResult.length === 0 && isNotFoundSearch"
+        ></TranslateRequest>
+        <WordComponent :words="wordRepo.searchResult"></WordComponent>
+      </div>
+      <!-- practice & test buttons -->
+      <div
+        class="
+          lg:hidden
+          md:hidden
+          w-full
+          flex
+          h-12
+          md:h-16
+          xl:h-24
+          fixed
+          bottom-0
+          inset-x-0
+          bg-gray-100
+          justify-center
+          md:bg-opacity-5
+          xl:bg-opacity-5
+        "
       >
+        <button
+          class="
+            w-2/4
+            sm:w-3/5
+            md:w-2/6
+            border
+            rounded-t-2xl
+            bg-yellow
+            text-center
+          "
+          @click="goToVocabularyTest()"
+        >
+          <span class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl">
+            <font-awesome-icon
+              :icon="['fas', 'pen']"
+              class="
+                text-sm text-gray-600
+                ml-2
+                sm:text-base
+                md:text-xl
+                lg:text-2xl
+                xl:text-3xl
+              "
+            />تمرین لغات
+          </span>
+        </button>
+        <button
+          class="
+            w-2/4
+            sm:w-3/5
+            md:w-2/6
+            border
+            rounded-t-2xl
+            bg-yellow
+            text-center
+            mr-1
+          "
+        >
+          <span class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl">
+            <font-awesome-icon
+              :icon="['fas', 'question']"
+              class="
+                text-sm text-gray-600
+                ml-2
+                sm:text-base
+                md:text-xl
+                lg:text-2xl
+                xl:text-3xl
+              "
+            />آزمون مرحله ای
+          </span>
+        </button>
+      </div>
     </div>
-    <button
-      class="outline-none mr-2 rounded pt-1 pb-1 pl-2 pr-2"
-      v-if="needRefresh"
-      @click="updateServiceWorker()"
+    <!-- Paid modal -->
+    <PaidVersionModal
+      class="z-10"
+      v-if="isPaidVersionModal"
+      @close="isPaidVersionModal = false"
     >
-      Reload
-    </button>
-    <button @click="close">Close</button>
+      <template v-slot:body1>
+        <span
+          >برای استفاده از این قسمت باید نرم افزار را به نسخه طلایی ارتقاء
+          دهید</span
+        >
+      </template>
+      <template v-slot:body2>
+        با دریافت نسخه طلایی نرم افزار, امکان دسترسی به هزاران لغت در دسته بندی
+        های مختلف را خواهد داشت.
+      </template>
+      <template v-slot:button>ارتقا‌ء به نسخه طایی</template>
+    </PaidVersionModal>
+    <!-- guide modal -->
+    <GuideModal class="z-10" v-if="isGuideModal" @close="isGuideModal = false">
+      <template v-slot:body1>چند نکته قابل توجه!</template>
+      <template v-slot:body2>
+        1- اشتراک بین لحجه عراقی و خلیجی زیاد است و تنها در موارد کمی تفاوت وجود
+        دارد. برخی از این تفاوت ها را در بخش (اصطلاحات خلیجی) می توانید بررسی
+        کنید.
+        <br />2- دسته بندی های موجود,به صورت مشترک بین لحجه عراقی و خلیجی می
+        باشد. <br />3- لغات نرم افزار به صورت آنلاین و مداوم بروز رسانی می شوند.
+        <br />4- در صورتی که لغت مد نظر خود را جستجو کرده و آن را پیدا نکردید,از
+        بخش (درخواست ترجمه) میتوانید آن را به اطلاع ما رسانده و نهایتاً پس از
+        چند روز لغت به صورت آنلاین به دیکشنری اضافه خواهد شد.
+      </template>
+      <template v-slot:body3>
+        کلیه حقوق این نرم افزار متعلق به گروه آموزشی نبراس است و هرگونه کپی
+        برداری از آن بدون ذکر منبع شرعاً و قانوناً ممنوع است.
+        <br />با تشکر از همراهی شما ...
+      </template>
+    </GuideModal>
+
+    <div
+      v-if="offlineReady || needRefresh"
+      class="
+        fixed
+        right-0
+        bottom-0
+        m-4
+        p-3
+        border-pezeshki
+        rounded-md
+        z-10
+        text-left
+      "
+      role="alert"
+    >
+      <div class="mb-2">
+        <span v-if="offlineReady">App ready to work offline</span>
+        <span v-else
+          >New content available, click on reload button to update.</span
+        >
+      </div>
+      <button
+        class="outline-none mr-2 rounded pt-1 pb-1 pl-2 pr-2"
+        v-if="needRefresh"
+        @click="updateServiceWorker()"
+      >
+        Reload
+      </button>
+      <button @click="close">Close</button>
+    </div>
   </div>
 </template>
 
 <style>
 .category_icon svg {
-  @apply w-20 h-20  !important;
-}
-.bordersh:hover {
-  transition: all 0.3s ease-in-out;
-  border-bottom: 1px solid #f2ff7f;
-  color: #f2ff7f;
-  padding-top: 1px;
+  @apply w-11 h-11 !important;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -745,5 +807,4 @@ function wordTranslateRequest() {
   transform: translate(1) scale(1);
   visibility: visible;
 }
-
 </style>
