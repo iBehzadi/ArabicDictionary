@@ -165,7 +165,7 @@ function install() {
 
   <pageLoader :error="false" class="z-20" v-if="categoryRepo.category.length === 0"></pageLoader>
   <pageLoader :error="error" class="z-20" v-if="error" @reload="reload()"></pageLoader>
-  <!-- HEADER-->
+  <!-- before desktop -->
   <div>
     <header class="sticky left-0 right-0 top-0 z-10 lg:hidden md:hidden">
       <div class="pb-1 pl-1 border-b bg-white flex items-center justify-between">
@@ -179,15 +179,12 @@ function install() {
             />
           </button>
         </div>
-
-        <!-- Meno For DeskTop-->
-
         <!-- title -->
         <div class="h-full">
           <span
-            class="w-2/3 inline-block text-center lg:text-5xl md:text-4xl sm:text-3xl text-lg text-black font-bold leading-4 mt-2"
+            class="inline-block text-center sm:text-3xl md:text-4xl text-black font-bold leading-4 mt-2"
           >دیکشرنی عربی نبراس</span>
-          <div class="w-full text-center pt-2 mb-2 text-gray-400 font-quran leading-none hidden">
+          <div class="w-full text-center mb-2 text-gray-400 font-quran leading-none">
             <span class="text-2xs sm:text-base">
               لهجه
               <span class="bg-gray-200 rounded-3xl">عراقی</span>
@@ -198,7 +195,7 @@ function install() {
         </div>
         <!-- logo-->
         <div class="mt-2">
-          <img class="w-12 lg:h-16 ml-5 md:w-16 h-14 sm:w-14" src="../assets/img/logo.png" />
+          <img class="w-12 h-12 ml-5 sm:w-14 sm:h-14" src="../assets/img/logo.png" />
         </div>
       </div>
       <!--search-input -->
@@ -218,14 +215,26 @@ function install() {
         </form>
       </div>
     </header>
+
+    <!-- desktop header -->
     <header class="w-full shadow-shadowBottom z-50 top-0 sticky hidden lg:flex md:flex">
       <div class="h-full w-full">
         <div class="h-20 bg-gray-50">
           <div
             class="float-right text-4xl font-bold text-gray-600 leading-4 items-center mt-1 h-3/4 pr-11 pt-5"
-          >دیکشرنی عربی نبراس</div>
-          <div class="float-left pb-2">
-            <img class="w-12 lg:h-16 ml-5 md:w-16 h-14 sm:w-14" src="../assets/img/logo.png" />
+          >دیکشرنی عربی نبراس
+          <div class="w-full text-center mb-2 text-gray-400 font-quran leading-none">
+            <span class="text-2xs sm:text-base">
+              لهجه
+              <span class="bg-gray-200 rounded-3xl">عراقی</span>
+              و
+              <span class="bg-gray-200 rounded-2xl">خلیجی</span>
+            </span>
+          </div>
+          </div>
+          
+          <div class="float-left mt-2">
+            <img class="w-12 lg:h-16 ml-5 md:w-16" src="../assets/img/logo.png" />
           </div>
         </div>
 
@@ -298,7 +307,7 @@ function install() {
             <router-link :to="{ name: 'bookmark' }">
               <div class="h-full flex-center flex-col md:flex-row md:justify-evenly">
                 <div
-                  class="sm:w-12 md:w-20 lg:w-28 xl:w-32 pt-4 md:pt-0 lg:pt-0 xl:pt-0 category_icon"
+                  class="sm:w-12 md:w-24 pt-4 md:pt-0 lg:pt-0 xl:pt-0 md:absolute md:right-0 category_icon"
                 >
                   <font-awesome-icon :icon="['fas', 'bookmark']" class="text-green-600 md:w-2" />
                 </div>
@@ -315,7 +324,7 @@ function install() {
             <router-link :to="{ name: 'popular' }">
               <div class="h-full flex-center flex-col md:flex-row md:justify-evenly">
                 <div
-                  class="sm:w-12 md:w-20 lg:w-28 xl:w-32 pt-4 md:pt-0 lg:pt-0 xl:pt-0 category_icon"
+                  class="sm:w-12 md:w-24 pt-4 md:pt-0 lg:pt-0 xl:pt-0 md:absolute md:right-0 category_icon"
                 >
                   <font-awesome-icon :icon="['fas', 'users']" class="text-red-400 md:w-2" />
                 </div>
@@ -329,18 +338,18 @@ function install() {
           <div
             v-for="(item, i) in categoryRepo.category"
             :key="i"
-            class="w-28 flex-center flex-col md:flex-row md:justify-evenly mt-2 h-28 border sm:w-32 sm:h-32 md:w-96 md:h-16 lg:w-96 lg:h-16 xl:w-96 xl:h-16 drop-shadow rounded-3xl2 bg-white md:mt-3"
+            class="w-28 flex-col md:flex-row md:justify-evenly mt-2 h-28 border sm:w-32 sm:h-32 md:w-96 md:h-16 lg:w-96 lg:h-16 xl:w-96 xl:h-16 drop-shadow rounded-3xl2 bg-white md:mt-3"
             :class="{ 'bg-gray-300': !item.IsFree }"
           >
-            <router-link class="w-full" :to="{ name: 'words', params: { id: i } }">
-              <div class="flex-center flex-col md:flex-row md:justify-evenly">
+            <router-link :to="{ name: 'words', params: { id: i } }">
+              <div class="h-full flex-center flex-col md:flex-row md:justify-evenly">
                 <font-awesome-icon
                   v-if="!item.IsFree"
                   :icon="['fas', 'lock']"
                   class="absolute text-gray-500 left-3 top-3 text-sm sm:text-base md:text-2xl xl:text-3xl"
                 />
                 <div
-                  class=" lg:w-28 xl:w-32 pt-4 md:pt-0 lg:pt-0 xl:pt-0 flex-center category_icon"
+                  class="md:absolute md:right-1 md:w-24 pt-4 md:pt-0 lg:pt-0 xl:pt-0 flex-center category_icon"
                   v-html="categoryRepo.category[i].Icon"
                 ></div>
                 <span
@@ -442,7 +451,7 @@ function install() {
 
 <style>
 .category_icon svg {
-  @apply w-11 h-11 !important;
+  @apply w-8 h-8 sm:w-10 sm:h-10 !important;
 }
 
 .dropdown:hover .dropdown-menu {
