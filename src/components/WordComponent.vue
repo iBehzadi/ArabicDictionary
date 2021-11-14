@@ -49,6 +49,7 @@ function SoundErr(event: Event) {
         <button
           @click.stop="bookmarksRepo.Bookmarks_ChangeStatusWord(item.WordID)"
           class="w-12 h-12 flex-center"
+          aria-label="Bookmark"
         >
           <font-awesome-icon
             :icon="['fas', 'bookmark']"
@@ -56,7 +57,7 @@ function SoundErr(event: Event) {
             :class="{ 'text-green-400': bookmarks.includes(item.WordID) }"
           />
         </button>
-        <button class="w-12 h-12 flex-center" @click.stop="playSound(item.WordID)">
+        <button aria-label="Play Sound" class="w-12 h-12 flex-center" @click.stop="playSound(item.WordID)">
           <font-awesome-icon
             :icon="['fas', 'play']"
             class="text-sm text-gray-600 hover:text-green-400"

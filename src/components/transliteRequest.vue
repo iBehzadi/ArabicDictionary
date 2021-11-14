@@ -16,6 +16,7 @@ function getRequest() {
           <button
                @click="getRequest"
                class="border w-44 h-10 m-4 rounded-lg bg-yellow"
+               aria-label="Translate Request"
           >درخواست ترجمه</button>
      </div>
 </template>

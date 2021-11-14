@@ -32,7 +32,7 @@ function closeModal() {
                 </section>
 
                 <footer class="flex flex-col p-4">
-                    <button type="button" class="text-black p-2 bg-uniqColor rounded-md left-0 right-0" @click="close">
+                    <button aria-label="Close" class="text-black p-2 bg-uniqColor rounded-md left-0 right-0" @click="close">
                         <slot name="button">بستن</slot>
                     </button>
                 </footer>

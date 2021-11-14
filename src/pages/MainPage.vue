@@ -155,10 +155,14 @@ function install() {
       class="h-full w-0 t-0 right-0 overflow-x-hidden bg-white bg-opacity-100 transition-all duration-300"
     >
       <div class="flex flex-col mt-5">
-        <button @click="paidVersionModal" class="text-yellow">خرید نسخه طلایی</button>
-        <button @click="guideModal">راهنما</button>
-        <button @click="router.push('/About')">درباره ما</button>
-        <button v-if="showInstallButton" @click="install">نصب برنامه</button>
+        <button
+          aria-label="Paid version"
+          @click="paidVersionModal"
+          class="text-yellow"
+        >خرید نسخه طلایی</button>
+        <button aria-label="Help" @click="guideModal">راهنما</button>
+        <button aria-label="About Us" @click="router.push('/About')">درباره ما</button>
+        <button aria-label="Install app" v-if="showInstallButton" @click="install">نصب برنامه</button>
       </div>
     </div>
   </div>
@@ -172,7 +176,11 @@ function install() {
         <!-- menu icon -->
 
         <div class="flex items-center justify-between mt-1 lg:mr-3" v-if="mobileView">
-          <button @click="openSetting" class="text-gray-darkest mr-4 flex-center">
+          <button
+            aria-label="Settings menu"
+            @click="openSetting"
+            class="text-gray-darkest mr-4 flex-center"
+          >
             <font-awesome-icon
               :icon="['fas', 'bars']"
               class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-500"
@@ -195,7 +203,7 @@ function install() {
         </div>
         <!-- logo-->
         <div class="mt-2">
-          <img class="w-12 h-12 ml-5 sm:w-14 sm:h-14" src="../assets/img/logo.png" />
+          <img alt="logo" class="w-12 h-12 ml-5 sm:w-14 sm:h-14" src="../assets/img/logo.png" />
         </div>
       </div>
       <!--search-input -->
@@ -222,19 +230,20 @@ function install() {
         <div class="h-20 bg-gray-50">
           <div
             class="float-right text-4xl font-bold text-gray-600 leading-4 items-center mt-1 h-3/4 pr-11 pt-5"
-          >دیکشرنی عربی نبراس
-          <div class="w-full text-center mb-2 text-gray-400 font-quran leading-none">
-            <span class="text-2xs sm:text-base">
-              لهجه
-              <span class="bg-gray-200 rounded-3xl">عراقی</span>
-              و
-              <span class="bg-gray-200 rounded-2xl">خلیجی</span>
-            </span>
+          >
+            دیکشرنی عربی نبراس
+            <div class="w-full text-center mb-2 text-gray-400 font-quran leading-none">
+              <span class="text-2xs sm:text-base">
+                لهجه
+                <span class="bg-gray-200 rounded-3xl">عراقی</span>
+                و
+                <span class="bg-gray-200 rounded-2xl">خلیجی</span>
+              </span>
+            </div>
           </div>
-          </div>
-          
+
           <div class="float-left mt-2">
-            <img class="w-12 lg:h-16 ml-5 md:w-16" src="../assets/img/logo.png" />
+            <img alt="logo" class="w-12 lg:h-16 ml-5 md:w-16" src="../assets/img/logo.png" />
           </div>
         </div>
 
@@ -246,29 +255,25 @@ function install() {
             >خرید نسخه طلایی</li>
             <li @click="guideModal" class="mr-4 pl-3 h-8 hover:text-blue-400">راهنما</li>
             <li @click="router.push('/About')" class="mr-4 pl-3 h-8 hover:text-blue-400">درباره ما</li>
-            <li class>
-              <div class="dropdown absolute">
-                <span class>
-                  <button
-                    class="inline-flex justify-center hover:text-blue-400 leading-5 transition duration-150 ease-in-out h-7"
-                    type="button"
-                  >
-                    <span>تمرین</span>
-                    <svg class="w-5 h-5 ml-2 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                      <path
-                        fill-rule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </span>
-                <div
-                  class="mt-2 border-b-1 border-yellow leading-7 relative top-1 bottom-0 z-20 opacity-0 dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 bg-white"
-                >
-                  <div @click="goToVocabularyTest()" class="hover:bg-blue-100 p-3">تمرین لغات</div>
-                  <div class="hover:bg-blue-100 p-3">آزمون مرحله ای</div>
-                </div>
+            <li class="dropdown">
+              <div
+                class="inline-flex justify-center hover:text-blue-400 leading-5 transition duration-150 ease-in-out h-7"
+                type="button"
+              >
+                <span >تمرین</span>
+                <svg class="w-5 h-5 ml-2 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div
+                class="dropdown-menu opacity-0 invisible flex flex-col mt-2 border-b-1 leading-7 transition-all duration-500 transform origin-top-right -translate-y-2 bg-white"
+              >
+                <button @click="goToVocabularyTest()" class="hover:bg-blue-100 p-3">تمرین لغات</button>
+                <button class="hover:bg-blue-100 p-3">آزمون مرحله ای</button>
               </div>
             </li>
           </ul>
@@ -456,7 +461,6 @@ function install() {
 
 .dropdown:hover .dropdown-menu {
   opacity: 1;
-  transform: translate(1) scale(1);
   visibility: visible;
 }
 </style>

@@ -30,6 +30,7 @@ categoryRepo.getAll().then(() => {
     <button
       @click="router.push(`/Practice/${categoryRepo.category[+route.params.id].CategoryID}`)"
       class="bg-yellow w-full h-11 rounded-t-2xl flex justify-center pt-3 fixed bottom-0"
+      aria-label="Back"
     >
       <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600" />
 

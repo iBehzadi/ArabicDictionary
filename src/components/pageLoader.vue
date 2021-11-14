@@ -30,14 +30,13 @@ function reloadingApi() {
         v-if="props.error"
         @click="reloadingApi()"
         class="flex-none flex items-center justify-center bg-gray-500 opacity-70 w-20 h-9 rounded-md text-gray-100"
-        type="button"
-        aria-label="like"
+        aria-label="Reload"
       >تلاش مجدد</button>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .test {
   width: 20px;
   height: 20px;
