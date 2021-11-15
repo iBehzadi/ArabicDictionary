@@ -8,6 +8,10 @@ export async function WordDB_GetAll(CategoryID: number) {
   return await db.word.where('CategoryID').equals(CategoryID).toArray();
 }
 
+export async function WordDB_GetLimitWords(CategoryID: number, offset: number, limit: number) {
+  return await db.word.where('CategoryID').equals(CategoryID).offset(offset).limit(limit).toArray();
+}
+
 export async function WordDB_GetWordByID(words: number[]) {
   return await db.word.where("WordID").anyOf(words).toArray();
 }

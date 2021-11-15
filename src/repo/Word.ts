@@ -3,6 +3,7 @@ import {
   WordDB_RandomId,
   WordDB_GetAll,
   WordDB_GetWordByID,
+  WordDB_GetLimitWords,
 } from "@/database/WordDB";
 import { searchDB_GetSearchResult } from "@/database/SearchDB";
 import { BookmarksDB_GetWordIDs } from "@/database/BookmarksDB";
@@ -20,6 +21,9 @@ export const useWordRepo = defineStore("wordRepo", {
   actions: {
     async getWordByCategory(CategoryID: number) {
       this.words = await WordDB_GetAll(CategoryID);
+    },
+    async getLimitWordByCategory(CategoryID: number, offset: number, limit: number) {
+      this.words = await WordDB_GetLimitWords(CategoryID, offset, limit);
     },
     async getWordByRandom(categoryID: number) {
       this.randomWord = await WordDB_RandomId(categoryID);
