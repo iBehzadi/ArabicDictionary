@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-    body {}
+    body { 
+    
+    }
     @font-face {
         font-family: Vazir;
         src: url('./assets/fonts/Vazir-Regular-FD-WOL-UI.woff2') format('woff2'), url('./assets/fonts/Vazir-Regular-FD-WOL-UI.woff') format('woff');

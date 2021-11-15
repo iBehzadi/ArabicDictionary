@@ -123,6 +123,10 @@ function wordTranslateRequest() {
   search.value = "";
   alert("درخواست شما برای ترجمه لغت انجام شد");
 }
+window.addEventListener("scroll",function() {
+  var header = document.querySelector("header");
+  header?.classList.toggle("sticky",window.scrollY>0)
+})
 </script>
 
 <template>
@@ -179,8 +183,29 @@ function wordTranslateRequest() {
     @reload="reload()"
   ></pageLoader>
   <!-- HEADER-->
-  <div>
-    <header class="sticky left-0 right-0 top-0 z-10 lg:hidden md:hidden">
+  
+   
+
+<div class="min-h-screen  box-border bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+
+  <header id="headerr"   class="   top-0 left-0 w-full flex  justify-between items-center pt-10 pr-10  pl-24 z-50transition duration-150 ease-in-out  ">
+    <a class="logo relative font-bold text-2xl text-white  tracking-widest transition">Logo</a>
+    <ul class=" relative flex justify-center items-center text-white ">
+      <li class=" relative "> <a class="relative mt-0 mr-0 ml-4 mb-4 tracking-widest font-light"> دیکشرنی  </a></li>
+      <li class=" relative "> <a class="relative mt-0 mr-0 ml-4 mb-4 tracking-widest font-light"> خرید </a> </li>
+      <li  class=" relative "> <a class="relative mt-0 mr-0 ml-4 mb-4 tracking-widest font-light">درباره ما  </a> </li>
+      <li  class=" relative "> <a class="relative mt-0 mr-0 ml-4 mb-4 tracking-widest font-light">  تمرین </a> </li>
+    </ul>
+
+  </header>
+
+  <section class="">
+    <h2>دیکشرنی نبراس</h2>
+  </section>
+      </div>
+      
+
+        <header class="sticky left-0 right-0 top-0 z-10 lg:hidden md:hidden">
       <div
         class="pb-1 pl-1 border-b bg-white flex items-center justify-between"
       >
@@ -274,185 +299,9 @@ function wordTranslateRequest() {
         </form>
       </div>
     </header>
-    <header
-      class="
-        w-full
-        shadow-shadowBottom
-        z-50
-        top-0
-        sticky
-        hidden
-        lg:flex
-        md:flex
-      "
-    >
-      <div class="h-full w-full">
-        <div class="h-20 bg-gray-50">
-          <div
-            class="
-              float-right
-              text-4xl
-              font-bold
-              text-gray-600
-              leading-4
-              items-center
-              mt-1
-              h-3/4
-              pr-11
-              pt-5
-            "
-          >
-            دیکشرنی عربی نبراس
-          </div>
-          <div class="float-left pb-2">
-            <img
-              class="w-12 lg:h-16 ml-5 md:w-16 h-14 sm:w-14"
-              src="../assets/img/logo.png"
-            />
-          </div>
-        </div>
-
-        <div class="w-full text-center pr-4 flex bg-gray-200 h-11">
-          <ul class="flex blackk tracking-tighter w-2/3 leading-9 text-base">
-            <li
-              @click="paidVersionModal"
-              class="mr-2 pl-3 h-8 hover:text-blue-400 inline-block"
-            >
-              خرید نسخه طلایی
-            </li>
-            <li @click="guideModal" class="mr-4 pl-3 h-8 hover:text-blue-400">
-              راهنما
-            </li>
-            <li
-              @click="router.push('/About')"
-              class="mr-4 pl-3 h-8 hover:text-blue-400"
-            >
-              درباره ما
-            </li>
-            <li class="">
-              <div class="dropdown absolute">
-                <span class="">
-                  <button
-                    class="
-                      inline-flex
-                      justify-center
-                      hover:text-blue-400
-                      leading-5
-                      transition
-                      duration-150
-                      ease-in-out
-                      h-7
-                    "
-                    type="button"
-                  >
-                    <span>تمرین</span>
-                    <svg
-                      class="w-5 h-5 ml-2 mr-1"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg></button
-                ></span>
-                <div
-                  class="
-                    mt-2
-                    border-b-1 border-yellow
-                    leading-7
-                    relative
-                    top-1
-                    bottom-0
-                    z-20
-                    opacity-0
-                    dropdown-menu
-                    transition-all
-                    duration-300
-                    transform
-                    origin-top-right
-                    -translate-y-2
-                    bg-white
-                  "
-                >
-                  <div
-                    @click="goToVocabularyTest()"
-                    class="hover:bg-blue-100 p-3"
-                  >
-                    تمرین لغات
-                  </div>
-                  <div class="hover:bg-blue-100 p-3">آزمون مرحله ای</div>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <div
-            class="
-              group
-              absolute
-              bottom-5
-              --tw-translate-x:-50%;--tw-translate-y:-50%;
-              bg-blue-100
-              h-8
-              left-24
-              top-5
-              rounded-3xl
-            "
-          >
-            <input
-              @input.stop="SearchCall()"
-              v-model="search"
-              class="
-                bg-transparent
-                border-none
-                outline-none
-                p-0
-                float-right
-                leading-8
-                text-white text-lg
-                transition-all
-                duration-500
-                transform
-                origin-bottom-left
-                -translate-y-2
-                w-0
-                group-focus-within:w-60
-                relative
-                top-2
-                right-2
-              "
-              type="text"
-              name=""
-              placeholder="جستجوکنید..."
-            />
-            <a
-              class="
-                text-gray-700
-                w-10
-                h-10
-                float-left
-                bg-blue-100
-                rounded-4xl
-                flex
-                justify-center
-                items-center
-                relative
-                bottom-1
-                left-0
-              "
-              href="#"
-            >
-              <font-awesome-icon :icon="['fas', 'search']" class="" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
     <!-- container -->
 
-    <div class="bg-gray-100 z-2 lg:mt-1 md:mt-1 xl:mt-1 ">
+    <div class="bg-gray-100 z-2 lg:mt-1 md:mt-1 xl:mt-1  ">
       <!--category -->
       <div
         class="
@@ -794,17 +643,28 @@ function wordTranslateRequest() {
       </button>
       <button @click="close">Close</button>
     </div>
-  </div>
+    
 </template>
 
 <style>
 .category_icon svg {
   @apply w-11 h-11 !important;
 }
+header.sticky  {
+  padding: 5px 100px;
+  background: #fff;
+  border-bottom: 1px solid (0,0,0,.1);
+}
+header.sticky .logo,
+.sticky ul li a
+{
+  color: #000;
+}
+
 
 .dropdown:hover .dropdown-menu {
   opacity: 1;
   transform: translate(1) scale(1);
-  visibility: visible;
-}
+  visibility: visible;}
+
 </style>
