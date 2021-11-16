@@ -186,23 +186,430 @@ window.addEventListener("scroll",function() {
   
    
 
-<div class="min-h-screen  box-border bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+<div class="min-h-screen  box-border bg-gradient-to-r from-blue_to_gray via-pink-500 to-gray_color">
 
-  <header id="headerr"   class="   top-0 left-0 w-full flex  justify-between items-center pt-10 pr-10  pl-24 z-50transition duration-150 ease-in-out  ">
-    <a class="logo relative font-bold text-2xl text-white  tracking-widest transition">Logo</a>
-    <ul class=" relative flex justify-center items-center text-white ">
+  <header id="headerr"   class="   top-0 left-0 w-full flex  justify-between items-center pt-10 pr-5  pl-24 z-50  duration-150 ease-in-out  ">
+     
+   <a class="logo relative font-bold text-2xl text-white  tracking-widest transition"> <div class="float-left pb-2">
+            <img
+              class="w-12 lg:h-16 ml-5 md:w-16 h-14 sm:w-14"
+              src="../assets/img/logo.png"
+            />
+          </div></a>
+         
+    
+    <a class="text-4xl  ">دیکشرنی نبراس</a>
+   <div
+            class="
+              group
+              bottom-5
+              --tw-translate-x:-50%;--tw-translate-y:-50%;
+              bg-blue-100
+              h-8
+              top-5
+              rounded-3xl
+            "
+          >
+            <input
+              @input.stop="SearchCall()"
+              v-model="search"
+              class="
+                bg-transparent
+                border-none
+                outline-none
+                p-0
+                float-right
+                leading-8
+                text-white text-lg
+                transition-all
+                duration-500
+                transform
+                origin-bottom-left
+                -translate-y-2
+                w-0
+                group-hover:w-60
+                relative
+                top-2
+                right-2
+              "
+              type="text"
+              name=""
+              placeholder="جستجوکنید..."
+            />
+            <a
+              class="
+                text-gray-700
+                w-10
+                h-10
+                float-left
+                bg-blue-100
+                rounded-4xl
+                flex
+                justify-center
+                items-center
+                relative
+                bottom-1
+                left-0
+              "
+              href="#"
+            >
+              <font-awesome-icon :icon="['fas', 'search']" class="" />
+            </a>
+          </div>
+
+
+    
+    <ul class=" relative flex justify-center items-center text-white h-20 pr-1 ">
       <li class=" relative "> <a class="relative mt-0 mr-0 ml-4 mb-4 tracking-widest font-light"> دیکشرنی  </a></li>
       <li class=" relative "> <a class="relative mt-0 mr-0 ml-4 mb-4 tracking-widest font-light"> خرید </a> </li>
-      <li  class=" relative "> <a class="relative mt-0 mr-0 ml-4 mb-4 tracking-widest font-light">درباره ما  </a> </li>
-      <li  class=" relative "> <a class="relative mt-0 mr-0 ml-4 mb-4 tracking-widest font-light">  تمرین </a> </li>
-    </ul>
+      <li  class=" relative  "> <a class="relative mt-0 mr-0 ml-4 mb-4 tracking-widest font-light">درباره ما  </a> </li>
+      <li class="relative top-16">
+              <div class="dropdown ">
+                <span class="">
+                  <button
+                    class="
+                    
+                      inline-flex
+                      justify-center
+                      hover:text-blue-400
+                      leading-5
+                      transition
+                      duration-150
+                      ease-in-out
+                      h-7
+                    "
+                    type="button"
+                  >
+                    <span>تمرین</span>
+                    <svg
+                      class="w-5 h-5 ml-2 mr-1"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg></button
+                ></span>
+                <div
+                  class="
+                    Tamrin
+                    mt-2
+                    border-b-1 border-yellow
+                    leading-7
+                    relative
+                    top-1
+                    bottom-0
+                    z-20
+                    opacity-0
+                    dropdown-menu
+                    transition-all
+                    duration-300
+                    transform
+                    origin-top-right
+                    -translate-y-2
+                    bg-white
+                  "
+                >
+                  <div
+                    @click="goToVocabularyTest()"
+                    class="hover:bg-blue-500 p-3 bg-blue_to_gray"
+                  >
+                    تمرین لغات
+                  </div>
+                  <div class="hover:bg-blue-600 p-3 bg-blue_to_gray">آزمون مرحله ای</div>
+                </div>
+              </div>
+            </li>    </ul>
 
   </header>
 
-  <section class="">
-    <h2>دیکشرنی نبراس</h2>
-  </section>
+  
+     
+     
+     <div class=" z-2 lg:mt-1 md:mt-1 xl:mt-1  ">
+      <!--category -->
+      <div
+        class="
+          flex flex-fill
+          justify-content-center
+          flex-wrap
+          text-center
+          pb-16
+          md:pb-28
+          justify-evenly
+        "
+      >
+        <template v-if="isCategoryVisible">
+          <!-- bookmark -->
+          <div
+            class="
+              w-28
+              mt-2
+              h-28
+              sm:w-32 sm:h-32
+              md:w-96 md:h-16
+              lg:w-96 lg:h-16
+              xl:w-96 xl:h-16
+              drop-shadow
+              rounded-3xl
+              shadow-shadow__lx
+              transition duration-500 ease-in-out  hover:bg-green-400 transform hover:-translate-y-1 hover:scale-110
+            "
+          >
+            <router-link :to="{ name: 'bookmark' }">
+              <div class="h-full">
+                <div
+                  class="
+                     sm:w-12
+                      md:w-20
+                      lg:w-28
+                      xl:w-32
+                      pt-4
+                      md:pt-0
+                      lg:pt-0
+                      xl:pt-0
+                      flex-center
+                      w-8
+                      mr-7
+                      absolute
+                      right-3
+                      top-3
+                      category_icon
+                  "
+                >
+                  <font-awesome-icon
+                    :icon="['fas', 'bookmark']"
+                    class="text-green-600 md:w-2"
+                  />
+                </div>
+                <div class="w-full absolute bottom-6">
+                  <span class="text-black text-xs block bottom-5 left-14"
+                    >نشان شده ها</span
+                  >
+                </div>
+              </div>
+            </router-link>
+          </div>
+          <!-- Popular suggestions -->
+          <div
+            class="
+              w-28
+              mt-2
+              h-28
+              sm:w-32 sm:h-32
+              md:w-96 md:h-16
+              lg:w-96 lg:h-16
+              xl:w-96 xl:h-16
+              drop-shadow
+              shadow-shadow__lx
+              rounded-3xl2
+              transition duration-500 ease-in-out  hover:bg-green-400 transform hover:-translate-y-1 hover:scale-110
+            "
+          >
+            <router-link :to="{ name: 'words', params: { id: 0 } }">
+              <div class="h-full ">
+                <div
+                  class="
+                  
+                    sm:w-12
+                      md:w-20
+                      lg:w-28
+                      xl:w-32
+                      pt-4
+                      md:pt-0
+                      lg:pt-0
+                      xl:pt-0
+                      flex-center
+                      w-8
+                      mr-7
+                      absolute
+                      right-3
+                      top-3
+                      category_icon
+                      
+                  "
+                >
+                  <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
+                  <font-awesome-icon
+                    :icon="['fas', 'users']"
+                    class="text-lg text-red-400 "
+                  />
+                </div>
+                <div class="w-full absolute bottom-6">
+                  <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
+                  <span class="text-black text-xs block bottom-5 left-14"
+                    >پیشنهادات مردمی</span
+                  >
+                </div>
+              </div>
+            </router-link>
+          </div>
+
+          <div
+            v-for="(item, i) in categoryRepo.category"
+            :key="i"
+            class="
+            
+              shadow-shadow__lx
+              w-28
+              mt-2
+              h-28
+              sm:w-32 sm:h-32
+              md:w-96 md:h-16
+              lg:w-96 lg:h-16
+              xl:w-96 xl:h-16
+              drop-shadow
+              rounded-3xl2
+             
+              md:mt-3
+            "
+            :class="{ 'transition duration-500 ease-in-out  hover:bg-red-600 transform hover:-translate-y-1 hover:scale-110': !item.IsFree ,'transition duration-500 ease-in-out  hover:bg-green-400 transform hover:-translate-y-1 hover:scale-110':item.IsFree}"
+          >
+            <router-link :to="{ name: 'words', params: { id: i } }">
+              <div class="h-full">
+                <div class="w-full">
+                  <font-awesome-icon
+                    v-if="!item.IsFree"
+                    :icon="['fas', 'lock']"
+                    class="
+                      absolute
+                      text-gray-800
+                      right-3
+                      top-3
+                      text-sm
+                      sm:text-base
+                      md:text-lg
+                      lg:text-2xl
+                      xl:text-3xl
+                    "
+                  />
+                  <div
+                    class="
+                      sm:w-12
+                      md:w-20
+                      lg:w-28
+                      xl:w-32
+                      pt-4
+                      md:pt-0
+                      lg:pt-0
+                      xl:pt-0
+                      flex-center
+                      w-8
+                      mr-7
+                      absolute
+                      right-3
+                      top-3
+                      category_icon
+                    "
+                    v-html="categoryRepo.category[i].Icon"
+                  ></div>
+                </div>
+                <div class="w-full absolute bottom-6">
+                  <span
+                    :class="{ 'text-gray-50': !item.IsFree }"
+                    class="
+                      sm:text-sm
+                      md:text-lg
+                      lg:text-1xl
+                      xl:text-1xl
+                      text-black text-xs
+                      block
+                      bottom-5
+                      left-14
+                    "
+                    >{{ item.Title }}</span
+                  >
+                </div>
+              </div>
+            </router-link>
+          </div>
+        </template>
+        <TranslateRequest
+          @request="wordTranslateRequest"
+          v-if="wordRepo.searchResult.length === 0 && isNotFoundSearch"
+        ></TranslateRequest>
+        <WordComponent :words="wordRepo.searchResult"></WordComponent>
       </div>
+      <!-- practice & test buttons -->
+      <div
+        class="
+          lg:hidden
+          md:hidden
+          w-full
+          flex
+          h-12
+          md:h-16
+          xl:h-24
+          fixed
+          bottom-0
+          inset-x-0
+          bg-gray-100
+          justify-center
+          md:bg-opacity-5
+          xl:bg-opacity-5
+        "
+      >
+        <button
+          class="
+            w-2/4
+            sm:w-3/5
+            md:w-2/6
+            border
+            rounded-t-2xl
+            bg-yellow
+            text-center
+          "
+          @click="goToVocabularyTest()"
+        >
+          <span class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl ">
+            <font-awesome-icon
+              :icon="['fas', 'pen']"
+              class="
+                text-sm text-gray-600
+                ml-2
+                sm:text-base
+                md:text-xl
+                lg:text-2xl
+                xl:text-3xl
+              "
+            />تمرین لغات
+          </span>
+        </button>
+        <button
+          class="
+            w-2/4
+            sm:w-3/5
+            md:w-2/6
+            border
+            rounded-t-2xl
+            bg-yellow
+            text-center
+            mr-1
+          "
+        >
+          <span class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl">
+            <font-awesome-icon
+              :icon="['fas', 'question']"
+              class="
+                text-sm text-gray-600
+                ml-2
+                sm:text-base
+                md:text-xl
+                lg:text-2xl
+                xl:text-3xl
+              "
+            />آزمون مرحله ای
+          </span>
+        </button>
+      </div>
+    </div>
+     
+     
+     
+     </div>
       
 
         <header class="sticky left-0 right-0 top-0 z-10 lg:hidden md:hidden">
@@ -301,280 +708,7 @@ window.addEventListener("scroll",function() {
     </header>
     <!-- container -->
 
-    <div class="bg-gray-100 z-2 lg:mt-1 md:mt-1 xl:mt-1  ">
-      <!--category -->
-      <div
-        class="
-          flex flex-fill
-          justify-content-center
-          flex-wrap
-          text-center
-          pb-16
-          md:pb-28
-          justify-evenly
-        "
-      >
-        <template v-if="isCategoryVisible">
-          <!-- bookmark -->
-          <div
-            class="
-              w-28
-              mt-2
-              h-28
-              border
-              sm:w-32 sm:h-32
-              md:w-96 md:h-16
-              lg:w-96 lg:h-16
-              xl:w-96 xl:h-16
-              drop-shadow
-              rounded-3xl2
-              bg-white
-            "
-          >
-            <router-link :to="{ name: 'bookmark' }">
-              <div class="h-full">
-                <div
-                  class="
-                     sm:w-12
-                      md:w-20
-                      lg:w-28
-                      xl:w-32
-                      pt-4
-                      md:pt-0
-                      lg:pt-0
-                      xl:pt-0
-                      flex-center
-                      w-8
-                      mr-7
-                      absolute
-                      right-3
-                      top-3
-                      category_icon
-                  "
-                >
-                  <font-awesome-icon
-                    :icon="['fas', 'bookmark']"
-                    class="text-green-600 md:w-2"
-                  />
-                </div>
-                <div class="w-full absolute bottom-6">
-                  <span class="text-black text-xs block bottom-5 left-14"
-                    >نشان شده ها</span
-                  >
-                </div>
-              </div>
-            </router-link>
-          </div>
-          <!-- Popular suggestions -->
-          <div
-            class="
-              w-28
-              mt-2
-              h-28
-              sm:w-32 sm:h-32
-              md:w-96 md:h-16
-              lg:w-96 lg:h-16
-              xl:w-96 xl:h-16
-              border
-              drop-shadow
-              rounded-3xl2
-              bg-white
-            "
-          >
-            <router-link :to="{ name: 'words', params: { id: 0 } }">
-              <div class="h-full">
-                <div
-                  class="
-                    sm:w-12
-                      md:w-20
-                      lg:w-28
-                      xl:w-32
-                      pt-4
-                      md:pt-0
-                      lg:pt-0
-                      xl:pt-0
-                      flex-center
-                      w-8
-                      mr-7
-                      absolute
-                      right-3
-                      top-3
-                      category_icon
-                  "
-                >
-                  <!-- Cod For Responsive lg:text-8xl  md:text-8xl sm:text-7xl text-7xl  -->
-                  <font-awesome-icon
-                    :icon="['fas', 'users']"
-                    class="text-lg text-red-400 "
-                  />
-                </div>
-                <div class="w-full absolute bottom-6">
-                  <!-- Cod For Responsive lg:text-4xl  md:text-4xl sm:text-3xl text-3xl -->
-                  <span class="text-black text-xs block bottom-5 left-14"
-                    >پیشنهادات مردمی</span
-                  >
-                </div>
-              </div>
-            </router-link>
-          </div>
-
-          <div
-            v-for="(item, i) in categoryRepo.category"
-            :key="i"
-            class="
-              w-28
-              mt-2
-              h-28
-              border
-              sm:w-32 sm:h-32
-              md:w-96 md:h-16
-              lg:w-96 lg:h-16
-              xl:w-96 xl:h-16
-              drop-shadow
-              rounded-3xl2
-              bg-white
-              md:mt-3
-            "
-            :class="{ 'bg-gray-300': !item.IsFree }"
-          >
-            <router-link :to="{ name: 'words', params: { id: i } }">
-              <div class="h-full">
-                <div class="w-full">
-                  <font-awesome-icon
-                    v-if="!item.IsFree"
-                    :icon="['fas', 'lock']"
-                    class="
-                      absolute
-                      text-gray-500
-                      right-3
-                      top-3
-                      text-sm
-                      sm:text-base
-                      md:text-lg
-                      lg:text-2xl
-                      xl:text-3xl
-                    "
-                  />
-                  <div
-                    class="
-                      sm:w-12
-                      md:w-20
-                      lg:w-28
-                      xl:w-32
-                      pt-4
-                      md:pt-0
-                      lg:pt-0
-                      xl:pt-0
-                      flex-center
-                      w-8
-                      mr-7
-                      absolute
-                      right-3
-                      top-3
-                      category_icon
-                    "
-                    v-html="categoryRepo.category[i].Icon"
-                  ></div>
-                </div>
-                <div class="w-full absolute bottom-6">
-                  <span
-                    :class="{ 'text-gray-500': !item.IsFree }"
-                    class="
-                      sm:text-sm
-                      md:text-lg
-                      lg:text-1xl
-                      xl:text-1xl
-                      text-black text-xs
-                      block
-                      bottom-5
-                      left-14
-                    "
-                    >{{ item.Title }}</span
-                  >
-                </div>
-              </div>
-            </router-link>
-          </div>
-        </template>
-        <TranslateRequest
-          @request="wordTranslateRequest"
-          v-if="wordRepo.searchResult.length === 0 && isNotFoundSearch"
-        ></TranslateRequest>
-        <WordComponent :words="wordRepo.searchResult"></WordComponent>
-      </div>
-      <!-- practice & test buttons -->
-      <div
-        class="
-          lg:hidden
-          md:hidden
-          w-full
-          flex
-          h-12
-          md:h-16
-          xl:h-24
-          fixed
-          bottom-0
-          inset-x-0
-          bg-gray-100
-          justify-center
-          md:bg-opacity-5
-          xl:bg-opacity-5
-        "
-      >
-        <button
-          class="
-            w-2/4
-            sm:w-3/5
-            md:w-2/6
-            border
-            rounded-t-2xl
-            bg-yellow
-            text-center
-          "
-          @click="goToVocabularyTest()"
-        >
-          <span class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl">
-            <font-awesome-icon
-              :icon="['fas', 'pen']"
-              class="
-                text-sm text-gray-600
-                ml-2
-                sm:text-base
-                md:text-xl
-                lg:text-2xl
-                xl:text-3xl
-              "
-            />تمرین لغات
-          </span>
-        </button>
-        <button
-          class="
-            w-2/4
-            sm:w-3/5
-            md:w-2/6
-            border
-            rounded-t-2xl
-            bg-yellow
-            text-center
-            mr-1
-          "
-        >
-          <span class="text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl">
-            <font-awesome-icon
-              :icon="['fas', 'question']"
-              class="
-                text-sm text-gray-600
-                ml-2
-                sm:text-base
-                md:text-xl
-                lg:text-2xl
-                xl:text-3xl
-              "
-            />آزمون مرحله ای
-          </span>
-        </button>
-      </div>
-    </div>
+    
     <!-- Paid modal -->
     <PaidVersionModal
       class="z-10"
@@ -653,14 +787,17 @@ window.addEventListener("scroll",function() {
 header.sticky  {
   padding: 5px 100px;
   background: #fff;
-  border-bottom: 1px solid (0,0,0,.1);
+    box-shadow: 1px 3px 3px #464059;
+    transition: 0.6s;
 }
 header.sticky .logo,
-.sticky ul li a
+.sticky ul li 
 {
   color: #000;
 }
-
+header.sticky .Tamrin{
+  color:#fff
+}
 
 .dropdown:hover .dropdown-menu {
   opacity: 1;

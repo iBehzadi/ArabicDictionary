@@ -20,15 +20,19 @@ const config = {
         pezeshki:"#22a79a",
         yellow:"#fbd83a",
         YelloRgb:"#efa00b",
-        pink:"#d290dc"
+        pink:"#d290dc",
+        gray_color:"#d5d5d5",
+        blue_to_gray:"#433d57"
         
       },
+      
       fontSize:{
         "2xs":'10px'
       },
       boxShadow:{
-        shadowBottom:"1px 3px 3px #b0b5b0;"
-      }
+        shadowBottom:"1px 3px 3px #b0b5b0;",
+        shadow__lx:'10px 5px 15px 2px #888888',
+      },
       
     },
   },
