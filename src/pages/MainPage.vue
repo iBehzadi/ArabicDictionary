@@ -140,6 +140,13 @@ function install() {
   prompter.prompt();
 }
 
+function openCategory(isFree:number, i:number){
+  if(isFree != 0) {
+    router.push({ name: 'words', params: { id: i } })
+  } else {
+    isPaidVersionModal.value = true;
+  }
+}
 </script>
 
 <template>
@@ -283,7 +290,7 @@ function install() {
             <input
               @input.stop="SearchCall()"
               v-model="search"
-              class="bg-transparent border-none outline-none p-0 float-right leading-8 text-white text-lg transition-all duration-500 transform origin-bottom-left -translate-y-2 w-0 group-focus-within:w-60 relative top-2 right-2"
+              class="bg-transparent border-none outline-none p-0 float-right leading-8 text-black text-lg transition-all duration-500 transform origin-bottom-left -translate-y-2 w-0 group-focus-within:w-60 relative top-2 right-2"
               type="text"
               placeholder="جستجوکنید..."
             />
@@ -346,7 +353,7 @@ function install() {
             class="w-28 flex-col md:flex-row md:justify-evenly mt-2 h-28 border sm:w-32 sm:h-32 md:w-96 md:h-16 lg:w-96 lg:h-16 xl:w-96 xl:h-16 drop-shadow rounded-3xl2 bg-white md:mt-3"
             :class="{ 'bg-gray-300': !item.IsFree }"
           >
-            <router-link :to="{ name: 'words', params: { id: i } }">
+            <a class="cursor-pointer" @click="openCategory(item.IsFree,i)">
               <div class="h-full flex-center flex-col md:flex-row md:justify-evenly">
                 <font-awesome-icon
                   v-if="!item.IsFree"
@@ -362,7 +369,7 @@ function install() {
                   class="text-black text-xs sm:text-sm md:text-lg lg:text-1xl xl:text-1xl"
                 >{{ item.Title }}</span>
               </div>
-            </router-link>
+            </a>
           </div>
         </template>
         <TranslateRequest
