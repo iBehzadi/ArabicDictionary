@@ -4,24 +4,18 @@ const emit = defineEmits(['close']);
 function close() {
     emit('close');
 }
-function closeModal() {
-    document.querySelector(".modal")?.addEventListener("click", () => {
-        close();
-    })
-    document.querySelector(".modal__content")?.addEventListener("click", (e) => {
-        e.stopPropagation();
-    })
-}
+
 </script>
 
 <template>
     <div
         class="modal flex-center fixed top-0 bottom-0 right-0 left-0 bg-black bg-opacity-30"
-        @click="closeModal"
+        @click="close"
     >
         <div
             class="modal__content text-xs overflow-auto flex flex-col w-9/12 md:text-base lg:text-lg lg:w-8/12 lg:h-auto rounded-15 font-sans bg-white shadow-2md"
             role="dialog"
+            @click.stop
         >
             <header class="mt-4 mx-2 py-1 px-2">
                 <slot name="body1"></slot>

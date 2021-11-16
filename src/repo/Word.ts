@@ -23,7 +23,7 @@ export const useWordRepo = defineStore("wordRepo", {
       this.words = await WordDB_GetAll(CategoryID);
     },
     async getLimitWordByCategory(CategoryID: number, offset: number, limit: number) {
-      this.words = await WordDB_GetLimitWords(CategoryID, offset, limit);
+      this.words = this.words.concat(await WordDB_GetLimitWords(CategoryID, offset, limit));
     },
     async getWordByRandom(categoryID: number) {
       this.randomWord = await WordDB_RandomId(categoryID);
