@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import WordComponent from "../components/WordComponent.vue";
-import header2 from "../components/Header2.vue";
+import header2 from "../components/Header.vue";
 import { useCategoryRepo } from "@/repo/Category";
 import { useWordRepo } from "@/repo/Word";
 import { ref } from "vue-demi";
@@ -39,13 +39,13 @@ function previousPage() {
 
     <button
       v-show="offset != 0"
-      class="bg-yellow fixed z-20 top-4 left-24 p-1 mx-1 hover:bg-blue-100 transition-all duration-300 rounded-md left-24"
+      class="previous-page bg-yellow fixed z-20 top-4 left-24 p-1 mx-1 hover:bg-blue-100 transition-all duration-300 rounded-md left-24"
       @click="previousPage"
       aria-label="Previous Page"
     >صفحه قبل</button>
     <button
-      v-show="wordRepo.words.length >= limit-1"
-      class="bg-yellow fixed z-20 top-4 left-0 p-1 mx-1 hover:bg-blue-100 transition-all duration-300 rounded-md left-2"
+      v-show="wordRepo.words.length >= limit - 1"
+      class="next-page bg-yellow fixed z-20 top-4 left-0 p-1 mx-1 hover:bg-blue-100 transition-all duration-300 rounded-md left-2"
       @click="nextPage"
       aria-label="Next Page"
     >صفحه بعد</button>
@@ -57,7 +57,7 @@ function previousPage() {
 
     <button
       @click="router.push(`/Practice/${categoryRepo.category[+route.params.id].CategoryID}`)"
-      class="bg-yellow w-full h-11 rounded-t-2xl flex justify-center pt-3 fixed bottom-0"
+      class="practice-btn bg-yellow w-full h-11 rounded-t-2xl flex justify-center pt-3 fixed bottom-0"
       aria-label="Back"
     >
       <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600" />

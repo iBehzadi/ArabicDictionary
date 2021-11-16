@@ -26,21 +26,20 @@ const config = {
         sans: 'Vazir',
 
       },
-      colors:{
-        uniqColor : "#ffcc00",
-        pezeshki:"#22a79a",
-        yellow:"#fbd83a",
-        YelloRgb:"#efa00b",
-        pink:"#d290dc"
-        
+      colors: {
+        uniqColor: "#ffcc00",
+        yellow: "#fbd83a",
+        loadingGreen: "#8cc271",
+        loadingBlue: "#69beeb",
+        loadingYellow: "#f5aa39",
+        loadingOrange: "#e9643b"
       },
-      fontSize:{
-        "2xs":'10px'
+      fontSize: {
+        "2xs": '10px'
       },
-      boxShadow:{
-        shadowBottom:"1px 3px 3px #b0b5b0;"
+      boxShadow: {
+        shadowBottom: "1px 3px 3px #b0b5b0;"
       }
-      
     },
     screens: {
       '2sm': '440px',

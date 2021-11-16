@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { ref } from "@vue/reactivity";
-import GuideModal from "@/components/ModalView.vue";
-import PaidVersionModal from "@/components/ModalView.vue";
-import TranslateRequest from "@/components/transliteRequest.vue";
+import GuideModal from "@/components/PopupModal.vue";
+import PaidVersionModal from "@/components/PopupModal.vue";
+import TranslateRequest from "@/components/TranslateRequest.vue";
 import WordComponent from "@/components/WordComponent.vue";
 import { useCategoryRepo } from "@/repo/Category";
 import { useUpdateRepo } from "@/repo/Update";
 import { useWordRepo } from "@/repo/Word";
-import pageLoader from "@/components/pageLoader.vue";
+import pageLoader from "@/components/LoadingComponent.vue";
 // @ts-ignore
 import { useRegisterSW } from "virtual:pwa-register/vue";
 
@@ -167,8 +167,8 @@ function install() {
     </div>
   </div>
 
-  <pageLoader :error="false" class="z-20" v-if="categoryRepo.category.length === 0"></pageLoader>
-  <pageLoader :error="error" class="z-20" v-if="error" @reload="reload()"></pageLoader>
+  <pageLoader :error="false" class="z-50" v-if="categoryRepo.category.length === 0"></pageLoader>
+  <pageLoader :error="error" class="z-50" v-if="error" @reload="reload()"></pageLoader>
   <!-- before desktop -->
   <div>
     <header class="sticky left-0 right-0 top-0 z-10 lg:hidden md:hidden">
@@ -441,12 +441,12 @@ function install() {
           <span v-if="needRefresh">نسخه جدید برنامه در دسترس است. مایل به بروزرسانی هستید؟</span>
         </div>
         <button
-          class="outline-none mr-2 rounded-md bg-pezeshki mx-2 p-3 hover:bg-blue-400"
+          class="outline-none mr-2 rounded-md bg-green-500 mx-2 p-3 hover:bg-blue-400"
           v-if="needRefresh"
           @click="updateAndCloseSWModal"
         >بروزرسانی</button>
         <button
-          class="outline-none mr-2 rounded-md bg-pezeshki mx-2 p-3 hover:bg-blue-400"
+          class="outline-none mr-2 rounded-md bg-green-500 mx-2 p-3 hover:bg-blue-400"
           @click="closeSWUpdateModal"
         >فعلا نه</button>
       </div>

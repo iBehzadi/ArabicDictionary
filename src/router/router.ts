@@ -15,14 +15,14 @@ const routes = [
   {
     path: "/bookmark",
     name: "bookmark",
-    component: () => import("@/pages/bookmarkInfo.vue")
+    component: () => import("@/pages/BookmarkPage.vue")
   }
   ,
 {
   //=> /words/:category
   path:"/Words/:id",
   name:"words",
-  component: ()=> import("@/pages/pageLoghat.vue")
+  component: ()=> import("@/pages/WordsViewPage.vue")
 },
 {
   path:"/popular",

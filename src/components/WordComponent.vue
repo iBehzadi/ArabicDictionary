@@ -33,22 +33,22 @@ function SoundErr(event: Event) {
     class="flex flex-col 2sm:items-center md:flex-row md:items-stretch md:justify-center md:flex-wrap md:gap-x-8"
   >
     <div
-      class="w-full h-auto shadow-lg backdrop-blur-md flex bg-gray-50 hover:bg-blue-100 mb-1 mt-1 rounded-xl odd:bg-gray-300 2sm:max-w-screen-2sm md:max-w-2xl md:w-80 lg:w-1/4"
+      class="word-component w-full h-auto shadow-lg backdrop-blur-md flex bg-gray-50 hover:bg-blue-100 mb-1 mt-1 rounded-xl odd:bg-gray-300 2sm:max-w-screen-2sm md:max-w-2xl md:w-80 lg:w-1/4"
       v-for="(item, i) in props.words"
       :key="i"
     >
-      <div class="flex-grow text-sm pt-1 pr-2">
+      <div class="word-component__text-content flex-grow text-sm pt-1 pr-2">
         <div class="text-gray-600 pb-1 text-xs">
           <slot></slot>
         </div>
         <div class="font-black pb-1">{{ item.Ar }}</div>
         <div class="text-gray-600 pb-1">{{ item.Fa }}</div>
-        <div class="text-gray-400 pb-1" v-if="item.Example">مثال: {{ item.Example }}</div>
+        <div class="text-gray-500 pb-1" v-if="item.Example">مثال: {{ item.Example }}</div>
       </div>
       <div class="flex items-center">
         <button
           @click.stop="bookmarksRepo.Bookmarks_ChangeStatusWord(item.WordID)"
-          class="w-12 h-12 flex-center"
+          class="word-component__bookmark-button w-12 h-12 flex-center"
           aria-label="Bookmark"
         >
           <font-awesome-icon
@@ -57,7 +57,11 @@ function SoundErr(event: Event) {
             :class="{ 'text-green-400': bookmarks.includes(item.WordID) }"
           />
         </button>
-        <button aria-label="Play Sound" class="w-12 h-12 flex-center" @click.stop="playSound(item.WordID)">
+        <button
+          aria-label="Play Sound"
+          class="word-component__play-button w-12 h-12 flex-center"
+          @click.stop="playSound(item.WordID)"
+        >
           <font-awesome-icon
             :icon="['fas', 'play']"
             class="text-sm text-gray-600 hover:text-green-400"
