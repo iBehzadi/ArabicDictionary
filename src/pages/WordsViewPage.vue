@@ -11,15 +11,15 @@ const route = useRoute();
 const router = useRouter();
 const categoryRepo = useCategoryRepo();
 const wordRepo = useWordRepo();
-const observableElement = ref<HTMLElement>()
+const observableElement = ref<HTMLElement>();
 
 onMounted(() => {
   const observer = new IntersectionObserver(entries => {
     if (entries[0].intersectionRatio === 1 /* یعنی اومد توی صفحه */) {
-      nextPage()
+      nextPage();
     }
   })
-  observer.observe(observableElement.value!)
+  observer.observe(observableElement.value!);
 })
 
 let limit = 50;

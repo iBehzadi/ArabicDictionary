@@ -20,7 +20,7 @@ function playSound(wordId: number) {
   nextTick();
   audioElement.value!.play();
 }
-function SoundErr(event: Event) {
+function SoundErr() {
   setTimeout(() => {
     alert("خطای شبکه: ارتباط برقرار نیست");
   }, 10)
@@ -71,7 +71,7 @@ function SoundErr(event: Event) {
       </div>
     </div>
   </div>
-  <audio ref="audioElement" :src="urlAudio" type="audio/mp4" @error="SoundErr($event)"></audio>
+  <audio ref="audioElement" :src="urlAudio" type="audio/mp4" @error="SoundErr()"></audio>
 </template>
 
 <style>

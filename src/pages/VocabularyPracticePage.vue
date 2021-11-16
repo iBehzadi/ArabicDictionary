@@ -17,12 +17,7 @@ let falseResult = ref(0);
 wordRepo.getWordByRandom(+route.params.categoryID);
 
 let questionWord = computed((): IWord => {
-  return wordRepo.randomWord[
-    Math.floor(Math.random() * wordRepo.randomWord.length)
-  ];
-});
-let answerWord = computed((): IWord[] => {
-  return wordRepo.randomWord;
+  return wordRepo.randomWord[Math.floor(Math.random() * wordRepo.randomWord.length)];
 });
 
 let startTime = Date.now();
@@ -36,9 +31,8 @@ function showTime(millis: number) {
   var seconds = ((millis % 60000) / 1000).toFixed(0);
   return minutes + " دقیقه و " + seconds + " ثانیه";
 }
+
 let count = ref(0);
-let redStyle = ref(false);
-let greenStyle = ref(false);
 let clicked = false;
 let userChoice = ref<IWord | null>(null);
 
@@ -54,8 +48,6 @@ function questionAnswer(word: IWord) {
       }
       userChoice.value = null;
       wordRepo.getWordByRandom(+route.params.categoryID);
-      redStyle.value = false;
-      greenStyle.value = false;
       clicked = false;
     }, 1000);
     count.value++;
@@ -91,14 +83,14 @@ function exit() {
         <div class="grid grid-cols-2 md:flex justify-items-center py-5 gap-2 sm:gap-4">
           <div
             @click="questionAnswer(wordRepo.randomWord[i])"
-            v-for="(item, i) in answerWord"
+            v-for="(item, i) in wordRepo.randomWord"
             :key="i"
             :class="{
               'bg-green-500':
-                userChoice !== null && item.WordID === questionWord.WordID,
+                userChoice !== null && item.WordID === questionWord?.WordID,
               'bg-red-500':
                 item.WordID === userChoice?.WordID &&
-                item.WordID !== questionWord.WordID,
+                item.WordID !== questionWord?.WordID,
             }"
             class="w-full sm:w-3/5 sm:text-xl sm:font-bold sm:p-0 rounded-3xl bg-white flex items-center justify-center shadow-lg drop-shadow-md"
           >

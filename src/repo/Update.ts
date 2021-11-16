@@ -6,7 +6,7 @@ import { defineStore } from "pinia";
 import { searchDB_AddWordsInDB } from "@/database/SearchDB";
 
 
-export const useUpdateRepo = defineStore('getUpdateDB', {
+export const useUpdateRepo = defineStore('UpdateDB', {
   state: () => {
     return {
     }
@@ -17,6 +17,7 @@ export const useUpdateRepo = defineStore('getUpdateDB', {
       LastUpdate_Add(result.lastUpdate);
       CategoryDB_AddAll(result.categories);
       WordDB_AddAll(result.words);
-      searchDB_AddWordsInDB(result.words);    }
+      searchDB_AddWordsInDB(result.words);
+    }
   }
 })

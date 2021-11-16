@@ -17,10 +17,11 @@ export async function WordDB_GetWordByID(words: number[]) {
 }
 
 export async function WordDB_RandomId(categoryID: number,) {
-  let loghatRnd = await db.word.where("CategoryID").equals(categoryID).toArray();
-  let temp = [] as IWord[];
+  let tempWordsArray = await db.word.where("CategoryID").equals(categoryID).toArray();
+  let randomWords = [] as IWord[];
   for (let i = 0; i <= 3; i++) {
-   temp[i] = loghatRnd[Math.floor(Math.random() * loghatRnd.length)];
+    randomWords[i] = tempWordsArray[Math.floor(Math.random() * tempWordsArray.length)];
   }
-  return temp;
+  tempWordsArray = [];
+  return randomWords;
 }

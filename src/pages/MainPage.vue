@@ -27,15 +27,6 @@ let error = ref(false);
 const loading = ref(true);
 let mobileView = ref(true);
 
-function handleView() {
-  mobileView.value = window.innerWidth <= 990;
-}
-function created() {
-  handleView();
-  window.addEventListener("resize", handleView);
-}
-created();
-
 const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW();
 
 const closeSWUpdateModal = async () => {
@@ -55,7 +46,7 @@ function reload() {
   error.value = false;
 
   update.DB_Update()
-    .catch(e => {
+    .catch(() => {
       if (categoryRepo.category.length === 0) {
         error.value = true;
       }
@@ -100,7 +91,7 @@ function SearchCall() {
 var settingSide = ref<HTMLDivElement>();
 var settings = ref<HTMLDivElement>();
 function openSetting() {
-  settingSide.value!.style.width = "65%";
+  settingSide.value!.style.width = "60%";
   settings.value!.style.width = "100%";
 }
 function closeSetting() {
