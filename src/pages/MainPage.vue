@@ -106,9 +106,6 @@ function openSetting() {
 function closeSetting() {
   settingSide.value!.style.width = "0";
   settings.value!.style.width = "0";
-  document.getElementById("setting-nav")?.addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
 }
 //guide Modal open
 function guideModal() {
@@ -160,6 +157,7 @@ function openCategory(isFree:number, i:number){
       ref="settingSide"
       id="setting-nav"
       class="h-full w-0 t-0 right-0 overflow-x-hidden bg-white bg-opacity-100 transition-all duration-300"
+      @click.stop
     >
       <div class="flex flex-col mt-5">
         <button
