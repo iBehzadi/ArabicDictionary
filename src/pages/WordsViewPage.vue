@@ -48,19 +48,6 @@ function previousPage() {
       <template v-slot:title>{{ categoryRepo.category[+route.params.id]?.Title }}</template>
     </header2>
 
-    <button
-      v-show="offset != 0"
-      class="previous-page bg-yellow fixed z-20 top-3 md:top-4 left-24 p-1 mx-1 hover:bg-blue-100 transition-all duration-300 rounded-md left-24"
-      @click="previousPage"
-      aria-label="Previous Page"
-    >صفحه قبل</button>
-    <button
-      v-show="wordRepo.words.length >= limit - 1"
-      class="next-page bg-yellow fixed z-20 top-3 md:top-4 left-0 p-1 mx-1 hover:bg-blue-100 transition-all duration-300 rounded-md left-2"
-      @click="nextPage"
-      aria-label="Next Page"
-    >صفحه بعد</button>
-
     <!-- route.params.data -->
     <div class="mt-16 mb-12">
       <WordComponent :words="wordRepo.words"></WordComponent>
