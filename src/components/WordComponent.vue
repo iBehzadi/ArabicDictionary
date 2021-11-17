@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed,ref } from "vue";
+import { computed,ref, nextTick } from "vue";
 import { useBookmarksRepo } from "@/repo/Bookmarks";
 import { useWordRepo } from "@/repo/Word";
 import ModalView from "./modalView.vue";
@@ -7,6 +7,8 @@ import ModalView from "./modalView.vue";
 const props = defineProps<{
   words: IWord[];
 }>();
+
+const audioElement = ref<HTMLAudioElement>();
 // isBookmark: false;
 const bookmarksRepo = useBookmarksRepo();
 bookmarksRepo.Bookmarks_GetAll();
@@ -16,8 +18,10 @@ let bookmarks = computed(() => {
 });
 const wordRepo = useWordRepo();
 const urlAudio = ref();
-function playSound(wordId: number) {
+async function playSound(wordId: number) {
      urlAudio.value = "https://nebrasar.ir/sounds/" + wordId + ".m4a";
+    await nextTick()
+     audioElement.value!.play()
 }
 // function SoundErr(err) {
 // }
@@ -51,7 +55,7 @@ alert("خطای شبکه: ارتباط برقرار نیست")
       <div class="text-gray-600 pb-1 text-xs">
         <slot></slot>
       </div>
-      <div class="font-black pb-1">{{ item.Ar }}</div>
+      <div class="font-black pb-1" v-html="item.Ar.replace(wordRepo.$state.searchValue,`<span style='color:red'>$&</span>`)"></div>
       <div class="text-gray-600 pb-1">{{ item.Fa }}</div>
       <div class="text-gray-400 pb-1" v-if="item.Example">
         مثال: {{ item.Example }}
@@ -84,7 +88,7 @@ alert("خطای شبکه: ارتباط برقرار نیست")
       </ModalView> -->
     </div>
   </div>
-  <audio :src="urlAudio" type="audio/mp4" autoplay  @error="SoundErr($event)" ></audio>
+  <audio ref="audioElement" :src="urlAudio" type="audio/mp4"  @error="SoundErr($event)" ></audio>
 </template>
 
 <style></style>
