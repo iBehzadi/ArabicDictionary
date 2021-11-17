@@ -23,7 +23,7 @@ export async function searchDB_AddWordsInDB(word: IWord[]) {
 }
 
 export async function searchDB_GetSearchResult(searchValue: string) {
-  let tempArray: number[] = []
+  let tempArray: number[] = [];
   await db.search.where("Word").startsWith(searchValue).each((res) => {
     tempArray.push(res.WordID);
   })

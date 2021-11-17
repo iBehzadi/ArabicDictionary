@@ -7,6 +7,8 @@ import ModalView from "./modalView.vue";
 const props = defineProps<{
   words: IWord[];
 }>();
+
+const audioElement = ref<HTMLAudioElement>()
 // isBookmark: false;
 const bookmarksRepo = useBookmarksRepo();
 bookmarksRepo.Bookmarks_GetAll();
