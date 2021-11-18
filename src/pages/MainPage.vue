@@ -36,9 +36,9 @@ const closeSWUpdateModal = async () => {
 };
 
 const updateAndCloseSWModal = async () => {
-  updateServiceWorker();
+  await updateServiceWorker();
   offSWModal.value = false;
-  needRefresh.value = false;
+  //needRefresh.value = false;
 };
 
 function reload() {
