@@ -429,10 +429,10 @@ function openCategory(isFree:number, i:number){
 
     <div
       v-if="needRefresh && offSWModal"
-      class="fixed top-0 left-0 right-0 bottom-0 bg-gray-400 bg-opacity-50 z-50 text-center"
+      class="fixed flex-center top-0 left-0 right-0 bottom-0 bg-gray-400 bg-opacity-50 z-50 text-center"
       role="alert"
     >
-      <div class="absolute top-1/3 right-1/3 bg-uniqColor rounded-md p-1">
+      <div class="bg-uniqColor rounded-md p-1">
         <div class="mb-4 p-3">
           <span v-if="needRefresh">نسخه جدید برنامه در دسترس است. مایل به بروزرسانی هستید؟</span>
         </div>
