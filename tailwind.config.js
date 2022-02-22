@@ -66,7 +66,9 @@ const config = {
       backgroundColor: ['odd']
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-rtl')
+  ],
 }
 
 module.exports = config

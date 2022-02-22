@@ -4,7 +4,7 @@ import { useBookmarksRepo } from "@/repo/Bookmarks";
 const props = defineProps<{
   words: IWord[];
 }>();
-// isBookmark: false;
+
 const bookmarksRepo = useBookmarksRepo();
 const audioElement = ref<HTMLAudioElement>();
 bookmarksRepo.Bookmarks_GetAll();
@@ -15,8 +15,9 @@ let bookmarks = computed(() => {
 const urlAudio = ref();
 function playSound(wordId: number) {
   urlAudio.value = "https://nebrasar.ir/sounds/" + wordId + ".m4a";
-  nextTick();
+
   audioElement.value!.play();
+  nextTick();
 }
 function SoundErr(event: Event) {
   setTimeout(() => {
@@ -39,7 +40,7 @@ function SoundErr(event: Event) {
         <div class="text-gray-600 pb-1 text-xs">
           <slot></slot>
         </div>
-        <div class="font-black pb-1">{{ item.Ar }}</div>
+        <div class="font-black pb-1 ms-4">{{ item.Ar }}</div>
         <div class="text-gray-600 pb-1">{{ item.Fa }}</div>
         <div class="text-gray-400 pb-1" v-if="item.Example">مثال: {{ item.Example }}</div>
       </div>
