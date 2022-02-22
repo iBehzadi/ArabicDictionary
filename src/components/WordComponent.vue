@@ -15,7 +15,6 @@ let bookmarks = computed(() => {
 const urlAudio = ref();
 function playSound(wordId: number) {
   urlAudio.value = "https://nebrasar.ir/sounds/" + wordId + ".m4a";
-
   audioElement.value!.play();
   nextTick();
 }
