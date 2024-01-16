@@ -1,8 +1,8 @@
+import { defineStore } from "pinia";
 import {
   BookmarksDB_ChangeStatusWord,
   BookmarksDB_GetAll,
 } from "@/database/BookmarksDB";
-import { defineStore } from "pinia";
 
 export const useBookmarksRepo = defineStore("Bookmarks", {
   state: () => {

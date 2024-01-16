@@ -8,12 +8,11 @@ import path from 'path'
  */
 // https://vitejs.dev/config/
 export default defineConfig({
-  server: {
-    host: true,
-    proxy: {
-      '/api': 'https://nebrasar.ir/'
-    }
-  },
+  // server: {
+  //   proxy: {
+  //     '/api': 'https://nebrasar.ir/'
+  //   }
+  // },
   plugins: [vue(), VitePWA({
     strategies: 'injectManifest',
     srcDir: 'src',

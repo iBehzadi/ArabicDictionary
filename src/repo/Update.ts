@@ -1,8 +1,8 @@
+import { defineStore } from "pinia";
 import { getUpdates_API } from "@/api/UpdateAPI";
 import { CategoryDB_AddAll } from "@/database/CategoryDB";
 import { LastUpdate_Add } from "@/database/LastUpdateDB";
 import { WordDB_AddAll } from "@/database/WordDB";
-import { defineStore } from "pinia";
 import { searchDB_AddWordsInDB } from "@/database/SearchDB";
 
 

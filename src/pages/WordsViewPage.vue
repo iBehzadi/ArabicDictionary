@@ -56,7 +56,7 @@ function previousPage() {
 
     <button
       @click="router.push(`/Practice/${categoryRepo.category[+route.params.id].CategoryID}`)"
-      class="practice-btn bg-yellow w-full h-11 rounded-t-2xl flex justify-center pt-3 fixed bottom-0"
+      class="practice-btn bg-yellow w-full h-11 rounded-t-2xl flex justify-center pt-3 fixed bottom-0 md:top-0 md:left-5 md:z-10 md:w-1/4 md:mt-1 md:rounded"
       aria-label="Back"
     >
       <font-awesome-icon :icon="['fas', 'pen']" class="text-sm text-gray-600" />
@@ -65,6 +65,7 @@ function previousPage() {
         class="text-sm text-center pr-2"
       >تمرین لغات {{ categoryRepo.category[+route.params.id]?.Title }}</span>
     </button>
+
   </div>
 </template>
 

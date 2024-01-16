@@ -1,9 +1,8 @@
 <script setup lang="ts">
-const emit = defineEmits(['back']);
+const emit = defineEmits(["back"]);
 function back() {
-  emit('back');
+  emit("back");
 }
-
 </script>
 <template>
   <div
@@ -11,8 +10,8 @@ function back() {
   >
     <button
       aria-label="Back"
-      @click="back"
       class="header__back-button w-8 h-8 md:w-10 md:h-10 flex-center"
+      @click="back"
     >
       <font-awesome-icon
         class="text-lg text-gray-600 self-center font-thin"
@@ -20,7 +19,7 @@ function back() {
       />
     </button>
     <span class="header__title mr-2 text-black text-base font-black">
-      <slot name="title"></slot>
+      <slot name="title" />
     </span>
   </div>
 </template>

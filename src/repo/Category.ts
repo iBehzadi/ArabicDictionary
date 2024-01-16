@@ -1,5 +1,5 @@
-import { CategoryDB_GetAll } from "@/database/CategoryDB";
 import { defineStore } from "pinia";
+import { CategoryDB_GetAll } from "@/database/CategoryDB";
 
 export const useCategoryRepo = defineStore('categoryRepo', {
   state: () => {
@@ -13,3 +13,4 @@ export const useCategoryRepo = defineStore('categoryRepo', {
     },
   }
 });
+

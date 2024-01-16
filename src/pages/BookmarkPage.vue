@@ -17,7 +17,7 @@ let categoryTitle = "نشان شده ها";
     </Header2>
 
     <div class="mt-16">
-      <WordComponent :words="wordRepo.bookmarkWords"></WordComponent>
+      <WordComponent :words="wordRepo.bookmarkWords" />
     </div>
     <div
       v-if="!wordRepo.bookmarkWords.length"
